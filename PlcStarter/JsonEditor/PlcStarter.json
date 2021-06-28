@@ -1,0 +1,166 @@
+﻿{
+    "Strukturen": [
+        {
+            "Logo!": {
+                "Projekt": "k:/git/_Logo",
+                "AutoTest": "-"
+            },
+            "TIA Portal": {
+                "Projekt": "k:/git/_TiaPortal",
+                "AutoTest": "k:/temp/DigitalTwin"
+            },
+            "TwinCAT": {
+                "Projekt": "k:/git/_TwinCat",
+                "AutoTest": "k:/temp/DigitalTwin"
+            }
+        }
+    ],
+    "Logo!": [
+        {
+            "Bezeichnung": "Linearachse KOP",
+            "Version": "8",
+            "Sprache": "KOP",
+            "Ordner": "PLC_KOP_Linearachse"
+        },
+        {
+            "Bezeichnung": "Linearachse FUP",
+            "Version": "8",
+            "Sprache": "FUP",
+            "Ordner": "PLC_FUP_Linearachse"
+        },
+        {
+            "Bezeichnung": "Motorschaltungen FUP",
+            "Version": "8",
+            "Sprache": "FUP",
+            "Ordner": "PLC_FUP_Motorschaltungen"
+        }
+    ],
+    "TIA Portal!": [
+        {
+            "Bezeichnung": "LAP 2010/1 Kompressoranlage",
+            "Version": "V14SP1",
+            "Sprache": "FUP",
+            "AutoTest": "True",
+            "Ordner": "TEST_FUP_LAP__2010__1__Kompressoranlage"
+        },
+        {
+            "Bezeichnung": "LAP 2010/2_ Transportwagen",
+            "Version": "V14SP1",
+            "Sprache": "FUP",
+            "AutoTest": "True",
+            "Ordner": "TEST_FUP_LAP__2010__2__Transportwagen"
+        },
+        {
+            "Bezeichnung": " LAP 2010/3 Ofentuersteuerung",
+            "Version": "V14SP1",
+            "Sprache": "FUP",
+            "AutoTest": "True",
+            "Ordner": "TEST_FUP_LAP__2010__3__Ofentuersteuerung"
+        },
+        {
+            "Bezeichnung": "LAP 2010/4 Abfuellanlage",
+            "Version": "V14SP1",
+            "Sprache": "FUP",
+            "AutoTest": "True",
+            "Ordner": "TEST_FUP_LAP__2010__4__Abfuellanlage"
+        },
+        {
+            "Bezeichnung": " TLAP 2010/5 Pumpensteuerung",
+            "Version": "V14SP1",
+            "Sprache": "FUP",
+            "AutoTest": "True",
+            "Ordner": "TEST_FUP_LAP__2010__5__Pumpensteuerung"
+        },
+        {
+            "Bezeichnung": "LAP 2018/1 Silosteuerung",
+            "Version": "V14SP1",
+            "Sprache": "FUP",
+            "AutoTest": "True",
+            "Ordner": "TEST_FUP_LAP__2018__1__Silosteuerung"
+        },
+        {
+            "Bezeichnung": "LAP 2018/2 Abfuellanlage",
+            "Version": "V14SP1",
+            "Sprache": "FUP",
+            "AutoTest": "True",
+            "Ordner": "TEST_FUP_LAP__2018__2__Abfuellanlage"
+        },
+        {
+            "Bezeichnung": "LAP 2018/3 _Hydraulikaggregat",
+            "Version": "V14SP1",
+            "Sprache": "FUP",
+            "AutoTest": "True",
+            "Ordner": "TEST_FUP_LAP__2018__3__Hydraulikaggregat"
+        },
+        {
+            "Bezeichnung": "LAP 2018/4 Niveauregelung",
+            "Version": "V14SP1",
+            "Sprache": "FUP",
+            "AutoTest": "True",
+            "Ordner": "TEST_FUP_LAP__2018__4__Niveauregelung"
+        },
+        {
+            "Bezeichnung": "LAP 2019 Foerderanlage",
+            "Version": "V14SP1",
+            "Sprache": "FUP",
+            "AutoTest": "True",
+            "Ordner": "TEST_FUP_LAP__2019__Foerderanlage"
+        },
+        {
+            "Bezeichnung": "_Nadeltelegraph",
+            "Version": "V14SP1",
+            "Sprache": "FUP",
+            "AutoTest": "True",
+            "Ordner": "TEST_FUP_Nadeltelegraph"
+        },
+        {
+            "Bezeichnung": "Blinklicht_Fibonacci",
+            "Version": "V14SP1",
+            "Sprache": "SCL",
+            "AutoTest": "True",
+            "Ordner": "TEST_SCL_Blinklicht_Fibonacci"
+        },
+        {
+            "Bezeichnung": "Labor_Getriebemotor",
+            "Version": "V14SP1",
+            "Sprache": "SCL",
+            "AutoTest": "True",
+            "Ordner": "TEST_SCL_Labor_Getriebemotor"
+        },
+        {
+            "Bezeichnung": "Labor_Linearachse",
+            "Version": "V14SP1",
+            "Sprache": "SCL",
+            "AutoTest": "True",
+            "Ordner": "TEST_SCL_Labor_Linearachse"
+        },
+        {
+            "Bezeichnung": "Parkhaus",
+            "Version": "V14SP1",
+            "Sprache": "SCL",
+            "AutoTest": "True",
+            "Ordner": "TEST_SCL_Parkhaus"
+        },
+        {
+            "Bezeichnung": "Schleifmaschine",
+            "Version": "V14SP1",
+            "Sprache": "SCL",
+            "AutoTest": "True",
+            "Ordner": "TEST_SCL_Schleifmaschine"
+        },
+        {
+            "Bezeichnung": "WordClock",
+            "Version": "V14SP1",
+            "Sprache": "SCL",
+            "AutoTest": "True",
+            "Ordner": "TEST_SCL_WordClock"
+        }
+    ],
+    "TwinCAT": [
+        {
+            "Bezeichnung": "TIA Musterbeispiel KOP",
+            "Version": "3.1",
+            "Sprache": "KOP"
+        }
+    ]
+}

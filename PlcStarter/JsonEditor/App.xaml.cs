@@ -1,4 +1,4 @@
-﻿namespace PlcStarter
+﻿namespace JsonEditor
 {
     public partial class App
     {
