@@ -20,9 +20,9 @@ namespace PlcStarter.Model
 
             var einstellungen = EinstellungenOrdnerLesen.FromJson(File.ReadAllText(@"Einstellungen.json"));
 
-            OrdnerEinlesen(_mainWindow, einstellungen.Logo.Source, einstellungen.Logo.Destination, PlcStarter.Steuerungen.Logo);
-            OrdnerEinlesen(_mainWindow, einstellungen.TiaPortal.Source, einstellungen.TiaPortal.Destination, PlcStarter.Steuerungen.TiaPortal);
-            OrdnerEinlesen(_mainWindow, einstellungen.TwinCat.Source, einstellungen.TwinCat.Destination, PlcStarter.Steuerungen.TwinCat);
+            OrdnerEinlesen(_mainWindow, einstellungen.Logo.Source, einstellungen.Logo.Destination, Steuerungen.Logo);
+            OrdnerEinlesen(_mainWindow, einstellungen.TiaPortal.Source, einstellungen.TiaPortal.Destination, Steuerungen.TiaPortal);
+            OrdnerEinlesen(_mainWindow, einstellungen.TwinCat.Source, einstellungen.TwinCat.Destination, Steuerungen.TwinCat);
 
             TabEigenschaftenEinlesenLogo();
             TabEigenschaftenEinlesenTiaPortal();
@@ -32,33 +32,33 @@ namespace PlcStarter.Model
 
         public void TabEigenschaftenEinlesenLogo()
         {
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcStarter.PlcKategorie.Plc, PlcStarter.Steuerungen.Logo, _mainWindow.WebLogoPlc, _mainWindow.StackPanelLogoPlc, _mainWindow.ButtonStartenLogoPlc));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcStarter.PlcKategorie.Bug, PlcStarter.Steuerungen.Logo, _mainWindow.WebLogoPlcBugs, _mainWindow.StackPanelLogoPlcBugs, _mainWindow.ButtonStartenLogoPlcBugs));
+            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Plc, Steuerungen.Logo, _mainWindow.WebLogoPlc, _mainWindow.StackPanelLogoPlc, _mainWindow.ButtonStartenLogoPlc));
+            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Bug, Steuerungen.Logo, _mainWindow.WebLogoPlcBugs, _mainWindow.StackPanelLogoPlcBugs, _mainWindow.ButtonStartenLogoPlcBugs));
         }
 
         public void TabEigenschaftenEinlesenTiaPortal()
         {
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcStarter.PlcKategorie.Plc, PlcStarter.Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlc, _mainWindow.StackPanelTiaPortalPlc, _mainWindow.ButtonStartenTiaPortalPlc));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcStarter.PlcKategorie.Hmi, PlcStarter.Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcHmi, _mainWindow.StackPanelTiaPortalPlcHmi, _mainWindow.ButtonStartenTiaPortalPlcHmi));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcStarter.PlcKategorie.FactoryIo, PlcStarter.Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcFio, _mainWindow.StackPanelTiaPortalPlcFio, _mainWindow.ButtonStartenTiaPortalPlcFio));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcStarter.PlcKategorie.DigitalTwin, PlcStarter.Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcDt, _mainWindow.StackPanelTiaPortalPlcDt, _mainWindow.ButtonStartenTiaPortalPlcDt));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcStarter.PlcKategorie.Snap7, PlcStarter.Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcSnap7, _mainWindow.StackPanelTiaPortalPlcSnap7, _mainWindow.ButtonStartenTiaPortalPlcSnap7));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcStarter.PlcKategorie.SoftwareTests, PlcStarter.Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcTests, _mainWindow.StackPanelTiaPortalPlcTests, _mainWindow.ButtonStartenTiaPortalPlcTests));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcStarter.PlcKategorie.Bug, PlcStarter.Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcBugs, _mainWindow.StackPanelTiaPortalPlcBugs, _mainWindow.ButtonStartenTiaPortalPlcBugs));
+            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Plc, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlc, _mainWindow.StackPanelTiaPortalPlc, _mainWindow.ButtonStartenTiaPortalPlc));
+            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Hmi, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcHmi, _mainWindow.StackPanelTiaPortalPlcHmi, _mainWindow.ButtonStartenTiaPortalPlcHmi));
+            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.FactoryIo, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcFio, _mainWindow.StackPanelTiaPortalPlcFio, _mainWindow.ButtonStartenTiaPortalPlcFio));
+            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.DigitalTwin, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcDt, _mainWindow.StackPanelTiaPortalPlcDt, _mainWindow.ButtonStartenTiaPortalPlcDt));
+            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Snap7, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcSnap7, _mainWindow.StackPanelTiaPortalPlcSnap7, _mainWindow.ButtonStartenTiaPortalPlcSnap7));
+            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.SoftwareTests, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcTests, _mainWindow.StackPanelTiaPortalPlcTests, _mainWindow.ButtonStartenTiaPortalPlcTests));
+            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Bug, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcBugs, _mainWindow.StackPanelTiaPortalPlcBugs, _mainWindow.ButtonStartenTiaPortalPlcBugs));
         }
 
         public void TabEigenschaftenEinlesenTwinCat()
         {
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcStarter.PlcKategorie.Plc, PlcStarter.Steuerungen.TwinCat, _mainWindow.WebTwinCatPlc, _mainWindow.StackPanelTwinCatPlc, _mainWindow.ButtonStartenTwinCatPlc));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcStarter.PlcKategorie.Visu, PlcStarter.Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcVisu, _mainWindow.StackPanelTwinCatPlcVisu, _mainWindow.ButtonStartenTwinCatPlcVisu));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcStarter.PlcKategorie.Nc, PlcStarter.Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcNc, _mainWindow.StackPanelTwinCatPlcNc, _mainWindow.ButtonStartenTwinCatPlcNc));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcStarter.PlcKategorie.DigitalTwin, PlcStarter.Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcDt, _mainWindow.StackPanelTwinCatPlcDt, _mainWindow.ButtonStartenTwinCatPlcDt));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcStarter.PlcKategorie.AdsRemote, PlcStarter.Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcAds, _mainWindow.StackPanelTwinCatPlcAds, _mainWindow.ButtonStartenTwinCatPlcAds));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcStarter.PlcKategorie.SoftwareTests, PlcStarter.Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcTests, _mainWindow.StackPanelTwinCatPlcTests, _mainWindow.ButtonStartenTwinCatPlcTests));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcStarter.PlcKategorie.Bug, PlcStarter.Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcBugs, _mainWindow.StackPanelTwinCatPlcBugs, _mainWindow.ButtonStartenTwinCatPlcBugs));
+            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Plc, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlc, _mainWindow.StackPanelTwinCatPlc, _mainWindow.ButtonStartenTwinCatPlc));
+            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Visu, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcVisu, _mainWindow.StackPanelTwinCatPlcVisu, _mainWindow.ButtonStartenTwinCatPlcVisu));
+            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Nc, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcNc, _mainWindow.StackPanelTwinCatPlcNc, _mainWindow.ButtonStartenTwinCatPlcNc));
+            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.DigitalTwin, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcDt, _mainWindow.StackPanelTwinCatPlcDt, _mainWindow.ButtonStartenTwinCatPlcDt));
+            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.AdsRemote, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcAds, _mainWindow.StackPanelTwinCatPlcAds, _mainWindow.ButtonStartenTwinCatPlcAds));
+            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.SoftwareTests, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcTests, _mainWindow.StackPanelTwinCatPlcTests, _mainWindow.ButtonStartenTwinCatPlcTests));
+            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Bug, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcBugs, _mainWindow.StackPanelTwinCatPlcBugs, _mainWindow.ButtonStartenTwinCatPlcBugs));
         }
 
-        private void OrdnerEinlesen(MainWindow mw, string source, string destination, PlcStarter.Steuerungen steuerungen)
+        private void OrdnerEinlesen(MainWindow mw, string source, string destination, Steuerungen steuerungen)
         {
             var parentDirectory = new DirectoryInfo(source);
 

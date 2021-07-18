@@ -13,28 +13,26 @@ namespace PlcStarter
     {
         public void ButtonGeaendert(object obj) => AnzeigeUpdaten(AktuelleSteuerung);
 
-        private void AnzeigeUpdaten(Model.PlcStarter.Steuerungen aktuelleSteuerung)
+        private void AnzeigeUpdaten(Steuerungen aktuelleSteuerung)
         {
 
             if (AlleDaten.AlleTabEigenschaften == null) return;
 
-            foreach (var tabEigenschaften in AlleDaten.AlleTabEigenschaften.Where(tabEigenschaften =>
-                tabEigenschaften.Steuerungen == aktuelleSteuerung))
+            foreach (var tabEigenschaften in AlleDaten.AlleTabEigenschaften.Where(tabEigenschaften => tabEigenschaften.Steuerungen == aktuelleSteuerung))
             {
                 tabEigenschaften.StackPanelBezeichnung?.Children.Clear();
 
-                foreach (var projektEigenschaften in AlleDaten.AlleProjektEigenschaften.Where(projektEigenschaften =>
-                    projektEigenschaften.Steuerung == aktuelleSteuerung))
+                foreach (var projektEigenschaften in AlleDaten.AlleProjektEigenschaften.Where(projektEigenschaften => projektEigenschaften.Steuerung == aktuelleSteuerung))
                 {
                     switch (aktuelleSteuerung)
                     {
-                        case Model.PlcStarter.Steuerungen.Logo:
+                        case Steuerungen.Logo:
                             AnzeigeUpdatenLogo(tabEigenschaften, projektEigenschaften);
                             break;
-                        case Model.PlcStarter.Steuerungen.TiaPortal:
+                        case Steuerungen.TiaPortal:
                             AnzeigeUpdatenTiaPortal(tabEigenschaften, projektEigenschaften);
                             break;
-                        case Model.PlcStarter.Steuerungen.TwinCat:
+                        case Steuerungen.TwinCat:
                             AnzeigeUpdatenTwinCat(tabEigenschaften, projektEigenschaften);
                             break;
                         default:
@@ -51,21 +49,21 @@ namespace PlcStarter
 
             switch (projektEigenschaften.Programmiersprache)
             {
-                case Model.PlcStarter.PlcSprachen.Fup when fup:
-                case Model.PlcStarter.PlcSprachen.Kop when kop:
+                case PlcSprachen.Fup when fup:
+                case PlcSprachen.Kop when kop:
                     EinzelnenTabFuellen(tabEigenschaften, projektEigenschaften);
                     break;
-                case Model.PlcStarter.PlcSprachen.As:
+                case PlcSprachen.As:
                     break;
-                case Model.PlcStarter.PlcSprachen.Awl:
+                case PlcSprachen.Awl:
                     break;
-                case Model.PlcStarter.PlcSprachen.Cfc:
+                case PlcSprachen.Cfc:
                     break;
-                case Model.PlcStarter.PlcSprachen.Cpp:
+                case PlcSprachen.Cpp:
                     break;
-                case Model.PlcStarter.PlcSprachen.Scl:
+                case PlcSprachen.Scl:
                     break;
-                case Model.PlcStarter.PlcSprachen.Stl:
+                case PlcSprachen.Stl:
                     break;
                 default: throw new ArgumentOutOfRangeException(nameof(projektEigenschaften));
             }
@@ -83,16 +81,16 @@ namespace PlcStarter
 
             switch (projektEigenschaften.Programmiersprache)
             {
-                case Model.PlcStarter.PlcSprachen.As when als:
-                case Model.PlcStarter.PlcSprachen.Awl when awl:
-                case Model.PlcStarter.PlcSprachen.Cfc when cfc:
-                case Model.PlcStarter.PlcSprachen.Cpp when cpp:
-                case Model.PlcStarter.PlcSprachen.Fup when fup:
-                case Model.PlcStarter.PlcSprachen.Kop when kop:
-                case Model.PlcStarter.PlcSprachen.Stl when st:
+                case PlcSprachen.As when als:
+                case PlcSprachen.Awl when awl:
+                case PlcSprachen.Cfc when cfc:
+                case PlcSprachen.Cpp when cpp:
+                case PlcSprachen.Fup when fup:
+                case PlcSprachen.Kop when kop:
+                case PlcSprachen.Stl when st:
                     EinzelnenTabFuellen(tabEigenschaften, projektEigenschaften);
                     break;
-                case Model.PlcStarter.PlcSprachen.Scl:
+                case PlcSprachen.Scl:
                     break;
                 default: throw new ArgumentOutOfRangeException(nameof(projektEigenschaften));
             }
@@ -106,26 +104,25 @@ namespace PlcStarter
 
             switch (projektEigenschaften.Programmiersprache)
             {
-                case Model.PlcStarter.PlcSprachen.Fup when fup:
-                case Model.PlcStarter.PlcSprachen.Kop when kop:
-                case Model.PlcStarter.PlcSprachen.Scl when scl:
+                case PlcSprachen.Fup when fup:
+                case PlcSprachen.Kop when kop:
+                case PlcSprachen.Scl when scl:
                     EinzelnenTabFuellen(tabEigenschaften, projektEigenschaften);
                     break;
-                case Model.PlcStarter.PlcSprachen.As:
+                case PlcSprachen.As:
                     break;
-                case Model.PlcStarter.PlcSprachen.Awl:
+                case PlcSprachen.Awl:
                     break;
-                case Model.PlcStarter.PlcSprachen.Cfc:
+                case PlcSprachen.Cfc:
                     break;
-                case Model.PlcStarter.PlcSprachen.Cpp:
+                case PlcSprachen.Cpp:
                     break;
-                case Model.PlcStarter.PlcSprachen.Stl:
+                case PlcSprachen.Stl:
                     break;
                 default: throw new ArgumentOutOfRangeException(nameof(projektEigenschaften));
             }
         }
-
-
+        
         private void EinzelnenTabFuellen(TabEigenschaften tabEigenschaften, ProjektEigenschaften projektEigenschaften)
         {
             if (tabEigenschaften.PlcKategorie != projektEigenschaften.PlcKategorie) return;
@@ -137,16 +134,16 @@ namespace PlcStarter
                 GroupName = projektEigenschaften.Steuerung.ToString(),
                 Name = projektEigenschaften.Bezeichnung,
                 FontSize = 14,
-                //kurt    Content = projektEigenschaften.Bezeichnung + " (" +Model.AlleWerte.AlleProgrammiersprachen[projektEigenschaften.Programmiersprache].Anzeige + ")",
+                Content = projektEigenschaften.Bezeichnung + " (" + AlleWerte.AlleProgrammiersprachen[projektEigenschaften.Programmiersprache].Anzeige + ")",
                 VerticalAlignment = VerticalAlignment.Top,
                 Tag = projektEigenschaften
             };
 
             switch (tabEigenschaften.Steuerungen)
             {
-                case Model.PlcStarter.Steuerungen.Logo:
-                case Model.PlcStarter.Steuerungen.TwinCat:
-                case Model.PlcStarter.Steuerungen.TiaPortal:
+                case Steuerungen.Logo:
+                case Steuerungen.TwinCat:
+                case Steuerungen.TiaPortal:
                     rdo.Checked += RadioButton_Checked;
                     break;
                 default: throw new ArgumentOutOfRangeException(nameof(projektEigenschaften));

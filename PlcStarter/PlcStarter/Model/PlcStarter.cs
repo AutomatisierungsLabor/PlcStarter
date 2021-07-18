@@ -1,7 +1,6 @@
 ﻿namespace PlcStarter.Model
 {
-    public class PlcStarter
-    {
+  
         public enum Steuerungen
         {
             Logo = 0,
@@ -34,5 +33,4 @@
             Scl = 6,
             Stl = 7
         }
-    }
 }

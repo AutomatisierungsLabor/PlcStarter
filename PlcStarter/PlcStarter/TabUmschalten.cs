@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.Windows.Media;
+using PlcStarter.Model;
 
 namespace PlcStarter
 {
@@ -17,17 +18,17 @@ namespace PlcStarter
 
             AktuelleSteuerung = item.Header.ToString() switch
             {
-                "Logo8" => Model.PlcStarter.Steuerungen.Logo,
-                "TiaPortal" => Model.PlcStarter.Steuerungen.TiaPortal,
-                "TwinCAT" => Model.PlcStarter.Steuerungen.TwinCat,
+                "Logo8" => Steuerungen.Logo,
+                "TiaPortal" => Steuerungen.TiaPortal,
+                "TwinCAT" => Steuerungen.TwinCat,
                 _ => AktuelleSteuerung
             };
             AnzeigeUpdaten(AktuelleSteuerung);
         }
 
-        private static void HtmlFensterLoeschen()
+        private void HtmlFensterLoeschen()
         {
-        //kurt    foreach (var tabEigenschaften in Model.AlleDaten.AlleTabEigenschaften) tabEigenschaften.BrowserBezeichnung.Navigate((Uri)null);
+            foreach (var tabEigenschaften in AlleDaten.AlleTabEigenschaften) tabEigenschaften.BrowserBezeichnung.Navigate((Uri)null);
         }
     }
 }

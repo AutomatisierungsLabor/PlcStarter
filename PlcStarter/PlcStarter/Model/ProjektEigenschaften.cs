@@ -8,15 +8,15 @@ namespace PlcStarter.Model
     public class ProjektEigenschaften
     {
         public static int LaufendeNummer { get; set; }
-        public PlcStarter.Steuerungen Steuerung { get; set; }
+        public Steuerungen Steuerung { get; set; }
         public string QuellOrdner { get; set; }
         public string ZielOrdner { get; set; }
         public string Bezeichnung { get; set; }
-        public PlcStarter.PlcSprachen Programmiersprache { get; set; }
-        public PlcStarter.PlcKategorie PlcKategorie { get; set; }
+        public PlcSprachen Programmiersprache { get; set; }
+        public PlcKategorie PlcKategorie { get; set; }
         public WebBrowser BrowserBezeichnung { get; set; }
 
-        public ProjektEigenschaften(MainWindow mw, PlcStarter.Steuerungen steuerung, string quelle, string ziel)
+        public ProjektEigenschaften(MainWindow mw, Steuerungen steuerung, string quelle, string ziel)
         {
             LaufendeNummer++;
             Steuerung = steuerung;
@@ -28,7 +28,7 @@ namespace PlcStarter.Model
             Bezeichnung = BezeichnungBestimmen(mw, quelle);
         }
 
-        private static PlcStarter.PlcKategorie KategorieBestimmen(MainWindow mw, string quelle)
+        private static PlcKategorie KategorieBestimmen(MainWindow mw, string quelle)
         {
             foreach (var kategorie in mw.AlleWerte.AlleKategorien.Where(kategorie => quelle.Contains(kategorie.Value.Prefix)))
             {
@@ -36,10 +36,10 @@ namespace PlcStarter.Model
             }
 
             MessageBox.Show("Bezeichnungsproblem: " + quelle);
-            return PlcStarter.PlcKategorie.AdsRemote;
+            return PlcKategorie.AdsRemote;
         }
 
-        private static PlcStarter.PlcSprachen ProgrammierspracheBestimmen(MainWindow mw, string quelle)
+        private static PlcSprachen ProgrammierspracheBestimmen(MainWindow mw, string quelle)
         {
             foreach (var sprache in mw.AlleWerte.AlleProgrammiersprachen.Where(sprache => quelle.Contains(sprache.Value.Prefix)))
             {
@@ -47,7 +47,7 @@ namespace PlcStarter.Model
             }
 
             MessageBox.Show("Bezeichnungsproblem: " + quelle);
-            return PlcStarter.PlcSprachen.As;
+            return PlcSprachen.As;
         }
 
         private static string BezeichnungBestimmen(MainWindow mw, string quelle)
