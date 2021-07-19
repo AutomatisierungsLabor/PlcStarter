@@ -5,6 +5,7 @@ namespace PlcStarter.Model
 {
     public class AlleDaten
     {
+      
         public List<ProjektEigenschaften> AlleProjektEigenschaften { get; set; }
         public List<TabEigenschaften> AlleTabEigenschaften { get; set; }
 
@@ -15,6 +16,9 @@ namespace PlcStarter.Model
         {
             _mainWindow = mw;
 
+
+        
+            
             AlleProjektEigenschaften = new();
             AlleTabEigenschaften = new();
 

@@ -1,0 +1,24 @@
+﻿{
+  "OrdnerBezeichnungen": [
+    {
+      "Steuerung": "DigitalTwin",
+      "Source": "k:\\git\\_DigitalTwin",
+      "Destination": "_DigitalTwin"
+    },
+    {
+      "Steuerung": "Logo",
+      "Source": "k:\\git\\_Logo8",
+      "Destination": "h:\\Logo8"
+    },
+    {
+      "Steuerung": "TIAPortal",
+      "Source": "k:\\git\\_TiaPortal14",
+      "Destination": "h:\\TiaPortal14"
+    },
+    {
+      "Steuerung": "TwinCAT",
+      "Source": "k:\\git\\_TwinCat3",
+      "Destination": "h:\\TwinCat3"
+    }
+  ]
+}

@@ -4,6 +4,7 @@ namespace PlcStarter
 {
     public partial class MainWindow
     {
+       public AllePlc AllePlc { get; set; }
         public AlleDaten AlleDaten { get; set; }
         public AlleWerte AlleWerte { get; set; }
         public ProjektEigenschaften AktuellesProjekt { get; set; }
@@ -20,6 +21,7 @@ namespace PlcStarter
             InitializeComponent();
             DataContext = _viewModel;
 
+            AllePlc = new AllePlc(this);
             AlleWerte = new AlleWerte();
             AlleDaten = new AlleDaten(this);
 
