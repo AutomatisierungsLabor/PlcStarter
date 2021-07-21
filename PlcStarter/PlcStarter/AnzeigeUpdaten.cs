@@ -50,34 +50,6 @@ namespace PlcStarter
 
 
         }
-
-        private void AnzeigeUpdatenLogo(TabEigenschaften tabEigenschaften, ProjektEigenschaften projektEigenschaften)
-        {
-            var fup = CheckboxLogoFup?.IsChecked != null && (bool)CheckboxLogoFup.IsChecked;
-            var kop = CheckboxTwinCatKop?.IsChecked != null && (bool)CheckboxTwinCatKop.IsChecked;
-
-            switch (projektEigenschaften.Programmiersprache)
-            {
-                case PlcSprachen.Fup when fup:
-                case PlcSprachen.Kop when kop:
-                    EinzelnenTabFuellen(tabEigenschaften, projektEigenschaften);
-                    break;
-                case PlcSprachen.As:
-                    break;
-                case PlcSprachen.Awl:
-                    break;
-                case PlcSprachen.Cfc:
-                    break;
-                case PlcSprachen.Cpp:
-                    break;
-                case PlcSprachen.Scl:
-                    break;
-                case PlcSprachen.Stl:
-                    break;
-                default: throw new ArgumentOutOfRangeException(nameof(projektEigenschaften));
-            }
-        }
-
         private void AnzeigeUpdatenTwinCat(TabEigenschaften tabEigenschaften, ProjektEigenschaften projektEigenschaften)
         {
             var als = CheckboxTwinCatAs?.IsChecked != null && (bool)CheckboxTwinCatAs.IsChecked;
@@ -165,42 +137,44 @@ namespace PlcStarter
         {
             if (!(sender is RadioButton rb)) return;
 
-            if (rb.Tag is ProjektEigenschaften projektEigenschaften)
+            switch (rb.Tag)
             {
-                // alte Variante
-                ViewModel.ViAnzeige.StartButtonInhalt = "Projekt starten";
-                ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LawnGreen;
+                case ProjektEigenschaften projektEigenschaften:
+                {
+                    // alte Variante
+                    ViewModel.ViAnzeige.StartButtonInhalt = "Projekt starten";
+                    ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LawnGreen;
 
-                AktuellesProjekt = projektEigenschaften;
-                var parentDirectory = new DirectoryInfo(AktuellesProjekt.QuellOrdner);
-                var dateiName = $@"{parentDirectory.FullName}\index.html";
+                    AktuellesProjekt = projektEigenschaften;
+                    var parentDirectory = new DirectoryInfo(AktuellesProjekt.QuellOrdner);
+                    var dateiName = $@"{parentDirectory.FullName}\index.html";
 
-                var htmlSeite = File.Exists(dateiName) ? File.ReadAllText(dateiName) : "--??--";
+                    var htmlSeite = File.Exists(dateiName) ? File.ReadAllText(dateiName) : "--??--";
 
-                var dataHtmlSeite = Encoding.UTF8.GetBytes(htmlSeite);
-                var stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
+                    var dataHtmlSeite = Encoding.UTF8.GetBytes(htmlSeite);
+                    var stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
 
-                AktuellesProjekt.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
+                    AktuellesProjekt.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
+                    break;
+                }
+                case Logo8Projektdaten projektdaten:
+                {
+                    // neue Version
+                    ViewModel.ViAnzeige.StartButtonInhalt = "Projekt starten";
+                    ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LawnGreen;
+
+                    var dateiName = $@"{projektdaten.Source}\{projektdaten.Ordner}\index.html";
+
+                    var htmlSeite = File.Exists(dateiName) ? File.ReadAllText(dateiName) : "--??--";
+
+                    var dataHtmlSeite = Encoding.UTF8.GetBytes(htmlSeite);
+                    var stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
+                    projektdaten.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
+
+                    projektdaten.ButtonBezeichnung.Tag = projektdaten;
+                    break;
+                }
             }
-
-            if (rb.Tag is Logo8Projektdaten projektdaten)
-            {
-                // neue Version
-                ViewModel.ViAnzeige.StartButtonInhalt = "Projekt starten";
-                ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LawnGreen;
-
-                var dateiName = $@"{projektdaten.Source}\{projektdaten.Ordner}\index.html";
-
-                var htmlSeite = File.Exists(dateiName) ? File.ReadAllText(dateiName) : "--??--";
-
-                var dataHtmlSeite = Encoding.UTF8.GetBytes(htmlSeite);
-                var stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
-                projektdaten.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
-
-                projektdaten.ButtonBezeichnung.Tag = projektdaten;
-            }
-
-
         }
     }
 }

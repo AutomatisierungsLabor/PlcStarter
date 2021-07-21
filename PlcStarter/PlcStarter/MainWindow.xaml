@@ -18,7 +18,7 @@
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
-        <Label Content="V2.0 " Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0" />
+        <Label Content="V3.0 " Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0" />
 
         <TabControl Grid.Column="1"  Grid.Row="1" SelectionChanged="TabControl_SelectionChanged">
 

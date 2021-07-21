@@ -28,16 +28,8 @@ namespace PlcStarter.Model
             OrdnerEinlesen(_mainWindow, einstellungen.TiaPortal.Source, einstellungen.TiaPortal.Destination, Steuerungen.TiaPortal);
             OrdnerEinlesen(_mainWindow, einstellungen.TwinCat.Source, einstellungen.TwinCat.Destination, Steuerungen.TwinCat);
 
-          //  TabEigenschaftenEinlesenLogo();
             TabEigenschaftenEinlesenTiaPortal();
             TabEigenschaftenEinlesenTwinCat();
-        }
-
-
-        public void TabEigenschaftenEinlesenLogo()
-        {
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Plc, Steuerungen.Logo, _mainWindow.WebLogoPlc, _mainWindow.StackPanelLogoPlc, _mainWindow.ButtonStartenLogoPlc));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Bug, Steuerungen.Logo, _mainWindow.WebLogoPlcBugs, _mainWindow.StackPanelLogoPlcBugs, _mainWindow.ButtonStartenLogoPlcBugs));
         }
 
         public void TabEigenschaftenEinlesenTiaPortal()

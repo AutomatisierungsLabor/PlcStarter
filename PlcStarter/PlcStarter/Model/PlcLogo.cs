@@ -1,7 +1,5 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
-using System.Windows.Automation;
 using System.Windows.Controls;
 using Newtonsoft.Json;
 
@@ -71,23 +69,26 @@ namespace PlcStarter.Model
 
         public void ProjektStarten(ViewModel.ViewModel viewModel, Button btn)
         {
-            if (btn.Tag is Logo8Projektdaten projektdaten)
+            switch (btn.Tag)
             {
-                switch (projektdaten.Job1)
-                {
-                    case PlcJobs.None: break;
-                    case PlcJobs.OrdnerInhaltKopieren: AllePlcJobs.OrdnerKopieren(viewModel, projektdaten.Source, projektdaten.Destination, projektdaten.Ordner); break;
-                    case PlcJobs.CmdDateiAusfuehren: break;
-                    default: break;
-                }
+                case Logo8Projektdaten projektdaten:
+                    switch (projektdaten.Job1)
+                    {
+                        case PlcJobs.None: break;
+                        case PlcJobs.OrdnerInhaltKopieren: AllePlcJobs.OrdnerKopieren(viewModel, projektdaten.Source, projektdaten.Destination, projektdaten.Ordner); break;
+                        case PlcJobs.CmdDateiAusfuehren: break;
+                        default: break;
+                    }
 
-                switch (projektdaten.Job2)
-                { 
-                    case PlcJobs.None: break;
-                    case PlcJobs.OrdnerInhaltKopieren:  break;
-                   case PlcJobs.CmdDateiAusfuehren: AllePlcJobs.ProjektStarten(viewModel, projektdaten.Ordner);break;
-                    default: break;
-                }
+                    switch (projektdaten.Job2)
+                    { 
+                        case PlcJobs.None: break;
+                        case PlcJobs.OrdnerInhaltKopieren:  break;
+                        case PlcJobs.CmdDateiAusfuehren: AllePlcJobs.ProjektStarten(viewModel, projektdaten.Destination, projektdaten.Ordner);break;
+                        default: break;
+                    }
+
+                    break;
             }
         }
     }

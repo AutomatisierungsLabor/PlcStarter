@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
@@ -16,45 +12,64 @@ namespace PlcStarter.Model
 
         public static void OrdnerKopieren(ViewModel.ViewModel viewModel, string source, string destination, string ordner)
         {
-
             viewModel.ViAnzeige.StartButtonFarbe = Brushes.Yellow;
 
             try
             {
                 viewModel.ViAnzeige.StartButtonInhalt = "Zielordner wird gelöscht";
-                /*
-                if (Directory.Exists(AktuellesProjekt.ZielOrdner)) Directory.Delete(AktuellesProjekt.ZielOrdner, true);
 
-                _viewModel.ViAnzeige.StartButtonInhalt = "Projektdateien werden kopiert";
+                if (Directory.Exists($"{destination}")) Directory.Delete($"{destination}", true);
 
-                Copy(AktuellesProjekt.QuellOrdner, AktuellesProjekt.ZielOrdner);
-*/
-                _viewModel.ViAnzeige.StartButtonInhalt = "Projekt wird gestartet";
+                viewModel.ViAnzeige.StartButtonInhalt = "Projektdateien werden kopiert";
 
-                var proc = new Process
-                {
-                    StartInfo =
-                    {
-                        FileName = AktuellesProjekt.ZielOrdner + "\\start.cmd",
-                        WorkingDirectory = AktuellesProjekt.ZielOrdner
-                    }
-                };
-                proc.Start();
-                
-                viewModel.ViAnzeige.StartButtonInhalt = "Projekt wurde gestartet";
+                Copy($"{source}/{ordner}", $"{destination}/{ordner}");
 
+                viewModel.ViAnzeige.StartButtonInhalt = "Projekt wurde kopiert";
             }
             catch (Exception exp)
             {
                 MessageBox.Show(exp.ToString());
             }
 
-             viewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
+            viewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
         }
 
-        public static void ProjektStarten(ViewModel.ViewModel viewModel, string projektdatenOrdner)
+        public static void ProjektStarten(ViewModel.ViewModel viewModel, string destination, string ordner)
         {
-            throw new NotImplementedException();
+            var proc = new Process
+            {
+                StartInfo =
+                {
+                    FileName = $"{destination}/{ordner}/ProjektStarten.cmd",
+                    WorkingDirectory = $"{destination}/{ordner}"
+                }
+            };
+            proc.Start();
+
+            viewModel.ViAnzeige.StartButtonInhalt = "Projekt wurde gestartet";
+        }
+
+        internal static void Copy(string sourceDirectory, string targetDirectory)
+        {
+            var diSource = new DirectoryInfo(sourceDirectory);
+            var diTarget = new DirectoryInfo(targetDirectory);
+
+            CopyAll(diSource, diTarget);
+        }
+
+        internal static void CopyAll(DirectoryInfo source, DirectoryInfo target)
+        {
+            Directory.CreateDirectory(target.FullName);
+
+            // Copy each file into the new directory.
+            foreach (var fi in source.GetFiles()) fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+
+            // Copy each subdirectory using recursion.
+            foreach (var diSourceSubDir in source.GetDirectories())
+            {
+                var nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
+                CopyAll(diSourceSubDir, nextTargetSubDir);
+            }
         }
     }
 }
