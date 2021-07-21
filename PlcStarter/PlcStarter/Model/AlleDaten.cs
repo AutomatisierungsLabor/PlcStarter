@@ -19,8 +19,8 @@ namespace PlcStarter.Model
 
         
             
-            AlleProjektEigenschaften = new();
-            AlleTabEigenschaften = new();
+            AlleProjektEigenschaften = new List<ProjektEigenschaften>();
+            AlleTabEigenschaften = new List<TabEigenschaften>();
 
             var einstellungen = EinstellungenOrdnerLesen.FromJson(File.ReadAllText(@"Einstellungen.json"));
 
@@ -28,7 +28,7 @@ namespace PlcStarter.Model
             OrdnerEinlesen(_mainWindow, einstellungen.TiaPortal.Source, einstellungen.TiaPortal.Destination, Steuerungen.TiaPortal);
             OrdnerEinlesen(_mainWindow, einstellungen.TwinCat.Source, einstellungen.TwinCat.Destination, Steuerungen.TwinCat);
 
-            TabEigenschaftenEinlesenLogo();
+          //  TabEigenschaftenEinlesenLogo();
             TabEigenschaftenEinlesenTiaPortal();
             TabEigenschaftenEinlesenTwinCat();
         }

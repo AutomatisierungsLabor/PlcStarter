@@ -16,11 +16,9 @@
             OrdnerStrukturLesen = new OrdnerStrukturLesen();
             OrdnerStrukturLesen.GetOrdnerConfig("Einstellungen/Ordner.json");
 
-            PlcLogo = new PlcLogo();
-            PlcLogo.setOrdnerSource(OrdnerStrukturLesen.OrdnerConfig.OrdnerBezeichnungen[1].Source);
-            PlcLogo.setOrdnerDestination(OrdnerStrukturLesen.OrdnerConfig.OrdnerBezeichnungen[1].Destination);
+            PlcLogo = new PlcLogo(_mainWindow,  OrdnerStrukturLesen.OrdnerConfig.OrdnerBezeichnungen[1]);
+            PlcLogo.TabEigenschaftenHinzufuegen();
 
         }
-
     }
 }

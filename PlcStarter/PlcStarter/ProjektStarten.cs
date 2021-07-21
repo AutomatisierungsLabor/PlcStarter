@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace PlcStarter
@@ -10,19 +11,19 @@ namespace PlcStarter
     {
         internal void ProjektStarten(object obj)
         {
-            _viewModel.ViAnzeige.StartButtonFarbe = Brushes.Yellow;
+            ViewModel.ViAnzeige.StartButtonFarbe = Brushes.Yellow;
 
             try
             {
-                _viewModel.ViAnzeige.StartButtonInhalt = "Zielordner wird gelöscht";
+                ViewModel.ViAnzeige.StartButtonInhalt = "Zielordner wird gelöscht";
 
                 if (Directory.Exists(AktuellesProjekt.ZielOrdner)) Directory.Delete(AktuellesProjekt.ZielOrdner, true);
 
-                _viewModel.ViAnzeige.StartButtonInhalt = "Projektdateien werden kopiert";
+                ViewModel.ViAnzeige.StartButtonInhalt = "Projektdateien werden kopiert";
 
                 Copy(AktuellesProjekt.QuellOrdner, AktuellesProjekt.ZielOrdner);
 
-                _viewModel.ViAnzeige.StartButtonInhalt = "Projekt wird gestartet";
+                ViewModel.ViAnzeige.StartButtonInhalt = "Projekt wird gestartet";
 
                 var proc = new Process
                 {
@@ -33,7 +34,7 @@ namespace PlcStarter
                     }
                 };
                 proc.Start();
-                _viewModel.ViAnzeige.StartButtonInhalt = "Projekt wurde gestartet";
+                ViewModel.ViAnzeige.StartButtonInhalt = "Projekt wurde gestartet";
 
             }
             catch (Exception exp)
@@ -41,7 +42,7 @@ namespace PlcStarter
                 MessageBox.Show(exp.ToString());
             }
 
-            _viewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
+            ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
         }
 
         public static void Copy(string sourceDirectory, string targetDirectory)

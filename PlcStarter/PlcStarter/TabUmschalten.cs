@@ -11,8 +11,8 @@ namespace PlcStarter
         {
             if (!(sender is TabControl tabControl) || !(tabControl.SelectedValue is TabItem item)) return;
 
-            _viewModel.ViAnzeige.StartButtonInhalt = "Bitte ein Projekt auswählen";
-            _viewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
+            ViewModel.ViAnzeige.StartButtonInhalt = "Bitte ein Projekt auswählen";
+            ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
 
             HtmlFensterLoeschen();
 

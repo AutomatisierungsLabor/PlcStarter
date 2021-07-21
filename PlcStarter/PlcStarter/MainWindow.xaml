@@ -59,7 +59,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelLogoPlc" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenLogoPlc" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Command="{Binding BtnProjektStarten}" />
+                                <Button x:Name="ButtonStartenLogoPlc" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenLogoPlc_Click" />
                                 <WebBrowser x:Name="WebLogoPlc" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -82,7 +82,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelLogoPlcBugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenLogoPlcBugs" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Command="{Binding BtnProjektStarten}" />
+                                <Button x:Name="ButtonStartenLogoPlcBugs" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenLogoPlc_Click" />
                                 <WebBrowser x:Name="WebLogoPlcBugs" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>

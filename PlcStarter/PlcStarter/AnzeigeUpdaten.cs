@@ -22,12 +22,19 @@ namespace PlcStarter
             {
                 tabEigenschaften.StackPanelBezeichnung?.Children.Clear();
 
+                switch (tabEigenschaften.Steuerungen)
+                {
+                    case Steuerungen.Logo: AllePlc.PlcLogo.AnzeigeUpdaten(tabEigenschaften); break;
+
+                    default: break;
+                }
+
                 foreach (var projektEigenschaften in AlleDaten.AlleProjektEigenschaften.Where(projektEigenschaften => projektEigenschaften.Steuerung == aktuelleSteuerung))
                 {
                     switch (aktuelleSteuerung)
                     {
                         case Steuerungen.Logo:
-                            AnzeigeUpdatenLogo(tabEigenschaften, projektEigenschaften);
+                            // AnzeigeUpdatenLogo(tabEigenschaften, projektEigenschaften);
                             break;
                         case Steuerungen.TiaPortal:
                             AnzeigeUpdatenTiaPortal(tabEigenschaften, projektEigenschaften);
@@ -40,6 +47,8 @@ namespace PlcStarter
                     }
                 }
             }
+
+
         }
 
         private void AnzeigeUpdatenLogo(TabEigenschaften tabEigenschaften, ProjektEigenschaften projektEigenschaften)
@@ -122,7 +131,7 @@ namespace PlcStarter
                 default: throw new ArgumentOutOfRangeException(nameof(projektEigenschaften));
             }
         }
-        
+
         private void EinzelnenTabFuellen(TabEigenschaften tabEigenschaften, ProjektEigenschaften projektEigenschaften)
         {
             if (tabEigenschaften.PlcKategorie != projektEigenschaften.PlcKategorie) return;
@@ -152,23 +161,46 @@ namespace PlcStarter
             tabEigenschaften.StackPanelBezeichnung.Children.Add(rdo);
         }
 
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        public void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            if (!(sender is RadioButton rb) || !(rb.Tag is ProjektEigenschaften projektEigenschaften)) return;
+            if (!(sender is RadioButton rb)) return;
 
-            _viewModel.ViAnzeige.StartButtonInhalt = "Projekt starten";
-            _viewModel.ViAnzeige.StartButtonFarbe = Brushes.LawnGreen;
+            if (rb.Tag is ProjektEigenschaften projektEigenschaften)
+            {
+                // alte Variante
+                ViewModel.ViAnzeige.StartButtonInhalt = "Projekt starten";
+                ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LawnGreen;
 
-            AktuellesProjekt = projektEigenschaften;
-            var parentDirectory = new DirectoryInfo(AktuellesProjekt.QuellOrdner);
-            var dateiName = $@"{parentDirectory.FullName}\index.html";
+                AktuellesProjekt = projektEigenschaften;
+                var parentDirectory = new DirectoryInfo(AktuellesProjekt.QuellOrdner);
+                var dateiName = $@"{parentDirectory.FullName}\index.html";
 
-            var htmlSeite = File.Exists(dateiName) ? File.ReadAllText(dateiName) : "--??--";
+                var htmlSeite = File.Exists(dateiName) ? File.ReadAllText(dateiName) : "--??--";
 
-            var dataHtmlSeite = Encoding.UTF8.GetBytes(htmlSeite);
-            var stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
+                var dataHtmlSeite = Encoding.UTF8.GetBytes(htmlSeite);
+                var stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
 
-            AktuellesProjekt.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
+                AktuellesProjekt.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
+            }
+
+            if (rb.Tag is Logo8Projektdaten projektdaten)
+            {
+                // neue Version
+                ViewModel.ViAnzeige.StartButtonInhalt = "Projekt starten";
+                ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LawnGreen;
+
+                var dateiName = $@"{projektdaten.Source}\{projektdaten.Ordner}\index.html";
+
+                var htmlSeite = File.Exists(dateiName) ? File.ReadAllText(dateiName) : "--??--";
+
+                var dataHtmlSeite = Encoding.UTF8.GetBytes(htmlSeite);
+                var stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
+                projektdaten.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
+
+                projektdaten.ButtonBezeichnung.Tag = projektdaten;
+            }
+
+
         }
     }
 }

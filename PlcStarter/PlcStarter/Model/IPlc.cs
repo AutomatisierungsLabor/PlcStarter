@@ -1,11 +1,12 @@
-﻿namespace PlcStarter.Model
+﻿using System.Windows.Controls;
+
+namespace PlcStarter.Model
 {
     public  interface IPlc
     {
-        public string OrdnerSource { get; set; }
-        public string OrdnerDestination { get; set; }
 
-        void setOrdnerSource(string source);
-        void setOrdnerDestination(string destination);
+        public void TabEigenschaftenHinzufuegen();
+        public void AnzeigeUpdaten(TabEigenschaften tabEigenschaften);
+        void ProjektStarten(ViewModel.ViewModel viewModel, Button btn);
     }
 }
