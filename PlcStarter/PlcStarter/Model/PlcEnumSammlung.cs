@@ -1,6 +1,12 @@
 ﻿namespace PlcStarter.Model
 {
-
+    public enum PlcSoftwareVersion
+    {
+        None = 0,
+        Logo8 = 1,
+        TiaPortalV14Sp1 = 2,
+        TwinCatV3 = 3
+    }
     public enum Steuerungen
     {
         Logo = 0,
@@ -37,7 +43,8 @@
     public enum PlcJobs
     {
         None = 0,
-        OrdnerInhaltKopieren = 1,
-        CmdDateiAusfuehren = 2
+        SorceOrdnerErstellen = 1,
+        ProjektKopieren = 2,
+        CmdDateiAusfuehren = 3
     }
 }

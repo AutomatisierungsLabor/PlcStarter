@@ -10,7 +10,7 @@ namespace PlcStarter.Model
     public static class AllePlcJobs
     {
 
-        public static void OrdnerKopieren(ViewModel.ViewModel viewModel, string source, string destination, string ordner)
+        public static void DestinationOrdnerErstellen(ViewModel.ViewModel viewModel, string destination, string ordner)
         {
             viewModel.ViAnzeige.StartButtonFarbe = Brushes.Yellow;
 
@@ -18,8 +18,25 @@ namespace PlcStarter.Model
             {
                 viewModel.ViAnzeige.StartButtonInhalt = "Zielordner wird gelöscht";
 
-                if (Directory.Exists($"{destination}")) Directory.Delete($"{destination}", true);
+                if (Directory.Exists(destination)) Directory.Delete(destination, true);
 
+                Directory.CreateDirectory(destination);
+                viewModel.ViAnzeige.StartButtonInhalt = "Zielordner wurde erstellt";
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.ToString());
+            }
+            viewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
+        }
+
+
+        public static void ProjektOrdnerKopieren(ViewModel.ViewModel viewModel, string source, string destination, string ordner)
+        {
+            viewModel.ViAnzeige.StartButtonFarbe = Brushes.Yellow;
+
+            try
+            {
                 viewModel.ViAnzeige.StartButtonInhalt = "Projektdateien werden kopiert";
 
                 Copy($"{source}/{ordner}", $"{destination}/{ordner}");

@@ -27,11 +27,11 @@ namespace PlcStarter.Model
 
         public void TabEigenschaftenHinzufuegen()
         {
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Plc, Steuerungen.Logo,
-                _mainWindow.WebLogoPlc, _mainWindow.StackPanelLogoPlc, _mainWindow.ButtonStartenLogoPlc));
+            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+                new TabEigenschaften(PlcKategorie.Plc, Steuerungen.Logo, _mainWindow.WebLogoPlc, _mainWindow.StackPanelLogoPlc, _mainWindow.ButtonStartenLogoPlc));
 
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Bug, Steuerungen.Logo,
-                _mainWindow.WebLogoPlcBugs, _mainWindow.StackPanelLogoPlcBugs, _mainWindow.ButtonStartenLogoPlcBugs));
+            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+                new TabEigenschaften(PlcKategorie.Bug, Steuerungen.Logo, _mainWindow.WebLogoPlcBugs, _mainWindow.StackPanelLogoPlcBugs, _mainWindow.ButtonStartenLogoPlcBugs));
         }
 
         public void AnzeigeUpdaten(TabEigenschaften tabEigenschaften)
@@ -48,8 +48,8 @@ namespace PlcStarter.Model
 
                 logoProjekt.ButtonBezeichnung = tabEigenschaften.ButtonBezeichnung;
                 logoProjekt.BrowserBezeichnung = tabEigenschaften.BrowserBezeichnung;
-                logoProjekt.Source = _ordnerSource;
-                logoProjekt.Destination = _ordnerDestination;
+                logoProjekt.OrdnerSource = _ordnerSource;
+                logoProjekt.OrdnerDestination = _ordnerDestination;
 
                 var rdo = new RadioButton
                 {
@@ -72,22 +72,25 @@ namespace PlcStarter.Model
             switch (btn.Tag)
             {
                 case Logo8Projektdaten projektdaten:
-                    switch (projektdaten.Job1)
-                    {
-                        case PlcJobs.None: break;
-                        case PlcJobs.OrdnerInhaltKopieren: AllePlcJobs.OrdnerKopieren(viewModel, projektdaten.Source, projektdaten.Destination, projektdaten.Ordner); break;
-                        case PlcJobs.CmdDateiAusfuehren: break;
-                        default: break;
-                    }
-
-                    switch (projektdaten.Job2)
-                    { 
-                        case PlcJobs.None: break;
-                        case PlcJobs.OrdnerInhaltKopieren:  break;
-                        case PlcJobs.CmdDateiAusfuehren: AllePlcJobs.ProjektStarten(viewModel, projektdaten.Destination, projektdaten.Ordner);break;
-                        default: break;
-                    }
-
+                    LogoJobAusfuehren(projektdaten.Job1, projektdaten, viewModel);
+                    LogoJobAusfuehren(projektdaten.Job2, projektdaten, viewModel);
+                    LogoJobAusfuehren(projektdaten.Job3, projektdaten, viewModel);
+                    break;
+            }
+        }
+        internal void LogoJobAusfuehren(PlcJobs job, Logo8Projektdaten projektdaten, ViewModel.ViewModel viewModel)
+        {
+            switch (job)
+            {
+                case PlcJobs.None: break;
+                case PlcJobs.SorceOrdnerErstellen:
+                    AllePlcJobs.DestinationOrdnerErstellen(viewModel, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
+                    break;
+                case PlcJobs.ProjektKopieren:
+                    AllePlcJobs.ProjektOrdnerKopieren(viewModel, projektdaten.OrdnerSource, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
+                    break;
+                case PlcJobs.CmdDateiAusfuehren:
+                    AllePlcJobs.ProjektStarten(viewModel, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
                     break;
             }
         }

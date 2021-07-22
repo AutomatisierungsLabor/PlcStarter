@@ -18,30 +18,33 @@ namespace PlcStarter.Model
         public int LaufendeNummer { get; set; }
         public string Bezeichnung { get; set; }
         public string Kommentar { get; set; }
+        public PlcSoftwareVersion SoftwareVersion { get; set; }
         public Button ButtonBezeichnung { get; set; }
         public WebBrowser BrowserBezeichnung { get; set; }
-        public  string Source { get; set; }
-        public string Destination { get; set; }
-        public string Ordner { get; set; }
+        public  string OrdnerSource { get; set; }
+        public string OrdnerDestination { get; set; }
+        public string OrdnerProjekt { get; set; }
         public PlcSprachen Sprache { get; set; }
         public PlcKategorie Kategorie { get; set; } 
         public PlcJobs Job1 { get; set; }
         public PlcJobs Job2 { get; set; }
-
+        public PlcJobs Job3 { get; set; }
         public Logo8Projektdaten()
         {
             LaufendeNummer = 0;
             Bezeichnung = "";
             Kommentar = "";
+            SoftwareVersion = PlcSoftwareVersion.None;
             ButtonBezeichnung = null;
             BrowserBezeichnung = null;
-            Source = null;
-            Destination = null;
-            Ordner = null;
+            OrdnerSource = null;
+            OrdnerDestination = null;
+            OrdnerProjekt = null;
             Sprache = PlcSprachen.Kop;
             Kategorie = PlcKategorie.Plc;
             Job1 = PlcJobs.None;
             Job2 = PlcJobs.None;
+            Job3 = PlcJobs.None;
         }
     }
 }

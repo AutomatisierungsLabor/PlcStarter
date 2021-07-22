@@ -25,8 +25,9 @@ namespace PlcStarter
                 switch (tabEigenschaften.Steuerungen)
                 {
                     case Steuerungen.Logo: AllePlc.PlcLogo.AnzeigeUpdaten(tabEigenschaften); break;
-
-                    default: break;
+                    case Steuerungen.TiaPortal: break;
+                    case Steuerungen.TwinCat: break;
+                    default: throw new ArgumentOutOfRangeException(tabEigenschaften.ToString());
                 }
 
                 foreach (var projektEigenschaften in AlleDaten.AlleProjektEigenschaften.Where(projektEigenschaften => projektEigenschaften.Steuerung == aktuelleSteuerung))
@@ -42,8 +43,7 @@ namespace PlcStarter
                         case Steuerungen.TwinCat:
                             AnzeigeUpdatenTwinCat(tabEigenschaften, projektEigenschaften);
                             break;
-                        default:
-                            throw new ArgumentOutOfRangeException(nameof(aktuelleSteuerung), aktuelleSteuerung, null);
+                        default: throw new ArgumentOutOfRangeException(nameof(aktuelleSteuerung), aktuelleSteuerung, null);
                     }
                 }
             }
@@ -163,7 +163,7 @@ namespace PlcStarter
                     ViewModel.ViAnzeige.StartButtonInhalt = "Projekt starten";
                     ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LawnGreen;
 
-                    var dateiName = $@"{projektdaten.Source}\{projektdaten.Ordner}\index.html";
+                    var dateiName = $@"{projektdaten.OrdnerSource}\{projektdaten.OrdnerProjekt}\index.html";
 
                     var htmlSeite = File.Exists(dateiName) ? File.ReadAllText(dateiName) : "--??--";
 
