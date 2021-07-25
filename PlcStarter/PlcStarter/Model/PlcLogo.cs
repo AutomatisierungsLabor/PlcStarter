@@ -72,9 +72,9 @@ namespace PlcStarter.Model
             switch (btn.Tag)
             {
                 case Logo8Projektdaten projektdaten:
-                    LogoJobAusfuehren(projektdaten.Job1, projektdaten, viewModel);
-                    LogoJobAusfuehren(projektdaten.Job2, projektdaten, viewModel);
-                    LogoJobAusfuehren(projektdaten.Job3, projektdaten, viewModel);
+                    LogoJobAusfuehren(projektdaten.Jobs[0], projektdaten, viewModel);
+                    LogoJobAusfuehren(projektdaten.Jobs[1], projektdaten, viewModel);
+                    LogoJobAusfuehren(projektdaten.Jobs[2], projektdaten, viewModel);
                     break;
             }
         }
