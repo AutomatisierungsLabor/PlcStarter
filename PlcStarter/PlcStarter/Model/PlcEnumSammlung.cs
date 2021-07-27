@@ -37,7 +37,7 @@
         Fup = 4,
         Kop = 5,
         Scl = 6,
-        Stl = 7
+        St = 7
     }
 
     public enum PlcJobs
@@ -45,6 +45,6 @@
         None = 0,
         SorceOrdnerErstellen = 1,
         ProjektKopieren = 2,
-        CmdDateiAusfuehren = 3
+        CmdDateiProjektStarten = 3
     }
 }

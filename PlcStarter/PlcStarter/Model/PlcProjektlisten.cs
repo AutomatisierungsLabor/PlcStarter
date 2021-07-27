@@ -3,13 +3,13 @@ using System.Windows.Controls;
 
 namespace PlcStarter.Model
 {
-    public class Logo8Projekt
+    public class PlcProjekt
     {
-        public Logo8Projekt(ObservableCollection<Logo8Projektdaten> logo8Projektliste) => Logo8Projektliste = logo8Projektliste;
-        public ObservableCollection<Logo8Projektdaten> Logo8Projektliste { get; set; }
+        public PlcProjekt(ObservableCollection<PlcProjektdaten> plcProjektliste) => PlcProjektliste = plcProjektliste;
+        public ObservableCollection<PlcProjektdaten> PlcProjektliste { get; set; }
     }
 
-    public class Logo8Projektdaten
+    public class PlcProjektdaten
     {
         public int LaufendeNummer { get; set; }
         public string Bezeichnung { get; set; }

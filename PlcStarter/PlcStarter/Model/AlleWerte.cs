@@ -36,7 +36,7 @@ namespace PlcStarter.Model
             AlleProgrammiersprachen.Add(PlcSprachen.Fup, (Prefix: "FUP_", Anzeige: "FUP"));
             AlleProgrammiersprachen.Add(PlcSprachen.Kop, (Prefix: "KOP_", Anzeige: "KOP"));
             AlleProgrammiersprachen.Add(PlcSprachen.Scl, (Prefix: "SCL_", Anzeige: "SCL"));
-            AlleProgrammiersprachen.Add(PlcSprachen.Stl, (Prefix: "ST_", Anzeige: "ST"));
+            AlleProgrammiersprachen.Add(PlcSprachen.St, (Prefix: "ST_", Anzeige: "ST"));
         }
     }
 }

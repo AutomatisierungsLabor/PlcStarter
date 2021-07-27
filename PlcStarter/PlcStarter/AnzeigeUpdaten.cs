@@ -25,7 +25,7 @@ namespace PlcStarter
                 switch (tabEigenschaften.Steuerungen)
                 {
                     case Steuerungen.Logo: AllePlc.PlcLogo.AnzeigeUpdaten(tabEigenschaften); break;
-                    case Steuerungen.TiaPortal: break;
+                    case Steuerungen.TiaPortal: AllePlc.PlcTiaPortal.AnzeigeUpdaten(tabEigenschaften); break;
                     case Steuerungen.TwinCat: break;
                     default: throw new ArgumentOutOfRangeException(tabEigenschaften.ToString());
                 }
@@ -38,7 +38,7 @@ namespace PlcStarter
                             // AnzeigeUpdatenLogo(tabEigenschaften, projektEigenschaften);
                             break;
                         case Steuerungen.TiaPortal:
-                            AnzeigeUpdatenTiaPortal(tabEigenschaften, projektEigenschaften);
+                            //AnzeigeUpdatenTiaPortal(tabEigenschaften, projektEigenschaften);
                             break;
                         case Steuerungen.TwinCat:
                             AnzeigeUpdatenTwinCat(tabEigenschaften, projektEigenschaften);
@@ -68,7 +68,7 @@ namespace PlcStarter
                 case PlcSprachen.Cpp when cpp:
                 case PlcSprachen.Fup when fup:
                 case PlcSprachen.Kop when kop:
-                case PlcSprachen.Stl when st:
+                case PlcSprachen.St when st:
                     EinzelnenTabFuellen(tabEigenschaften, projektEigenschaften);
                     break;
                 case PlcSprachen.Scl:
@@ -77,32 +77,7 @@ namespace PlcStarter
             }
         }
 
-        private void AnzeigeUpdatenTiaPortal(TabEigenschaften tabEigenschaften, ProjektEigenschaften projektEigenschaften)
-        {
-            var fup = CheckboxTiaPortalFup?.IsChecked != null && (bool)CheckboxTiaPortalFup.IsChecked;
-            var kop = CheckboxTiaPortalKop?.IsChecked != null && (bool)CheckboxTiaPortalKop.IsChecked;
-            var scl = CheckboxTiaPortalScl?.IsChecked != null && (bool)CheckboxTiaPortalScl.IsChecked;
-
-            switch (projektEigenschaften.Programmiersprache)
-            {
-                case PlcSprachen.Fup when fup:
-                case PlcSprachen.Kop when kop:
-                case PlcSprachen.Scl when scl:
-                    EinzelnenTabFuellen(tabEigenschaften, projektEigenschaften);
-                    break;
-                case PlcSprachen.As:
-                    break;
-                case PlcSprachen.Awl:
-                    break;
-                case PlcSprachen.Cfc:
-                    break;
-                case PlcSprachen.Cpp:
-                    break;
-                case PlcSprachen.Stl:
-                    break;
-                default: throw new ArgumentOutOfRangeException(nameof(projektEigenschaften));
-            }
-        }
+     
 
         private void EinzelnenTabFuellen(TabEigenschaften tabEigenschaften, ProjektEigenschaften projektEigenschaften)
         {
@@ -132,7 +107,6 @@ namespace PlcStarter
 
             tabEigenschaften.StackPanelBezeichnung.Children.Add(rdo);
         }
-
         public void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
             if (!(sender is RadioButton rb)) return;
@@ -157,7 +131,7 @@ namespace PlcStarter
                     AktuellesProjekt.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
                     break;
                 }
-                case Logo8Projektdaten projektdaten:
+                case PlcProjektdaten projektdaten:
                 {
                     // neue Version
                     ViewModel.ViAnzeige.StartButtonInhalt = "Projekt starten";

@@ -5,7 +5,7 @@ namespace PlcStarter.Model
 {
     public class AlleDaten
     {
-      
+
         public List<ProjektEigenschaften> AlleProjektEigenschaften { get; set; }
         public List<TabEigenschaften> AlleTabEigenschaften { get; set; }
 
@@ -17,8 +17,6 @@ namespace PlcStarter.Model
             _mainWindow = mw;
 
 
-        
-            
             AlleProjektEigenschaften = new List<ProjektEigenschaften>();
             AlleTabEigenschaften = new List<TabEigenschaften>();
 
@@ -28,19 +26,7 @@ namespace PlcStarter.Model
             OrdnerEinlesen(_mainWindow, einstellungen.TiaPortal.Source, einstellungen.TiaPortal.Destination, Steuerungen.TiaPortal);
             OrdnerEinlesen(_mainWindow, einstellungen.TwinCat.Source, einstellungen.TwinCat.Destination, Steuerungen.TwinCat);
 
-            TabEigenschaftenEinlesenTiaPortal();
             TabEigenschaftenEinlesenTwinCat();
-        }
-
-        public void TabEigenschaftenEinlesenTiaPortal()
-        {
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Plc, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlc, _mainWindow.StackPanelTiaPortalPlc, _mainWindow.ButtonStartenTiaPortalPlc));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Hmi, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcHmi, _mainWindow.StackPanelTiaPortalPlcHmi, _mainWindow.ButtonStartenTiaPortalPlcHmi));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.FactoryIo, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcFio, _mainWindow.StackPanelTiaPortalPlcFio, _mainWindow.ButtonStartenTiaPortalPlcFio));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.DigitalTwin, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcDt, _mainWindow.StackPanelTiaPortalPlcDt, _mainWindow.ButtonStartenTiaPortalPlcDt));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Snap7, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcSnap7, _mainWindow.StackPanelTiaPortalPlcSnap7, _mainWindow.ButtonStartenTiaPortalPlcSnap7));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.SoftwareTests, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcTests, _mainWindow.StackPanelTiaPortalPlcTests, _mainWindow.ButtonStartenTiaPortalPlcTests));
-            AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Bug, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcBugs, _mainWindow.StackPanelTiaPortalPlcBugs, _mainWindow.ButtonStartenTiaPortalPlcBugs));
         }
 
         public void TabEigenschaftenEinlesenTwinCat()
