@@ -11,7 +11,7 @@ namespace PlcStarter
         public ProjektEigenschaften AktuellesProjekt { get; set; }
         public Steuerungen AktuelleSteuerung { get; set; }
 
-        public  ViewModel.ViewModel ViewModel { get; set; }
+        public ViewModel.ViewModel ViewModel { get; set; }
 
         public MainWindow()
         {
@@ -33,11 +33,14 @@ namespace PlcStarter
             AnzeigeUpdaten(Steuerungen.TiaPortal);
         }
 
-        private void ButtonStartenLogoPlc_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void ButtonStartenPlc_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (!(sender is Button btn)) return;
+            if (!(sender is Button {Tag: PlcProjektdaten projektdaten})) return;
 
-            AllePlc.PlcLogo.ProjektStarten(ViewModel, btn);
+            foreach (var job in projektdaten.Jobs)
+            {
+                AllePlcJobs.PlcJobAusfuehren(job, projektdaten, ViewModel);
+            }
         }
     }
 }

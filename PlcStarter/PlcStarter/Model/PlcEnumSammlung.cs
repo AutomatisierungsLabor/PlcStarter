@@ -24,7 +24,7 @@
         Nc = 5,
         Plc = 6,
         Snap7 = 7,
-        SoftwareTests = 8,
+        AutoTests = 8,
         Visu = 9
     }
 
@@ -45,6 +45,8 @@
         None = 0,
         SorceOrdnerErstellen = 1,
         ProjektKopieren = 2,
-        CmdDateiProjektStarten = 3
+        CmdDateiProjektStarten = 3,
+        DigitalTwinKopieren = 4,
+        CmdDateiDigitalTwinStarten = 5
     }
 }

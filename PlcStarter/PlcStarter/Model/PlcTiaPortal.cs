@@ -38,7 +38,7 @@ namespace PlcStarter.Model
             _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.Snap7, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcSnap7, _mainWindow.StackPanelTiaPortalPlcSnap7, _mainWindow.ButtonStartenTiaPortalPlcSnap7));
             _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.SoftwareTests, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcTests, _mainWindow.StackPanelTiaPortalPlcTests, _mainWindow.ButtonStartenTiaPortalPlcTests));
+                new TabEigenschaften(PlcKategorie.AutoTests, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcTests, _mainWindow.StackPanelTiaPortalPlcTests, _mainWindow.ButtonStartenTiaPortalPlcTests));
             _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.Bug, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcBugs, _mainWindow.StackPanelTiaPortalPlcBugs, _mainWindow.ButtonStartenTiaPortalPlcBugs));
 
@@ -58,7 +58,6 @@ namespace PlcStarter.Model
                 if (!kop && plcProjekt.Sprache == PlcSprachen.Kop) continue;
                 if (!scl && plcProjekt.Sprache == PlcSprachen.Scl) continue;
 
-                plcProjekt.ButtonBezeichnung = tabEigenschaften.ButtonBezeichnung;
                 plcProjekt.BrowserBezeichnung = tabEigenschaften.BrowserBezeichnung;
                 plcProjekt.OrdnerSource = _ordnerSource;
                 plcProjekt.OrdnerDestination = _ordnerDestination;

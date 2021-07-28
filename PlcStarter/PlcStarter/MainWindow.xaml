@@ -59,7 +59,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelLogoPlc" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenLogoPlc" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenLogoPlc_Click" />
+                                <Button x:Name="ButtonStartenLogoPlc" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
                                 <WebBrowser x:Name="WebLogoPlc" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -82,7 +82,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelLogoPlcBugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenLogoPlcBugs" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenLogoPlc_Click" />
+                                <Button x:Name="ButtonStartenLogoPlcBugs" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
                                 <WebBrowser x:Name="WebLogoPlcBugs" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -130,7 +130,7 @@
                                     <RowDefinition Height="10"/>
                                 </Grid.RowDefinitions>
                                 <StackPanel x:Name="StackPanelTiaPortalPlc" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTiaPortalPlc" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Command="{Binding BtnProjektStarten}" />
+                                <Button x:Name="ButtonStartenTiaPortalPlc" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
                                 <WebBrowser x:Name="WebTiaPortalPlc" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -153,7 +153,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTiaPortalPlcHmi" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTiaPortalPlcHmi" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1"  Background="{Binding ViAnzeige.StartButtonFarbe}" Command="{Binding BtnProjektStarten}" />
+                                <Button x:Name="ButtonStartenTiaPortalPlcHmi" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1"  Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
                                 <WebBrowser x:Name="WebTiaPortalPlcHmi" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -177,7 +177,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTiaPortalPlcFio" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"  />
-                                <Button x:Name="ButtonStartenTiaPortalPlcFio" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="4" Grid.Row="1"  Background="{Binding ViAnzeige.StartButtonFarbe}" Command="{Binding BtnProjektStarten}" />
+                                <Button x:Name="ButtonStartenTiaPortalPlcFio" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="4" Grid.Row="1"  Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
                                 <WebBrowser x:Name="WebTiaPortalPlcFio" Grid.Column="4" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -201,7 +201,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTiaPortalPlcDt" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"  />
-                                <Button x:Name="ButtonStartenTiaPortalPlcDt" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="4" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Command="{Binding BtnProjektStarten}" />
+                                <Button x:Name="ButtonStartenTiaPortalPlcDt" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="4" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
                                 <WebBrowser x:Name="WebTiaPortalPlcDt" Grid.Column="4" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -225,12 +225,12 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTiaPortalPlcSnap7" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"  />
-                                <Button x:Name="ButtonStartenTiaPortalPlcSnap7" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="4" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Command="{Binding BtnProjektStarten}" />
+                                <Button x:Name="ButtonStartenTiaPortalPlcSnap7" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="4" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
                                 <WebBrowser x:Name="WebTiaPortalPlcSnap7" Grid.Column="4" Grid.Row="3" />
                             </Grid>
                         </TabItem>
 
-                        <TabItem Header="AutoTest" FontSize="14" ToolTip="Automatische Testprojekte für die S7-1214 DC/DC/DC">
+                        <TabItem Header="AutoTests" FontSize="14" ToolTip="Automatische Testprojekte für die S7-1214 DC/DC/DC">
                             <Grid x:Name="TabTiaPortalPlcTests" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"/>
@@ -248,7 +248,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTiaPortalPlcTests" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTiaPortalPlcTests" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1"  Background="{Binding ViAnzeige.StartButtonFarbe}" Command="{Binding BtnProjektStarten}" />
+                                <Button x:Name="ButtonStartenTiaPortalPlcTests" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1"  Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
                                 <WebBrowser x:Name="WebTiaPortalPlcTests" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -271,7 +271,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTiaPortalPlcBugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTiaPortalPlcBugs" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}"  Command="{Binding BtnProjektStarten}" />
+                                <Button x:Name="ButtonStartenTiaPortalPlcBugs" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}"  Click="ButtonStartenPlc_Click" />
                                 <WebBrowser x:Name="WebTiaPortalPlcBugs" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -326,7 +326,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlc" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTwinCatPlc" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Command="{Binding BtnProjektStarten}" />
+                                <Button x:Name="ButtonStartenTwinCatPlc" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
                                 <WebBrowser x:Name="WebTwinCatPlc" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -349,7 +349,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlcVisu" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTwinCatPlcVisu" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1"  Background="{Binding ViAnzeige.StartButtonFarbe}" Command="{Binding BtnProjektStarten}" />
+                                <Button x:Name="ButtonStartenTwinCatPlcVisu" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1"  Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
                                 <WebBrowser x:Name="WebTwinCatPlcVisu" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -372,7 +372,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlcNc" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTwinCatPlcNc" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}"  Command="{Binding BtnProjektStarten}" />
+                                <Button x:Name="ButtonStartenTwinCatPlcNc" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}"  Click="ButtonStartenPlc_Click" />
                                 <WebBrowser x:Name="WebTwinCatPlcNc" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -395,7 +395,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlcDt" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTwinCatPlcDt" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Command="{Binding BtnProjektStarten}" />
+                                <Button x:Name="ButtonStartenTwinCatPlcDt" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
                                 <WebBrowser x:Name="WebTwinCatPlcDt" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -418,7 +418,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlcAds" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTwinCatPlcAds" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Command="{Binding BtnProjektStarten}" />
+                                <Button x:Name="ButtonStartenTwinCatPlcAds" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
                                 <WebBrowser x:Name="WebTwinCatPlcAds" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -441,7 +441,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlcTests" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTwinCatPlcTests" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}"  Command="{Binding BtnProjektStarten}" />
+                                <Button x:Name="ButtonStartenTwinCatPlcTests" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}"  Click="ButtonStartenPlc_Click" />
                                 <WebBrowser x:Name="WebTwinCatPlcTests" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -464,7 +464,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlcBugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTwinCatPlcBugs" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Command="{Binding BtnProjektStarten}" />
+                                <Button x:Name="ButtonStartenTwinCatPlcBugs" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
                                 <WebBrowser x:Name="WebTwinCatPlcBugs" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>

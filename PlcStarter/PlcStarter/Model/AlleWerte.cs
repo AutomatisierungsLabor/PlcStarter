@@ -23,7 +23,7 @@ namespace PlcStarter.Model
             AlleKategorien.Add(PlcKategorie.Nc, (Prefix: "NC_", Anzeige: "NC"));
             AlleKategorien.Add(PlcKategorie.Visu, (Prefix: "VISU_", Anzeige: "VISU"));
             AlleKategorien.Add(PlcKategorie.Snap7, (Prefix: "SNAP7_", Anzeige: "SNAP7"));
-            AlleKategorien.Add(PlcKategorie.SoftwareTests, (Prefix: "TEST_", Anzeige: "TEST"));
+            AlleKategorien.Add(PlcKategorie.AutoTests, (Prefix: "TEST_", Anzeige: "TEST"));
             AlleKategorien.Add(PlcKategorie.Plc, (Prefix: "PLC_", Anzeige: "PLC"));
         }
 

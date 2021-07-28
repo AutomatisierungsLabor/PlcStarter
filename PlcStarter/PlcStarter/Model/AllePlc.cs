@@ -6,19 +6,21 @@
 
         public IPlc PlcLogo;
         public IPlc PlcTiaPortal;
-        
+        public IPlc PlcTwinCat;
+
         public AllePlc(MainWindow mw)
         {
             OrdnerStrukturLesen = new OrdnerStrukturLesen();
             OrdnerStrukturLesen.GetOrdnerConfig("Einstellungen/Ordner.json");
 
-            PlcLogo = new PlcLogo(mw,  OrdnerStrukturLesen.OrdnerConfig.OrdnerBezeichnungen[1]);
+            PlcLogo = new PlcLogo(mw, OrdnerStrukturLesen.OrdnerConfig.OrdnerBezeichnungen[1]);
             PlcLogo.TabEigenschaftenHinzufuegen();
 
             PlcTiaPortal = new PlcTiaPortal(mw, OrdnerStrukturLesen.OrdnerConfig.OrdnerBezeichnungen[2]);
             PlcTiaPortal.TabEigenschaftenHinzufuegen();
 
-
+            PlcTwinCat = new PlcTwinCat(mw, OrdnerStrukturLesen.OrdnerConfig.OrdnerBezeichnungen[3]);
+            PlcTwinCat.TabEigenschaftenHinzufuegen();
         }
     }
 }

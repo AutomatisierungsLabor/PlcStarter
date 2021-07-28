@@ -17,11 +17,12 @@ namespace PlcStarter.Model
         public PlcSoftwareVersion SoftwareVersion { get; set; }
         public Button ButtonBezeichnung { get; set; }
         public WebBrowser BrowserBezeichnung { get; set; }
-        public  string OrdnerSource { get; set; }
+        public string OrdnerSource { get; set; }
         public string OrdnerDestination { get; set; }
         public string OrdnerProjekt { get; set; }
+        public string OrdnerDigitalTwin { get; set; }
         public PlcSprachen Sprache { get; set; }
         public PlcKategorie Kategorie { get; set; }
         public PlcJobs[] Jobs { get; set; }
-      }
+    }
 }

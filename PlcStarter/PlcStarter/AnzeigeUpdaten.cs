@@ -26,7 +26,7 @@ namespace PlcStarter
                 {
                     case Steuerungen.Logo: AllePlc.PlcLogo.AnzeigeUpdaten(tabEigenschaften); break;
                     case Steuerungen.TiaPortal: AllePlc.PlcTiaPortal.AnzeigeUpdaten(tabEigenschaften); break;
-                    case Steuerungen.TwinCat: break;
+                    case Steuerungen.TwinCat: AllePlc.PlcTwinCat.AnzeigeUpdaten(tabEigenschaften); break;
                     default: throw new ArgumentOutOfRangeException(tabEigenschaften.ToString());
                 }
 
@@ -41,7 +41,7 @@ namespace PlcStarter
                             //AnzeigeUpdatenTiaPortal(tabEigenschaften, projektEigenschaften);
                             break;
                         case Steuerungen.TwinCat:
-                            AnzeigeUpdatenTwinCat(tabEigenschaften, projektEigenschaften);
+                            //AnzeigeUpdatenTwinCat(tabEigenschaften, projektEigenschaften);
                             break;
                         default: throw new ArgumentOutOfRangeException(nameof(aktuelleSteuerung), aktuelleSteuerung, null);
                     }
@@ -77,7 +77,7 @@ namespace PlcStarter
             }
         }
 
-     
+
 
         private void EinzelnenTabFuellen(TabEigenschaften tabEigenschaften, ProjektEigenschaften projektEigenschaften)
         {
@@ -114,40 +114,40 @@ namespace PlcStarter
             switch (rb.Tag)
             {
                 case ProjektEigenschaften projektEigenschaften:
-                {
-                    // alte Variante
-                    ViewModel.ViAnzeige.StartButtonInhalt = "Projekt starten";
-                    ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LawnGreen;
+                    {
+                        // alte Variante
+                        ViewModel.ViAnzeige.StartButtonInhalt = "Projekt starten";
+                        ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LawnGreen;
 
-                    AktuellesProjekt = projektEigenschaften;
-                    var parentDirectory = new DirectoryInfo(AktuellesProjekt.QuellOrdner);
-                    var dateiName = $@"{parentDirectory.FullName}\index.html";
+                        AktuellesProjekt = projektEigenschaften;
+                        var parentDirectory = new DirectoryInfo(AktuellesProjekt.QuellOrdner);
+                        var dateiName = $@"{parentDirectory.FullName}\index.html";
 
-                    var htmlSeite = File.Exists(dateiName) ? File.ReadAllText(dateiName) : "--??--";
+                        var htmlSeite = File.Exists(dateiName) ? File.ReadAllText(dateiName) : "--??--";
 
-                    var dataHtmlSeite = Encoding.UTF8.GetBytes(htmlSeite);
-                    var stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
+                        var dataHtmlSeite = Encoding.UTF8.GetBytes(htmlSeite);
+                        var stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
 
-                    AktuellesProjekt.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
-                    break;
-                }
+                        AktuellesProjekt.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
+                        break;
+                    }
                 case PlcProjektdaten projektdaten:
-                {
-                    // neue Version
-                    ViewModel.ViAnzeige.StartButtonInhalt = "Projekt starten";
-                    ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LawnGreen;
+                    {
+                        // neue Version
+                        ViewModel.ViAnzeige.StartButtonInhalt = "Projekt starten";
+                        ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LawnGreen;
 
-                    var dateiName = $@"{projektdaten.OrdnerSource}\{projektdaten.OrdnerProjekt}\index.html";
+                        var dateiName = $@"{projektdaten.OrdnerSource}\{projektdaten.OrdnerProjekt}\index.html";
 
-                    var htmlSeite = File.Exists(dateiName) ? File.ReadAllText(dateiName) : "--??--";
+                        var htmlSeite = File.Exists(dateiName) ? File.ReadAllText(dateiName) : "--??--";
 
-                    var dataHtmlSeite = Encoding.UTF8.GetBytes(htmlSeite);
-                    var stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
-                    projektdaten.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
+                        var dataHtmlSeite = Encoding.UTF8.GetBytes(htmlSeite);
+                        var stmHtmlSeite = new MemoryStream(dataHtmlSeite, 0, dataHtmlSeite.Length);
+                        projektdaten.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
 
-                    projektdaten.ButtonBezeichnung.Tag = projektdaten;
-                    break;
-                }
+                        projektdaten.ButtonBezeichnung.Tag = projektdaten;
+                        break;
+                    }
             }
         }
     }

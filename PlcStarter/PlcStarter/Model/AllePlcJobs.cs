@@ -10,7 +10,23 @@ namespace PlcStarter.Model
     public static class AllePlcJobs
     {
 
-
+        public static void PlcJobAusfuehren(PlcJobs job, PlcProjektdaten projektdaten, ViewModel.ViewModel viewModel)
+        {
+            switch (job)
+            {
+                case PlcJobs.None: break;
+                case PlcJobs.SorceOrdnerErstellen:
+                    AllePlcJobs.DestinationOrdnerErstellen(viewModel, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
+                    break;
+                case PlcJobs.ProjektKopieren:
+                    AllePlcJobs.ProjektOrdnerKopieren(viewModel, projektdaten.OrdnerSource, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
+                    break;
+                case PlcJobs.CmdDateiProjektStarten:
+                    AllePlcJobs.ProjektStarten(viewModel, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
+                    break;
+                default: throw new ArgumentOutOfRangeException(nameof(job), job, null);
+            }
+        }
 
         public static void DestinationOrdnerErstellen(ViewModel.ViewModel viewModel, string destination, string ordner)
         {

@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace PlcStarter.Model
 {
-    public class PlcLogo : IPlc
+    public class PlcTwinCat : IPlc
     {
         public PlcProjekt PlcProjekte { get; set; }
 
@@ -14,7 +14,7 @@ namespace PlcStarter.Model
         private readonly string _ordnerSource;
         private readonly string _ordnerDestination;
 
-        public PlcLogo(MainWindow mainWindow, OrdnerDaten ordnerDaten)
+        public PlcTwinCat(MainWindow mainWindow, OrdnerDaten ordnerDaten)
         {
             _mainWindow = mainWindow;
             _ordnerSource = ordnerDaten.Source;
@@ -22,29 +22,48 @@ namespace PlcStarter.Model
 
             PlcProjekte =
                 JsonConvert.DeserializeObject<PlcProjekt>(
-                    File.ReadAllText(_ordnerSource + "/Logo8Projektliste.json"));
+                    File.ReadAllText(_ordnerSource + "/TwinCatProjektliste.json"));
         }
 
         public void TabEigenschaftenHinzufuegen()
         {
             _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.Plc, Steuerungen.Logo, _mainWindow.WebLogoPlc, _mainWindow.StackPanelLogoPlc, _mainWindow.ButtonStartenLogoPlc));
-
+                new TabEigenschaften(PlcKategorie.Plc, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlc, _mainWindow.StackPanelTwinCatPlc, _mainWindow.ButtonStartenTwinCatPlc));
             _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.Bug, Steuerungen.Logo, _mainWindow.WebLogoPlcBugs, _mainWindow.StackPanelLogoPlcBugs, _mainWindow.ButtonStartenLogoPlcBugs));
+                new TabEigenschaften(PlcKategorie.Visu, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcVisu, _mainWindow.StackPanelTwinCatPlcVisu, _mainWindow.ButtonStartenTwinCatPlcVisu));
+            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+                new TabEigenschaften(PlcKategorie.Nc, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcNc, _mainWindow.StackPanelTwinCatPlcNc, _mainWindow.ButtonStartenTwinCatPlcNc));
+            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+                new TabEigenschaften(PlcKategorie.DigitalTwin, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcDt, _mainWindow.StackPanelTwinCatPlcDt, _mainWindow.ButtonStartenTwinCatPlcDt));
+            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+                new TabEigenschaften(PlcKategorie.AdsRemote, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcAds, _mainWindow.StackPanelTwinCatPlcAds, _mainWindow.ButtonStartenTwinCatPlcAds));
+            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+                new TabEigenschaften(PlcKategorie.AutoTests, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcTests, _mainWindow.StackPanelTwinCatPlcTests, _mainWindow.ButtonStartenTwinCatPlcTests));
+            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+                new TabEigenschaften(PlcKategorie.Bug, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcBugs, _mainWindow.StackPanelTwinCatPlcBugs, _mainWindow.ButtonStartenTwinCatPlcBugs));
         }
 
         public void AnzeigeUpdaten(TabEigenschaften tabEigenschaften)
         {
-            var fup = _mainWindow.CheckboxLogoFup?.IsChecked != null && (bool)_mainWindow.CheckboxLogoFup.IsChecked;
-            var kop = _mainWindow.CheckboxLogoKop?.IsChecked != null && (bool)_mainWindow.CheckboxLogoKop.IsChecked;
+            var als = _mainWindow.CheckboxTwinCatAs?.IsChecked != null && (bool)_mainWindow.CheckboxTwinCatAs.IsChecked;
+            var awl = _mainWindow.CheckboxTwinCatAwl?.IsChecked != null && (bool)_mainWindow.CheckboxTwinCatAwl.IsChecked;
+            var cfc = _mainWindow.CheckboxTwinCatCfc?.IsChecked != null && (bool)_mainWindow.CheckboxTwinCatCfc.IsChecked;
+            var cpp = _mainWindow.CheckboxTwinCatCpp?.IsChecked != null && (bool)_mainWindow.CheckboxTwinCatCpp.IsChecked;
+            var fup = _mainWindow.CheckboxTwinCatFup?.IsChecked != null && (bool)_mainWindow.CheckboxTwinCatFup.IsChecked;
+            var kop = _mainWindow.CheckboxTwinCatKop?.IsChecked != null && (bool)_mainWindow.CheckboxTwinCatKop.IsChecked;
+            var st = _mainWindow.CheckboxTwinCatSt?.IsChecked != null && (bool)_mainWindow.CheckboxTwinCatSt.IsChecked;
 
             foreach (var plcProjekt in PlcProjekte.PlcProjektliste)
             {
                 if (tabEigenschaften.PlcKategorie != plcProjekt.Kategorie) continue;
 
+                if (!als && plcProjekt.Sprache == PlcSprachen.As) continue;
+                if (!awl && plcProjekt.Sprache == PlcSprachen.Awl) continue;
+                if (!cfc && plcProjekt.Sprache == PlcSprachen.Cfc) continue;
+                if (!cpp && plcProjekt.Sprache == PlcSprachen.Cpp) continue;
                 if (!fup && plcProjekt.Sprache == PlcSprachen.Fup) continue;
                 if (!kop && plcProjekt.Sprache == PlcSprachen.Kop) continue;
+                if (!st && plcProjekt.Sprache == PlcSprachen.St) continue;
 
                 plcProjekt.BrowserBezeichnung = tabEigenschaften.BrowserBezeichnung;
                 plcProjekt.OrdnerSource = _ordnerSource;
@@ -52,7 +71,7 @@ namespace PlcStarter.Model
 
                 var rdo = new RadioButton
                 {
-                    GroupName = "Logo",
+                    GroupName = "TwinCAT",
                     Name = plcProjekt.Bezeichnung,
                     FontSize = 14,
                     Content = plcProjekt.Bezeichnung + " (" + plcProjekt.Kommentar + " / " + plcProjekt.Sprache + ")",
