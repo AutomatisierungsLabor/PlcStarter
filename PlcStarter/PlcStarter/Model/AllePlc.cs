@@ -1,18 +1,26 @@
-﻿namespace PlcStarter.Model
+﻿using System.Collections.Generic;
+
+namespace PlcStarter.Model
 {
     public class AllePlc
     {
         public OrdnerStrukturLesen OrdnerStrukturLesen { get; set; }
+        public List<TabEigenschaften> AlleTabEigenschaften { get; set; }
 
         public IPlc PlcLogo;
         public IPlc PlcTiaPortal;
         public IPlc PlcTwinCat;
 
-        public AllePlc(MainWindow mw)
+        public AllePlc()
         {
+            AlleTabEigenschaften = new List<TabEigenschaften>();
+
             OrdnerStrukturLesen = new OrdnerStrukturLesen();
             OrdnerStrukturLesen.GetOrdnerConfig("Einstellungen/Ordner.json");
+        }
 
+        public void PlcInitialisieren(MainWindow mw)
+        {
             PlcLogo = new PlcLogo(mw, OrdnerStrukturLesen.OrdnerConfig.OrdnerBezeichnungen[1]);
             PlcLogo.TabEigenschaftenHinzufuegen();
 

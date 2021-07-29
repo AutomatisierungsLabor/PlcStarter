@@ -1,7 +1,7 @@
-﻿using System;
+﻿using PlcStarter.Model;
+using System;
 using System.Windows.Controls;
 using System.Windows.Media;
-using PlcStarter.Model;
 
 namespace PlcStarter
 {
@@ -9,7 +9,7 @@ namespace PlcStarter
     {
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!(sender is TabControl tabControl) || !(tabControl.SelectedValue is TabItem item)) return;
+            if (sender is not TabControl tabControl || tabControl.SelectedValue is not TabItem item) return;
 
             ViewModel.ViAnzeige.StartButtonInhalt = "Bitte ein Projekt auswählen";
             ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
@@ -25,10 +25,9 @@ namespace PlcStarter
             };
             AnzeigeUpdaten(AktuelleSteuerung);
         }
-
         private void HtmlFensterLoeschen()
         {
-            foreach (var tabEigenschaften in AlleDaten.AlleTabEigenschaften) tabEigenschaften.BrowserBezeichnung.Navigate((Uri)null);
+            foreach (var tabEigenschaften in AllePlc.AlleTabEigenschaften) tabEigenschaften.BrowserBezeichnung.Navigate((Uri)null);
         }
     }
 }

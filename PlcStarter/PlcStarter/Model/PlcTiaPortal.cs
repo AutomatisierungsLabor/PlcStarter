@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using Newtonsoft.Json;
 
 namespace PlcStarter.Model
 {
@@ -27,21 +26,20 @@ namespace PlcStarter.Model
 
         public void TabEigenschaftenHinzufuegen()
         {
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.Plc, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlc, _mainWindow.StackPanelTiaPortalPlc, _mainWindow.ButtonStartenTiaPortalPlc));
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.Hmi, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcHmi, _mainWindow.StackPanelTiaPortalPlcHmi, _mainWindow.ButtonStartenTiaPortalPlcHmi));
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.FactoryIo, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcFio, _mainWindow.StackPanelTiaPortalPlcFio, _mainWindow.ButtonStartenTiaPortalPlcFio));
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.DigitalTwin, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcDt, _mainWindow.StackPanelTiaPortalPlcDt, _mainWindow.ButtonStartenTiaPortalPlcDt));
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.Snap7, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcSnap7, _mainWindow.StackPanelTiaPortalPlcSnap7, _mainWindow.ButtonStartenTiaPortalPlcSnap7));
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.AutoTests, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcTests, _mainWindow.StackPanelTiaPortalPlcTests, _mainWindow.ButtonStartenTiaPortalPlcTests));
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.Bug, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcBugs, _mainWindow.StackPanelTiaPortalPlcBugs, _mainWindow.ButtonStartenTiaPortalPlcBugs));
-
         }
 
         public void AnzeigeUpdaten(TabEigenschaften tabEigenschaften)
@@ -59,6 +57,7 @@ namespace PlcStarter.Model
                 if (!scl && plcProjekt.Sprache == PlcSprachen.Scl) continue;
 
                 plcProjekt.BrowserBezeichnung = tabEigenschaften.BrowserBezeichnung;
+                plcProjekt.ButtonBezeichnung = tabEigenschaften.ButtonBezeichnung;
                 plcProjekt.OrdnerSource = _ordnerSource;
                 plcProjekt.OrdnerDestination = _ordnerDestination;
 
@@ -75,36 +74,6 @@ namespace PlcStarter.Model
                 rdo.Checked += _mainWindow.RadioButton_Checked;
 
                 tabEigenschaften.StackPanelBezeichnung.Children.Add(rdo);
-            }
-        }
-
-        public void ProjektStarten(ViewModel.ViewModel viewModel, Button btn)
-        {
-            switch (btn.Tag)
-            {
-                case PlcProjektdaten projektdaten:
-                    foreach (var job in projektdaten.Jobs)
-                    {
-                        PlcJobAusfuehren(job, projektdaten, viewModel);
-                    }
-                    break;
-            }
-        }
-        internal void PlcJobAusfuehren(PlcJobs job, PlcProjektdaten projektdaten, ViewModel.ViewModel viewModel)
-        {
-            switch (job)
-            {
-                case PlcJobs.None: break;
-                case PlcJobs.SorceOrdnerErstellen:
-                    AllePlcJobs.DestinationOrdnerErstellen(viewModel, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
-                    break;
-                case PlcJobs.ProjektKopieren:
-                    AllePlcJobs.ProjektOrdnerKopieren(viewModel, projektdaten.OrdnerSource, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
-                    break;
-                case PlcJobs.CmdDateiProjektStarten:
-                    AllePlcJobs.ProjektStarten(viewModel, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
-                    break;
-                default: throw new ArgumentOutOfRangeException(nameof(job), job, null);
             }
         }
     }

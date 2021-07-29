@@ -23,9 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Einstellungen.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Einstellungen\Ordner.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

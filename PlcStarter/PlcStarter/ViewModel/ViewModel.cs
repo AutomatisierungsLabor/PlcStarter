@@ -1,5 +1,5 @@
-﻿using System.Windows.Input;
-using PlcStarter.Commands;
+﻿using PlcStarter.Commands;
+using System.Windows.Input;
 
 namespace PlcStarter.ViewModel
 {
@@ -18,9 +18,5 @@ namespace PlcStarter.ViewModel
         private ICommand _btnHaken;
         // ReSharper disable once UnusedMember.Global
         public ICommand BtnHaken => _btnHaken ??= new RelayCommand(_mainWindow.ButtonGeaendert);
-        
-        private ICommand _btnProjektStarten;
-        // ReSharper disable once UnusedMember.Global
-        public ICommand BtnProjektStarten => _btnProjektStarten ??= new RelayCommand(_mainWindow.ProjektStarten);
     }
 }

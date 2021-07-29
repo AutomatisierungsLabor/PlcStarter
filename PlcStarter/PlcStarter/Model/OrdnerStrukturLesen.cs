@@ -1,5 +1,5 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 
 namespace PlcStarter.Model
@@ -7,7 +7,6 @@ namespace PlcStarter.Model
     public class OrdnerStrukturLesen
     {
         public Ordner OrdnerConfig { get; set; }
-
         internal void GetOrdnerConfig(string pfad)
         {
             OrdnerConfig = JsonConvert.DeserializeObject<Ordner>(File.ReadAllText(pfad));

@@ -7,7 +7,7 @@ namespace PlcStarter.ViewModel
     {
         public VisuAnzeigen()
         {
-            StartButtonFarbe =  Brushes.LightGray;
+            StartButtonFarbe = Brushes.LightGray;
             StartButtonInhalt = "Bitte ein Projekt auswählen";
         }
 

@@ -13,7 +13,6 @@
         TiaPortal = 1,
         TwinCat = 2
     }
-
     public enum PlcKategorie
     {
         AdsRemote = 0,
@@ -27,7 +26,6 @@
         AutoTests = 8,
         Visu = 9
     }
-
     public enum PlcSprachen
     {
         As = 0,
@@ -39,7 +37,6 @@
         Scl = 6,
         St = 7
     }
-
     public enum PlcJobs
     {
         None = 0,

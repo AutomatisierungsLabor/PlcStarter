@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using Newtonsoft.Json;
 
 namespace PlcStarter.Model
 {
@@ -27,19 +26,19 @@ namespace PlcStarter.Model
 
         public void TabEigenschaftenHinzufuegen()
         {
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.Plc, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlc, _mainWindow.StackPanelTwinCatPlc, _mainWindow.ButtonStartenTwinCatPlc));
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.Visu, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcVisu, _mainWindow.StackPanelTwinCatPlcVisu, _mainWindow.ButtonStartenTwinCatPlcVisu));
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.Nc, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcNc, _mainWindow.StackPanelTwinCatPlcNc, _mainWindow.ButtonStartenTwinCatPlcNc));
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.DigitalTwin, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcDt, _mainWindow.StackPanelTwinCatPlcDt, _mainWindow.ButtonStartenTwinCatPlcDt));
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.AdsRemote, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcAds, _mainWindow.StackPanelTwinCatPlcAds, _mainWindow.ButtonStartenTwinCatPlcAds));
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.AutoTests, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcTests, _mainWindow.StackPanelTwinCatPlcTests, _mainWindow.ButtonStartenTwinCatPlcTests));
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.Bug, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcBugs, _mainWindow.StackPanelTwinCatPlcBugs, _mainWindow.ButtonStartenTwinCatPlcBugs));
         }
 
@@ -66,6 +65,7 @@ namespace PlcStarter.Model
                 if (!st && plcProjekt.Sprache == PlcSprachen.St) continue;
 
                 plcProjekt.BrowserBezeichnung = tabEigenschaften.BrowserBezeichnung;
+                plcProjekt.ButtonBezeichnung = tabEigenschaften.ButtonBezeichnung;
                 plcProjekt.OrdnerSource = _ordnerSource;
                 plcProjekt.OrdnerDestination = _ordnerDestination;
 
@@ -82,36 +82,6 @@ namespace PlcStarter.Model
                 rdo.Checked += _mainWindow.RadioButton_Checked;
 
                 tabEigenschaften.StackPanelBezeichnung.Children.Add(rdo);
-            }
-        }
-
-        public void ProjektStarten(ViewModel.ViewModel viewModel, Button btn)
-        {
-            switch (btn.Tag)
-            {
-                case PlcProjektdaten projektdaten:
-                    foreach (var job in projektdaten.Jobs)
-                    {
-                        PlcJobAusfuehren(job, projektdaten, viewModel);
-                    }
-                    break;
-            }
-        }
-        internal void PlcJobAusfuehren(PlcJobs job, PlcProjektdaten projektdaten, ViewModel.ViewModel viewModel)
-        {
-            switch (job)
-            {
-                case PlcJobs.None: break;
-                case PlcJobs.SorceOrdnerErstellen:
-                    AllePlcJobs.DestinationOrdnerErstellen(viewModel, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
-                    break;
-                case PlcJobs.ProjektKopieren:
-                    AllePlcJobs.ProjektOrdnerKopieren(viewModel, projektdaten.OrdnerSource, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
-                    break;
-                case PlcJobs.CmdDateiProjektStarten:
-                    AllePlcJobs.ProjektStarten(viewModel, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
-                    break;
-                default: throw new ArgumentOutOfRangeException(nameof(job), job, null);
             }
         }
     }

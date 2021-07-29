@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using Newtonsoft.Json;
 
 namespace PlcStarter.Model
 {
@@ -27,10 +26,10 @@ namespace PlcStarter.Model
 
         public void TabEigenschaftenHinzufuegen()
         {
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.Plc, Steuerungen.Logo, _mainWindow.WebLogoPlc, _mainWindow.StackPanelLogoPlc, _mainWindow.ButtonStartenLogoPlc));
 
-            _mainWindow.AlleDaten.AlleTabEigenschaften.Add(
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
                 new TabEigenschaften(PlcKategorie.Bug, Steuerungen.Logo, _mainWindow.WebLogoPlcBugs, _mainWindow.StackPanelLogoPlcBugs, _mainWindow.ButtonStartenLogoPlcBugs));
         }
 
@@ -47,6 +46,7 @@ namespace PlcStarter.Model
                 if (!kop && plcProjekt.Sprache == PlcSprachen.Kop) continue;
 
                 plcProjekt.BrowserBezeichnung = tabEigenschaften.BrowserBezeichnung;
+                plcProjekt.ButtonBezeichnung = tabEigenschaften.ButtonBezeichnung;
                 plcProjekt.OrdnerSource = _ordnerSource;
                 plcProjekt.OrdnerDestination = _ordnerDestination;
 
@@ -63,36 +63,6 @@ namespace PlcStarter.Model
                 rdo.Checked += _mainWindow.RadioButton_Checked;
 
                 tabEigenschaften.StackPanelBezeichnung.Children.Add(rdo);
-            }
-        }
-
-        public void ProjektStarten(ViewModel.ViewModel viewModel, Button btn)
-        {
-            switch (btn.Tag)
-            {
-                case PlcProjektdaten projektdaten:
-                    foreach (var job in projektdaten.Jobs)
-                    {
-                        PlcJobAusfuehren(job, projektdaten, viewModel);
-                    }
-                    break;
-            }
-        }
-        internal void PlcJobAusfuehren(PlcJobs job, PlcProjektdaten projektdaten, ViewModel.ViewModel viewModel)
-        {
-            switch (job)
-            {
-                case PlcJobs.None: break;
-                case PlcJobs.SorceOrdnerErstellen:
-                    AllePlcJobs.DestinationOrdnerErstellen(viewModel, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
-                    break;
-                case PlcJobs.ProjektKopieren:
-                    AllePlcJobs.ProjektOrdnerKopieren(viewModel, projektdaten.OrdnerSource, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
-                    break;
-                case PlcJobs.CmdDateiProjektStarten:
-                    AllePlcJobs.ProjektStarten(viewModel, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
-                    break;
-                default: throw new ArgumentOutOfRangeException(nameof(job), job, null);
             }
         }
     }
