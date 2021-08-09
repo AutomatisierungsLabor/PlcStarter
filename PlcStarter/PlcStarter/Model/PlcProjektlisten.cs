@@ -11,7 +11,6 @@ namespace PlcStarter.Model
 
     public class PlcProjektdaten
     {
-        public int LaufendeNummer { get; set; }
         public string Bezeichnung { get; set; }
         public string Kommentar { get; set; }
         public PlcSoftwareVersion SoftwareVersion { get; set; }
@@ -21,6 +20,7 @@ namespace PlcStarter.Model
         public string OrdnerDestination { get; set; }
         public string OrdnerProjekt { get; set; }
         public string OrdnerDigitalTwin { get; set; }
+        public string OrdnerFactoryIo { get; set; }
         public PlcSprachen Sprache { get; set; }
         public PlcKategorie Kategorie { get; set; }
         public PlcJobs[] Jobs { get; set; }

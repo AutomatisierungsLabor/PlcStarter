@@ -21,13 +21,13 @@ namespace PlcStarter.Model
 
         public void PlcInitialisieren(MainWindow mw)
         {
-            PlcLogo = new PlcLogo(mw, OrdnerStrukturLesen.OrdnerConfig.OrdnerBezeichnungen[1]);
+            PlcLogo = new PlcLogo(mw, OrdnerStrukturLesen.OrdnerConfig.OrdnerBezeichnungen[2]);
             PlcLogo.TabEigenschaftenHinzufuegen();
 
-            PlcTiaPortal = new PlcTiaPortal(mw, OrdnerStrukturLesen.OrdnerConfig.OrdnerBezeichnungen[2]);
+            PlcTiaPortal = new PlcTiaPortal(mw, OrdnerStrukturLesen.OrdnerConfig.OrdnerBezeichnungen[3]);
             PlcTiaPortal.TabEigenschaftenHinzufuegen();
 
-            PlcTwinCat = new PlcTwinCat(mw, OrdnerStrukturLesen.OrdnerConfig.OrdnerBezeichnungen[3]);
+            PlcTwinCat = new PlcTwinCat(mw, OrdnerStrukturLesen.OrdnerConfig.OrdnerBezeichnungen[4]);
             PlcTwinCat.TabEigenschaftenHinzufuegen();
         }
     }

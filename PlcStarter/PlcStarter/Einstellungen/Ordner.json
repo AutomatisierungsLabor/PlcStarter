@@ -6,6 +6,11 @@
       "Destination": "_DigitalTwin"
     },
     {
+      "Steuerung": "FactoryIO",
+      "Source": "k:\\git\\_FactoryIO",
+      "Destination": "_FactoryIO"
+    },
+    {
       "Steuerung": "Logo",
       "Source": "k:\\git\\_Logo8",
       "Destination": "h:\\Logo8"

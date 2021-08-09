@@ -44,6 +44,8 @@
         ProjektKopieren = 2,
         CmdDateiProjektStarten = 3,
         DigitalTwinKopieren = 4,
-        CmdDateiDigitalTwinStarten = 5
+        CmdDateiDigitalTwinStarten = 5,
+        FactoryIoKopieren = 6,
+        FachtoryIoStarten = 7
     }
 }

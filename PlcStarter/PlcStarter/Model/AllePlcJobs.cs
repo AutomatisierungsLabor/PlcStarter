@@ -22,10 +22,10 @@ namespace PlcStarter.Model
                 case PlcJobs.CmdDateiProjektStarten:
                     ProjektStarten(viewModel, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
                     break;
-                case PlcJobs.DigitalTwinKopieren:
-                    break;
-                case PlcJobs.CmdDateiDigitalTwinStarten:
-                    break;
+                case PlcJobs.DigitalTwinKopieren: break;
+                case PlcJobs.CmdDateiDigitalTwinStarten: break;
+                case PlcJobs.FactoryIoKopieren: break;
+                case PlcJobs.FachtoryIoStarten: break;
                 default: throw new ArgumentOutOfRangeException(nameof(job), job, null);
             }
         }
