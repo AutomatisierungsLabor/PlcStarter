@@ -2,27 +2,27 @@
   "OrdnerBezeichnungen": [
     {
       "Steuerung": "DigitalTwin",
-      "Source": "k:\\git\\_DigitalTwin",
+      "Source": "k:\\git\\PlcDigitalTwin",
       "Destination": "_DigitalTwin"
     },
     {
       "Steuerung": "FactoryIO",
-      "Source": "k:\\git\\_FactoryIO",
+      "Source": "k:\\git\\PlcFactoryIO",
       "Destination": "_FactoryIO"
     },
     {
       "Steuerung": "Logo",
-      "Source": "k:\\git\\_Logo8",
+      "Source": "k:\\git\\PlcLogo",
       "Destination": "h:\\Logo8"
     },
     {
-      "Steuerung": "TIAPortal",
-      "Source": "k:\\git\\_TiaPortal14",
+      "Steuerung": "TiaPortal",
+      "Source": "k:\\git\\PlcTiaPortal",
       "Destination": "h:\\TiaPortal14"
     },
     {
       "Steuerung": "TwinCAT",
-      "Source": "k:\\git\\_TwinCat3",
+      "Source": "k:\\git\\PlcTwinCat",
       "Destination": "h:\\TwinCat3"
     }
   ]

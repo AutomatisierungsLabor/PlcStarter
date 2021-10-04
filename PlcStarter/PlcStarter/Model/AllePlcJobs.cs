@@ -14,18 +14,27 @@ namespace PlcStarter.Model
             {
                 case PlcJobs.None: break;
                 case PlcJobs.SorceOrdnerErstellen:
-                    OrdnerErstellen(viewModel, projektdaten.OrdnerDestination);
+                    OrdnerErstellen(viewModel, projektdaten.OrdnerStrukturDestination);
                     break;
                 case PlcJobs.ProjektKopieren:
-                    ProjektOrdnerKopieren(viewModel, projektdaten.OrdnerSource, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
+                    ProjektOrdnerKopieren(viewModel, projektdaten.OrdnerStrukturPlc, projektdaten.OrdnerStrukturDestination, projektdaten.OrdnerPlc);
                     break;
                 case PlcJobs.CmdDateiProjektStarten:
-                    ProjektStarten(viewModel, projektdaten.OrdnerDestination, projektdaten.OrdnerProjekt);
+                    ProjektStarten(viewModel, projektdaten.OrdnerStrukturDestination, projektdaten.OrdnerPlc);
                     break;
-                case PlcJobs.DigitalTwinKopieren: break;
-                case PlcJobs.CmdDateiDigitalTwinStarten: break;
-                case PlcJobs.FactoryIoKopieren: break;
-                case PlcJobs.FachtoryIoStarten: break;
+
+                case PlcJobs.DigitalTwinKopieren:
+                    break;
+                case PlcJobs.CmdDateiDigitalTwinStarten:
+                    // DigitalTwinStarten(viewModel, projektdaten.OrdnerDestination, projektdaten.OrdnerDigitalTwin);
+                    break;
+
+                case PlcJobs.FactoryIoKopieren:
+                    break;
+                case PlcJobs.FachtoryIoStarten:
+                    // FactoryIoStarten(viewModel, projektdaten.OrdnerDestination, projektdaten.OrdnerFactoryIo);
+                    break;
+
                 default: throw new ArgumentOutOfRangeException(nameof(job), job, null);
             }
         }
@@ -56,7 +65,7 @@ namespace PlcStarter.Model
             {
                 viewModel.ViAnzeige.StartButtonInhalt = "Projektdateien werden kopiert";
 
-                Copy($"{source}/{ordner}", $"{destination}/{ordner}");
+                Copy($"{source}/{ordner}", $"{destination}");
 
                 viewModel.ViAnzeige.StartButtonInhalt = "Projekt wurde kopiert";
             }
@@ -73,14 +82,44 @@ namespace PlcStarter.Model
             {
                 StartInfo =
                 {
-                    FileName = $"{destination}/{ordner}/ProjektStarten.cmd",
-                    WorkingDirectory = $"{destination}/{ordner}"
+                    FileName = $"{destination}/ProjektStarten.cmd",
+                    WorkingDirectory = $"{destination}"
                 }
             };
             proc.Start();
 
             viewModel.ViAnzeige.StartButtonInhalt = "Projekt wurde gestartet";
         }
+
+        public static void DigitalTwinStarten(ViewModel.ViewModel viewModel, string destination, string ordner)
+        {
+            var proc = new Process
+            {
+                StartInfo =
+                {
+                    FileName = $"{destination}/DigitalTwinStarten.cmd",
+                    WorkingDirectory = $"{destination}"
+                }
+            };
+            proc.Start();
+
+            viewModel.ViAnzeige.StartButtonInhalt = "Projekt wurde gestartet";
+        }
+        public static void FactoryIoStarten(ViewModel.ViewModel viewModel, string destination, string ordner)
+        {
+            var proc = new Process
+            {
+                StartInfo =
+                {
+                    FileName = $"{destination}/FactoryIoStarten.cmd",
+                    WorkingDirectory = $"{destination}"
+                }
+            };
+            proc.Start();
+
+            viewModel.ViAnzeige.StartButtonInhalt = "Projekt wurde gestartet";
+        }
+
         internal static void Copy(string sourceDirectory, string targetDirectory)
         {
             var diSource = new DirectoryInfo(sourceDirectory);

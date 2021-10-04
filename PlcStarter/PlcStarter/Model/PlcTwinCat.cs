@@ -10,36 +10,21 @@ namespace PlcStarter.Model
         public PlcProjekt PlcProjekte { get; set; }
 
         private readonly MainWindow _mainWindow;
-        private readonly string _ordnerSource;
-        private readonly string _ordnerDestination;
 
-        public PlcTwinCat(MainWindow mainWindow, OrdnerDaten ordnerDaten)
+        public PlcTwinCat(MainWindow mainWindow, Ordner ordnerStrukturen)
         {
             _mainWindow = mainWindow;
-            _ordnerSource = ordnerDaten.Source;
-            _ordnerDestination = ordnerDaten.Destination;
 
-            PlcProjekte =
-                JsonConvert.DeserializeObject<PlcProjekt>(
-                    File.ReadAllText(_ordnerSource + "/TwinCatProjektliste.json"));
+            PlcProjekte = JsonConvert.DeserializeObject<PlcProjekt>(File.ReadAllText(ordnerStrukturen.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TwinCat].Source + "\\TwinCatProjektliste.json"));
         }
 
         public void TabEigenschaftenHinzufuegen()
         {
-            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.Plc, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlc, _mainWindow.StackPanelTwinCatPlc, _mainWindow.ButtonStartenTwinCatPlc));
-            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.Visu, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcVisu, _mainWindow.StackPanelTwinCatPlcVisu, _mainWindow.ButtonStartenTwinCatPlcVisu));
-            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.Nc, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcNc, _mainWindow.StackPanelTwinCatPlcNc, _mainWindow.ButtonStartenTwinCatPlcNc));
-            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.DigitalTwin, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcDt, _mainWindow.StackPanelTwinCatPlcDt, _mainWindow.ButtonStartenTwinCatPlcDt));
-            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.AdsRemote, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcAds, _mainWindow.StackPanelTwinCatPlcAds, _mainWindow.ButtonStartenTwinCatPlcAds));
-            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.AutoTests, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcTests, _mainWindow.StackPanelTwinCatPlcTests, _mainWindow.ButtonStartenTwinCatPlcTests));
-            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.Bug, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcBugs, _mainWindow.StackPanelTwinCatPlcBugs, _mainWindow.ButtonStartenTwinCatPlcBugs));
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Plc, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlc, _mainWindow.StackPanelTwinCatPlc, _mainWindow.ButtonStartenTwinCatPlc));
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Visu, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcVisu, _mainWindow.StackPanelTwinCatPlcVisu, _mainWindow.ButtonStartenTwinCatPlcVisu));
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Nc, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcNc, _mainWindow.StackPanelTwinCatPlcNc, _mainWindow.ButtonStartenTwinCatPlcNc));
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.AutoTests, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcTests, _mainWindow.StackPanelTwinCatPlcTests, _mainWindow.ButtonStartenTwinCatPlcTests));
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Bug, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcBugs, _mainWindow.StackPanelTwinCatPlcBugs, _mainWindow.ButtonStartenTwinCatPlcBugs));
         }
 
         public void AnzeigeUpdaten(TabEigenschaften tabEigenschaften)
@@ -66,8 +51,6 @@ namespace PlcStarter.Model
 
                 plcProjekt.BrowserBezeichnung = tabEigenschaften.BrowserBezeichnung;
                 plcProjekt.ButtonBezeichnung = tabEigenschaften.ButtonBezeichnung;
-                plcProjekt.OrdnerSource = _ordnerSource;
-                plcProjekt.OrdnerDestination = _ordnerDestination;
 
                 var rdo = new RadioButton
                 {
@@ -81,7 +64,7 @@ namespace PlcStarter.Model
 
                 rdo.Checked += _mainWindow.RadioButton_Checked;
 
-                tabEigenschaften.StackPanelBezeichnung.Children.Add(rdo);
+                _ = tabEigenschaften.StackPanelBezeichnung.Children.Add(rdo);
             }
         }
     }

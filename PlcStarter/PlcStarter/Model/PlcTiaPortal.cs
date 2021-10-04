@@ -10,36 +10,23 @@ namespace PlcStarter.Model
         public PlcProjekt PlcProjekte { get; set; }
 
         private readonly MainWindow _mainWindow;
-        private readonly string _ordnerSource;
-        private readonly string _ordnerDestination;
+        private readonly Ordner _ordnerStruktur;
 
-        public PlcTiaPortal(MainWindow mainWindow, OrdnerDaten ordnerDaten)
+        public PlcTiaPortal(MainWindow mainWindow, Ordner ordnerStrukturen)
         {
             _mainWindow = mainWindow;
-            _ordnerSource = ordnerDaten.Source;
-            _ordnerDestination = ordnerDaten.Destination;
+            _ordnerStruktur = ordnerStrukturen;
 
-            PlcProjekte =
-                JsonConvert.DeserializeObject<PlcProjekt>(
-                    File.ReadAllText(_ordnerSource + "/TiaPortalProjektliste.json"));
+            PlcProjekte = JsonConvert.DeserializeObject<PlcProjekt>(File.ReadAllText(_ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TiaPortal].Source + "\\TiaPortalProjektliste.json"));
         }
 
         public void TabEigenschaftenHinzufuegen()
         {
-            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.Plc, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlc, _mainWindow.StackPanelTiaPortalPlc, _mainWindow.ButtonStartenTiaPortalPlc));
-            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.Hmi, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcHmi, _mainWindow.StackPanelTiaPortalPlcHmi, _mainWindow.ButtonStartenTiaPortalPlcHmi));
-            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.FactoryIo, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcFio, _mainWindow.StackPanelTiaPortalPlcFio, _mainWindow.ButtonStartenTiaPortalPlcFio));
-            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.DigitalTwin, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcDt, _mainWindow.StackPanelTiaPortalPlcDt, _mainWindow.ButtonStartenTiaPortalPlcDt));
-            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.Snap7, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcSnap7, _mainWindow.StackPanelTiaPortalPlcSnap7, _mainWindow.ButtonStartenTiaPortalPlcSnap7));
-            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.AutoTests, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcTests, _mainWindow.StackPanelTiaPortalPlcTests, _mainWindow.ButtonStartenTiaPortalPlcTests));
-            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.Bug, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcBugs, _mainWindow.StackPanelTiaPortalPlcBugs, _mainWindow.ButtonStartenTiaPortalPlcBugs));
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Plc, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlc, _mainWindow.StackPanelTiaPortalPlc, _mainWindow.ButtonStartenTiaPortalPlc));
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Hmi, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcHmi, _mainWindow.StackPanelTiaPortalPlcHmi, _mainWindow.ButtonStartenTiaPortalPlcHmi));
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.FactoryIo, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcFio, _mainWindow.StackPanelTiaPortalPlcFio, _mainWindow.ButtonStartenTiaPortalPlcFio));
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.AutoTests, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcTests, _mainWindow.StackPanelTiaPortalPlcTests, _mainWindow.ButtonStartenTiaPortalPlcTests));
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Bug, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcBugs, _mainWindow.StackPanelTiaPortalPlcBugs, _mainWindow.ButtonStartenTiaPortalPlcBugs));
         }
 
         public void AnzeigeUpdaten(TabEigenschaften tabEigenschaften)
@@ -58,8 +45,10 @@ namespace PlcStarter.Model
 
                 plcProjekt.BrowserBezeichnung = tabEigenschaften.BrowserBezeichnung;
                 plcProjekt.ButtonBezeichnung = tabEigenschaften.ButtonBezeichnung;
-                plcProjekt.OrdnerSource = _ordnerSource;
-                plcProjekt.OrdnerDestination = _ordnerDestination;
+                plcProjekt.OrdnerStrukturDestination = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TiaPortal].Destination;
+                plcProjekt.OrdnerStrukturPlc = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TiaPortal].Source;
+                plcProjekt.OrdnerStrukturDigitalTwin = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.DigitalTwin].Source;
+                plcProjekt.OrdnerStrukturFactoryIo = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.FactoryIo].Source;
 
                 var rdo = new RadioButton
                 {
@@ -73,7 +62,7 @@ namespace PlcStarter.Model
 
                 rdo.Checked += _mainWindow.RadioButton_Checked;
 
-                tabEigenschaften.StackPanelBezeichnung.Children.Add(rdo);
+                _ = tabEigenschaften.StackPanelBezeichnung.Children.Add(rdo);
             }
         }
     }

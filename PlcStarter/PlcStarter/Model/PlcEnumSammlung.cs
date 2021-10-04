@@ -1,5 +1,13 @@
 ﻿namespace PlcStarter.Model
 {
+    public enum OrdnerBezeichnungen
+    {
+        DigitalTwin = 0,
+        FactoryIo = 1,
+        Logo = 2,
+        TiaPortal = 3,
+        TwinCat = 4
+    }
     public enum PlcSoftwareVersion
     {
         None = 0,
@@ -22,9 +30,8 @@
         Hmi = 4,
         Nc = 5,
         Plc = 6,
-        Snap7 = 7,
-        AutoTests = 8,
-        Visu = 9
+        AutoTests = 7,
+        Visu = 8
     }
     public enum PlcSprachen
     {

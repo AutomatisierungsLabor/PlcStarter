@@ -36,7 +36,7 @@ namespace PlcStarter
             ViewModel.ViAnzeige.StartButtonInhalt = "Projekt starten";
             ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LawnGreen;
 
-            var dateiName = $@"{projektdaten.OrdnerSource}\{projektdaten.OrdnerProjekt}\index.html";
+            var dateiName = $@"{projektdaten.OrdnerStrukturPlc}\{projektdaten.OrdnerPlc}\index.html";
 
             var htmlSeite = File.Exists(dateiName) ? File.ReadAllText(dateiName) : "--??--";
 

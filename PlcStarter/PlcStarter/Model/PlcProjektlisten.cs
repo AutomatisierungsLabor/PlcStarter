@@ -16,9 +16,11 @@ namespace PlcStarter.Model
         public PlcSoftwareVersion SoftwareVersion { get; set; }
         public Button ButtonBezeichnung { get; set; }
         public WebBrowser BrowserBezeichnung { get; set; }
-        public string OrdnerSource { get; set; }
-        public string OrdnerDestination { get; set; }
-        public string OrdnerProjekt { get; set; }
+        public string OrdnerStrukturDestination { get; set; }
+        public string OrdnerStrukturPlc { get; set; }
+        public string OrdnerStrukturDigitalTwin { get; set; }
+        public string OrdnerStrukturFactoryIo { get; set; }
+        public string OrdnerPlc { get; set; }
         public string OrdnerDigitalTwin { get; set; }
         public string OrdnerFactoryIo { get; set; }
         public PlcSprachen Sprache { get; set; }

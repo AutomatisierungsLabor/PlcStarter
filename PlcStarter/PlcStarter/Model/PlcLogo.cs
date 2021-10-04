@@ -8,29 +8,21 @@ namespace PlcStarter.Model
     public class PlcLogo : IPlc
     {
         public PlcProjekt PlcProjekte { get; set; }
-
+        private readonly Ordner _ordnerStruktur;
         private readonly MainWindow _mainWindow;
-        private readonly string _ordnerSource;
-        private readonly string _ordnerDestination;
 
-        public PlcLogo(MainWindow mainWindow, OrdnerDaten ordnerDaten)
+        public PlcLogo(MainWindow mainWindow, Ordner ordnerStrukturen)
         {
             _mainWindow = mainWindow;
-            _ordnerSource = ordnerDaten.Source;
-            _ordnerDestination = ordnerDaten.Destination;
+            _ordnerStruktur = ordnerStrukturen;
 
-            PlcProjekte =
-                JsonConvert.DeserializeObject<PlcProjekt>(
-                    File.ReadAllText(_ordnerSource + "/Logo8Projektliste.json"));
+            PlcProjekte = JsonConvert.DeserializeObject<PlcProjekt>(File.ReadAllText(ordnerStrukturen.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.Logo].Source + "\\LogoProjektliste.json"));
         }
 
         public void TabEigenschaftenHinzufuegen()
         {
-            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.Plc, Steuerungen.Logo, _mainWindow.WebLogoPlc, _mainWindow.StackPanelLogoPlc, _mainWindow.ButtonStartenLogoPlc));
-
-            _mainWindow.AllePlc.AlleTabEigenschaften.Add(
-                new TabEigenschaften(PlcKategorie.Bug, Steuerungen.Logo, _mainWindow.WebLogoPlcBugs, _mainWindow.StackPanelLogoPlcBugs, _mainWindow.ButtonStartenLogoPlcBugs));
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Plc, Steuerungen.Logo, _mainWindow.WebLogoPlc, _mainWindow.StackPanelLogoPlc, _mainWindow.ButtonStartenLogoPlc));
+            _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Bug, Steuerungen.Logo, _mainWindow.WebLogoPlcBugs, _mainWindow.StackPanelLogoPlcBugs, _mainWindow.ButtonStartenLogoPlcBugs));
         }
 
         public void AnzeigeUpdaten(TabEigenschaften tabEigenschaften)
@@ -47,8 +39,8 @@ namespace PlcStarter.Model
 
                 plcProjekt.BrowserBezeichnung = tabEigenschaften.BrowserBezeichnung;
                 plcProjekt.ButtonBezeichnung = tabEigenschaften.ButtonBezeichnung;
-                plcProjekt.OrdnerSource = _ordnerSource;
-                plcProjekt.OrdnerDestination = _ordnerDestination;
+                plcProjekt.OrdnerStrukturDestination = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.Logo].Destination;
+                plcProjekt.OrdnerStrukturPlc = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.Logo].Source;
 
                 var rdo = new RadioButton
                 {
@@ -62,7 +54,7 @@ namespace PlcStarter.Model
 
                 rdo.Checked += _mainWindow.RadioButton_Checked;
 
-                tabEigenschaften.StackPanelBezeichnung.Children.Add(rdo);
+                _ = tabEigenschaften.StackPanelBezeichnung.Children.Add(rdo);
             }
         }
     }
