@@ -53,6 +53,8 @@
         DigitalTwinKopieren = 4,
         CmdDateiDigitalTwinStarten = 5,
         FactoryIoKopieren = 6,
-        FachtoryIoStarten = 7
+        FachtoryIoStarten = 7,
+        TemplateOrdnerKopieren = 8,
+        DiffOrdnerKopieren = 9
     }
 }

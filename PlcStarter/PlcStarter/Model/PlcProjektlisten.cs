@@ -20,6 +20,7 @@ namespace PlcStarter.Model
         public string OrdnerStrukturPlc { get; set; }
         public string OrdnerStrukturDigitalTwin { get; set; }
         public string OrdnerStrukturFactoryIo { get; set; }
+        public string OrdnerTemplate { get; set; }
         public string OrdnerPlc { get; set; }
         public string OrdnerDigitalTwin { get; set; }
         public string OrdnerFactoryIo { get; set; }

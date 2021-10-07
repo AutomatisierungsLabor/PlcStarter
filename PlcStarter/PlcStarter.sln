@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlcStarter", "PlcStarter\Pl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonEditor", "JsonEditor\JsonEditor.csproj", "{0AABB7BC-F2A8-405D-9FDA-8279FF60F12A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Openness", "Openness\Openness.csproj", "{C694028F-BCD3-4CA2-A8C7-A29640FF9511}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Openness", "Openness\Openness.csproj", "{C694028F-BCD3-4CA2-A8C7-A29640FF9511}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwinCatDelta", "TwinCatDelta\TwinCatDelta.csproj", "{EF7C86D1-8AE4-4163-950B-E36BA84EAAB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,14 @@ Global
 		{C694028F-BCD3-4CA2-A8C7-A29640FF9511}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C694028F-BCD3-4CA2-A8C7-A29640FF9511}.Release|x86.ActiveCfg = Release|Any CPU
 		{C694028F-BCD3-4CA2-A8C7-A29640FF9511}.Release|x86.Build.0 = Release|Any CPU
+		{EF7C86D1-8AE4-4163-950B-E36BA84EAAB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF7C86D1-8AE4-4163-950B-E36BA84EAAB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF7C86D1-8AE4-4163-950B-E36BA84EAAB3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EF7C86D1-8AE4-4163-950B-E36BA84EAAB3}.Debug|x86.Build.0 = Debug|Any CPU
+		{EF7C86D1-8AE4-4163-950B-E36BA84EAAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF7C86D1-8AE4-4163-950B-E36BA84EAAB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF7C86D1-8AE4-4163-950B-E36BA84EAAB3}.Release|x86.ActiveCfg = Release|Any CPU
+		{EF7C86D1-8AE4-4163-950B-E36BA84EAAB3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

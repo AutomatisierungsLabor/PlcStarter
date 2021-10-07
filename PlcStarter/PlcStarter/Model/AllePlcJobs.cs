@@ -35,6 +35,11 @@ namespace PlcStarter.Model
                     // FactoryIoStarten(viewModel, projektdaten.OrdnerDestination, projektdaten.OrdnerFactoryIo);
                     break;
 
+                case PlcJobs.TemplateOrdnerKopieren:
+                    break;
+                case PlcJobs.DiffOrdnerKopieren:
+                    break;
+
                 default: throw new ArgumentOutOfRangeException(nameof(job), job, null);
             }
         }

@@ -1,0 +1,48 @@
+﻿<Window x:Class="TwinCatDelta.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="TwinCAT DeltaProjekt"  Height="850" Width="1200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="35" />
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="35" />
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="35" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+
+        <Button Grid.Column="1" Grid.Row="1"  Content="Komplettes Projekt" FontSize="14pt" Click="BtnOpenKomplett_Click"/>
+        <Button Grid.Column="3" Grid.Row="1"  Content="Template Projekt" FontSize="14pt" Click="BtnOpenTemplate_Click"/>
+        <Button Grid.Column="5" Grid.Row="1"  Content="Delta Projekt" FontSize="14pt" Click="BtnOpenDelta_Click"/>
+        <Button Grid.Column="7" Grid.Row="1" Content="Kopieren!"  Background="LawnGreen" FontSize="14pt" IsEnabled="{Binding ViAnzeige.EnableButton}" Command="{Binding BtnStart}"  />
+
+        <Label Grid.Column="1" Grid.Row="3" Content="Komplettes Projekt:" FontSize="14pt"/>
+        <Label Grid.Column="1" Grid.Row="4" Content="Template Projekt:" FontSize="14pt"/>
+        <Label Grid.Column="1" Grid.Row="5" Content="Delta Projekt:" FontSize="14pt"/>
+
+        <Label  Grid.Column="3" Grid.ColumnSpan="6" Grid.Row="3" Content="{Binding ViAnzeige.OrdnerKomplettesProjekt}" FontSize="14pt"/>
+        <Label  Grid.Column="3" Grid.ColumnSpan="6" Grid.Row="3" Content="{Binding ViAnzeige.OrdnerTemplateProjekt}" FontSize="14pt"/>
+        <Label  Grid.Column="3" Grid.ColumnSpan="6" Grid.Row="3" Content="{Binding ViAnzeige.OrdnerDeltaProjekt}" FontSize="14pt"/>
+
+        <DataGrid x:Name="DataGrid" Grid.Column="1" Grid.ColumnSpan="8" Grid.Row="7" />
+    </Grid>
+</Window>

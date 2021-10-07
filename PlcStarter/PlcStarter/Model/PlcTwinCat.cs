@@ -10,12 +10,14 @@ namespace PlcStarter.Model
         public PlcProjekt PlcProjekte { get; set; }
 
         private readonly MainWindow _mainWindow;
+        private readonly Ordner _ordnerStruktur;
 
         public PlcTwinCat(MainWindow mainWindow, Ordner ordnerStrukturen)
         {
             _mainWindow = mainWindow;
+            _ordnerStruktur = ordnerStrukturen;
 
-            PlcProjekte = JsonConvert.DeserializeObject<PlcProjekt>(File.ReadAllText(ordnerStrukturen.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TwinCat].Source + "\\TwinCatProjektliste.json"));
+            PlcProjekte = JsonConvert.DeserializeObject<PlcProjekt>(File.ReadAllText(_ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TwinCat].Source + "\\TwinCatProjektliste.json"));
         }
 
         public void TabEigenschaftenHinzufuegen()
@@ -51,6 +53,10 @@ namespace PlcStarter.Model
 
                 plcProjekt.BrowserBezeichnung = tabEigenschaften.BrowserBezeichnung;
                 plcProjekt.ButtonBezeichnung = tabEigenschaften.ButtonBezeichnung;
+                plcProjekt.OrdnerStrukturDestination = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TwinCat].Destination;
+                plcProjekt.OrdnerStrukturPlc = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TwinCat].Source;
+                plcProjekt.OrdnerStrukturDigitalTwin = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.DigitalTwin].Source;
+                plcProjekt.OrdnerStrukturFactoryIo = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.FactoryIo].Source;
 
                 var rdo = new RadioButton
                 {
