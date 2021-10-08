@@ -8,8 +8,8 @@
         public bool DeltaDateiVorhanden { get; set; }
         public bool DeltaDateiIdentisch { get; set; }
 
-        public OrdnerDateiInfo(string file, 
-            bool templateDateiVorhanden, bool templateDateiIdentisch, 
+        public OrdnerDateiInfo(string file,
+            bool templateDateiVorhanden, bool templateDateiIdentisch,
             bool deltaDateiVorhanden, bool deltaDateiIdentisch)
         {
             DateiBezeichnung = file;

@@ -9,7 +9,45 @@ namespace TwinCatDelta.ViewModel
         public VisuAnzeigen()
         {
             EnableButton = false;
+
+            OrdnerKomplettesProjekt = "K:\\git\\PlcTwinCAT_Komplett\\TEST_ST_LAP_2010_1_Kompressoranlage";
+            OrdnerTemplateProjekt = "K:\\git\\PlcTwinCAT\\DELTA_Template_Plc";
+            OrdnerDeltaProjekt = "K:\\git\\PlcTwinCAT\\DELTA_TEST_ST_LAP_2010_1_Kompressoranlage";
         }
+
+        private string _ordnerKomplettesProjekt;
+        public string OrdnerKomplettesProjekt
+        {
+            get => _ordnerKomplettesProjekt;
+            set
+            {
+                _ordnerKomplettesProjekt = value;
+                OnPropertyChanged(nameof(OrdnerKomplettesProjekt));
+            }
+        }
+
+        private string _ordnerTemplateProjekt;
+        public string OrdnerTemplateProjekt
+        {
+            get => _ordnerTemplateProjekt;
+            set
+            {
+                _ordnerTemplateProjekt = value;
+                OnPropertyChanged(nameof(OrdnerTemplateProjekt));
+            }
+        }
+
+        private string _ordnerDeltaProjekt;
+        public string OrdnerDeltaProjekt
+        {
+            get => _ordnerDeltaProjekt;
+            set
+            {
+                _ordnerDeltaProjekt = value;
+                OnPropertyChanged(nameof(OrdnerDeltaProjekt));
+            }
+        }
+
 
         private ObservableCollection<OrdnerDateiInfo> _ordnerDateiInfoDataGrid = new();
         public ObservableCollection<OrdnerDateiInfo> OrdnerDateiInfoDataGrid
@@ -21,7 +59,7 @@ namespace TwinCatDelta.ViewModel
                 OnPropertyChanged(nameof(OrdnerDateiInfoDataGrid));
             }
         }
-        
+
         private bool _enableButton;
         public bool EnableButton
         {
