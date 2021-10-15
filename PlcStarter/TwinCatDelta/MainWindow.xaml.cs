@@ -16,28 +16,6 @@ namespace TwinCatDelta
 
             DataGrid.ItemsSource = _viewModel.ViAnzeige.OrdnerDateiInfoDataGrid;
         }
-        internal void BtnOpenKomplett_Click(object sender, RoutedEventArgs e)
-        {
-            using var dialog = new System.Windows.Forms.FolderBrowserDialog();
-            if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
-
-            _viewModel.ViAnzeige.OrdnerKomplettesProjekt = dialog.SelectedPath;
-        }
-
-        internal void BtnOpenTemplate_Click(object sender, RoutedEventArgs e)
-        {
-            using var dialog = new System.Windows.Forms.FolderBrowserDialog();
-            if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
-
-            _viewModel.ViAnzeige.OrdnerTemplateProjekt = dialog.SelectedPath;
-        }
-        internal void BtnOpenDelta_Click(object sender, RoutedEventArgs e)
-        {
-            using var dialog = new System.Windows.Forms.FolderBrowserDialog();
-            if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
-
-            _viewModel.ViAnzeige.OrdnerDeltaProjekt = dialog.SelectedPath;
-        }
 
         internal void OrdnerVergleichen_Click(object sender, RoutedEventArgs e) => Dispatcher.Invoke(() =>
         {
@@ -64,25 +42,5 @@ namespace TwinCatDelta
             }
         });
 
-        internal void OrdnerDeltaKopieren_Click(object sender, RoutedEventArgs e)
-        {
-            if (_viewModel.ViAnzeige.OrdnerDateiInfoDataGrid.Count == 0) return;
-
-            foreach (var dateiInfo in _viewModel.ViAnzeige.OrdnerDateiInfoDataGrid)
-            {
-                if (dateiInfo.TemplateDateiIdentisch) continue;
-                if (dateiInfo.DeltaDateiIdentisch) continue;
-
-                var dateinameKomplett = $"{_viewModel.ViAnzeige.OrdnerKomplettesProjekt}\\{dateiInfo.DateiBezeichnung}";
-                var dateinameDelta = $"{_viewModel.ViAnzeige.OrdnerDeltaProjekt}\\{dateiInfo.DateiBezeichnung}";
-
-                var pfad = Path.GetDirectoryName(dateinameDelta);
-                if (!Directory.Exists(pfad)) Directory.CreateDirectory(pfad!);
-
-                File.Copy(dateinameKomplett, dateinameDelta);
-            }
-        }
-
-        public static bool AreFileContentsEqual(string path1, string path2) => File.ReadAllBytes(path1).SequenceEqual(File.ReadAllBytes(path2));
     }
 }
