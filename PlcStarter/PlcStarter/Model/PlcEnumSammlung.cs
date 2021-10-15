@@ -13,7 +13,8 @@
         None = 0,
         Logo8 = 1,
         TiaPortalV14Sp1 = 2,
-        TwinCatV3 = 3
+        TiaPortalV17 = 3,
+        TwinCatV3 = 4
     }
     public enum Steuerungen
     {
@@ -54,7 +55,7 @@
         DigitalTwinStartenBeckhoff = 5,
         DigitalTwinStartenSiemens = 6,
         FactoryIoKopieren = 7,
-        FachtoryIoStarten = 8,
+        FactoryIoStarten = 8,
         TemplateOrdnerKopieren = 9,
         DiffOrdnerKopieren = 10
     }

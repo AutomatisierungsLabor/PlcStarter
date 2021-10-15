@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
-using Newtonsoft.Json.Linq;
 
 namespace JsonEditor.ValueConverters
 {

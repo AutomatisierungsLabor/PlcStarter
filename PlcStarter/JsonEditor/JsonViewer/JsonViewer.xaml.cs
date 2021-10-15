@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Threading;
-using Newtonsoft.Json.Linq;
 
 namespace JsonEditor.JsonViewer
 {
@@ -48,13 +48,13 @@ namespace JsonEditor.JsonViewer
 
         private void JValue_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ClickCount != 2) 
+            if (e.ClickCount != 2)
                 return;
-            
+
             var tb = sender as TextBlock;
             if (tb != null)
             {
-                Clipboard.SetText(tb.Text); 
+                Clipboard.SetText(tb.Text);
             }
         }
 

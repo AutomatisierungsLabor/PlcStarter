@@ -1,6 +1,6 @@
-﻿using System.Windows;
+﻿using Newtonsoft.Json.Linq;
+using System.Windows;
 using System.Windows.Controls;
-using Newtonsoft.Json.Linq;
 
 namespace JsonEditor.TemplateSelectors
 {
@@ -13,11 +13,11 @@ namespace JsonEditor.TemplateSelectors
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            if(item == null)
+            if (item == null)
                 return null;
 
             var frameworkElement = container as FrameworkElement;
-            if(frameworkElement == null)
+            if (frameworkElement == null)
                 return null;
 
             var type = item.GetType();

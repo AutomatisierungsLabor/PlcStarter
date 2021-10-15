@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
-using Newtonsoft.Json.Linq;
 
 namespace JsonEditor.ValueConverters
 {
@@ -19,8 +19,8 @@ namespace JsonEditor.ValueConverters
             if (methodInfo == null)
                 return null;
             var invocationResult = methodInfo.Invoke(value, new object[0]);
-            var jTokens = (IEnumerable<JToken>) invocationResult;
-            return jTokens.First().Children() ;
+            var jTokens = (IEnumerable<JToken>)invocationResult;
+            return jTokens.First().Children();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

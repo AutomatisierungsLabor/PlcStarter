@@ -57,7 +57,7 @@ namespace TwinCatDelta
                 var templateDateiVorhanden = File.Exists(dateinameTemplate);
                 var deltaDateiVorhanden = File.Exists(dateinameDelta);
 
-                if (templateDateiVorhanden) templateDateiIdentisch = AreFileContentsEqual(file, dateinameTemplate);               
+                if (templateDateiVorhanden) templateDateiIdentisch = AreFileContentsEqual(file, dateinameTemplate);
                 if (deltaDateiVorhanden) deltaDateiIdentisch = AreFileContentsEqual(file, dateinameDelta);
 
                 _viewModel.ViAnzeige.OrdnerDateiInfoDataGrid.Add(new OrdnerDateiInfo(dateiname, templateDateiVorhanden, templateDateiIdentisch, deltaDateiVorhanden, deltaDateiIdentisch));
@@ -75,7 +75,7 @@ namespace TwinCatDelta
 
                 var dateinameKomplett = $"{_viewModel.ViAnzeige.OrdnerKomplettesProjekt}\\{dateiInfo.DateiBezeichnung}";
                 var dateinameDelta = $"{_viewModel.ViAnzeige.OrdnerDeltaProjekt}\\{dateiInfo.DateiBezeichnung}";
-                
+
                 var pfad = Path.GetDirectoryName(dateinameDelta);
                 if (!Directory.Exists(pfad)) Directory.CreateDirectory(pfad!);
 

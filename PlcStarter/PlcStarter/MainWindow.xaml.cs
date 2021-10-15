@@ -27,7 +27,7 @@ namespace PlcStarter
         }
         private void ButtonStartenPlc_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (!(sender is Button { Tag: PlcProjektdaten projektdaten })) return;
+            if (sender is not Button { Tag: PlcProjektdaten projektdaten }) return;
 
             foreach (var job in projektdaten.Jobs) AllePlcJobs.PlcJobAusfuehren(job, projektdaten, ViewModel);
         }

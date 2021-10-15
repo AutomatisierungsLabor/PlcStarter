@@ -17,53 +17,59 @@ namespace PlcStarter.Model
                     OrdnerErstellen(viewModel, projektdaten);
                     break;
                 case PlcJobs.ProjektKopieren:
-                    ProjektOrdnerKopieren(viewModel, projektdaten);
+                    ProjektOrdnerKopieren(viewModel,
+                        $"{projektdaten.OrdnerStrukturPlc}/{projektdaten.OrdnerPlc}", $"{projektdaten.OrdnerStrukturDestination}",
+                        "Projektdateien werden kopiert", "Projekt wurde kopiert");
                     break;
                 case PlcJobs.CmdDateiProjektStarten:
-                    ProjektStarten(viewModel, projektdaten);
+                    ProjektStarten(viewModel, $"{projektdaten.OrdnerStrukturDestination}/ProjektStarten.cmd", $"{projektdaten.OrdnerStrukturDestination}");
                     break;
 
                 case PlcJobs.DigitalTwinKopieren:
-                    DigitalTwinKopieren(viewModel, projektdaten);
+                    ProjektOrdnerKopieren(viewModel,
+                        $"{projektdaten.OrdnerStrukturDigitalTwin}/{projektdaten.OrdnerDigitalTwin}", $"{projektdaten.OrdnerStrukturDestination}",
+                        "Digital Twin wird kopiert", "Digital Twin wurde kopiert");
                     break;
                 case PlcJobs.DigitalTwinStartenSiemens:
-                    DigitalTwinStartenSiemens(viewModel, projektdaten);
+                    ProjektStarten(viewModel, $"{projektdaten.OrdnerStrukturDestination}/DigitalTwinStartenSiemens.cmd", $"{projektdaten.OrdnerStrukturDestination}");
                     break;
                 case PlcJobs.DigitalTwinStartenBeckhoff:
-                    DigitalTwinStartenBeckhoff(viewModel, projektdaten);
+                    ProjektStarten(viewModel, $"{projektdaten.OrdnerStrukturDestination}/DigitalTwinStartenBeckhoff.cmd", $"{projektdaten.OrdnerStrukturDestination}");
                     break;
 
                 case PlcJobs.FactoryIoKopieren:
-                    FactoryIoKopieren(viewModel, projektdaten);
+                    ProjektOrdnerKopieren(viewModel,
+                        $"{projektdaten.OrdnerStrukturFactoryIo}/{projektdaten.OrdnerFactoryIo}", $"{projektdaten.OrdnerStrukturDestination}/FactoryIO",
+                        "Factory I/O wird kopiert", "Factory I/O wurde kopiert");
                     break;
-                case PlcJobs.FachtoryIoStarten:
-                    FactoryIoStarten(viewModel, projektdaten);
+                case PlcJobs.FactoryIoStarten:
+                    ProjektStarten(viewModel, $"{projektdaten.OrdnerStrukturDestination}/FactoryIO/FactoryIoStarten.cmd", $"{projektdaten.OrdnerStrukturDestination}/FactoryIO");
                     break;
 
                 case PlcJobs.TemplateOrdnerKopieren:
-                    TemplateOrdnerKopieren(viewModel, projektdaten);
+                    ProjektOrdnerKopieren(viewModel,
+                        $"{projektdaten.OrdnerStrukturPlc}/{projektdaten.OrdnerTemplate}", $"{projektdaten.OrdnerStrukturDestination}",
+                        "Projekt Template wird kopiert", "Projekt Template wurde kopiert");
                     break;
                 case PlcJobs.DiffOrdnerKopieren:
-                    DiffOrdnerKopieren(viewModel, projektdaten);
+                    ProjektOrdnerKopieren(viewModel,
+                        $"{projektdaten.OrdnerStrukturPlc}/{projektdaten.OrdnerPlc}", $"{projektdaten.OrdnerStrukturDestination}",
+                        "Projekt Delta wird kopiert", "Projekt Delta wurde kopiert");
                     break;
 
                 default: throw new ArgumentOutOfRangeException(nameof(job), job, null);
             }
         }
 
-
-        #region Projekte kopieren
-        private static void ProjektOrdnerKopieren(ViewModel.ViewModel viewModel, PlcProjektdaten projektdaten)
+        public static void ProjektOrdnerKopieren(ViewModel.ViewModel viewModel, string quelle, string ziel, string kommentarAnfang, string kommentarEnde)
         {
             viewModel.ViAnzeige.StartButtonFarbe = Brushes.Yellow;
 
             try
             {
-                viewModel.ViAnzeige.StartButtonInhalt = "Projektdateien werden kopiert";
-
-                Copy($"{projektdaten.OrdnerStrukturPlc}/{projektdaten.OrdnerPlc}", $"{projektdaten.OrdnerStrukturDestination}");
-
-                viewModel.ViAnzeige.StartButtonInhalt = "Projekt wurde kopiert";
+                viewModel.ViAnzeige.StartButtonInhalt = kommentarAnfang;
+                Copy(quelle, ziel);
+                viewModel.ViAnzeige.StartButtonInhalt = kommentarEnde;
             }
             catch (Exception exp)
             {
@@ -73,147 +79,22 @@ namespace PlcStarter.Model
             viewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
         }
 
-        private static void DigitalTwinKopieren(ViewModel.ViewModel viewModel, PlcProjektdaten projektdaten)
-        {
-            viewModel.ViAnzeige.StartButtonFarbe = Brushes.Yellow;
-
-            try
-            {
-                viewModel.ViAnzeige.StartButtonInhalt = "Digital Twin wird kopiert";
-
-                Copy($"{projektdaten.OrdnerStrukturDigitalTwin}/{projektdaten.OrdnerDigitalTwin}", $"{projektdaten.OrdnerStrukturDestination}");
-
-                viewModel.ViAnzeige.StartButtonInhalt = "Digital Twin wurde kopiert";
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show(exp.ToString());
-            }
-
-            viewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
-        }
-        private static void FactoryIoKopieren(ViewModel.ViewModel viewModel, PlcProjektdaten projektdaten)
-        {
-            viewModel.ViAnzeige.StartButtonFarbe = Brushes.Yellow;
-
-            try
-            {
-                viewModel.ViAnzeige.StartButtonInhalt = "Factory I/O wird kopiert";
-
-                Copy($"{projektdaten.OrdnerStrukturFactoryIo}/{projektdaten.OrdnerFactoryIo}", $"{projektdaten.OrdnerStrukturDestination}/FactoryIO");
-
-                viewModel.ViAnzeige.StartButtonInhalt = "Factory I/O wurde kopiert";
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show(exp.ToString());
-            }
-
-            viewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
-        }
-        private static void DiffOrdnerKopieren(ViewModel.ViewModel viewModel, PlcProjektdaten projektdaten)
-        {
-            viewModel.ViAnzeige.StartButtonFarbe = Brushes.Yellow;
-
-            try
-            {
-                viewModel.ViAnzeige.StartButtonInhalt = "Projekt Delta wird kopiert";
-
-                Copy($"{projektdaten.OrdnerStrukturPlc}/{projektdaten.OrdnerPlc}", $"{projektdaten.OrdnerStrukturDestination}");
-
-                viewModel.ViAnzeige.StartButtonInhalt = "Projekt Delta wurde kopiert";
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show(exp.ToString());
-            }
-
-            viewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
-        }
-
-        private static void TemplateOrdnerKopieren(ViewModel.ViewModel viewModel, PlcProjektdaten projektdaten)
-        {
-            viewModel.ViAnzeige.StartButtonFarbe = Brushes.Yellow;
-
-            try
-            {
-                viewModel.ViAnzeige.StartButtonInhalt = "Projekt Template wird kopiert";
-
-                Copy($"{projektdaten.OrdnerStrukturPlc}/{projektdaten.OrdnerTemplate}", $"{projektdaten.OrdnerStrukturDestination}");
-
-                viewModel.ViAnzeige.StartButtonInhalt = "Projekt Template wurde kopiert";
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show(exp.ToString());
-            }
-
-            viewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
-        }
-        #endregion
-
-        #region Projekte starten
-        public static void ProjektStarten(ViewModel.ViewModel viewModel, PlcProjektdaten projektdaten)
+        public static void ProjektStarten(ViewModel.ViewModel viewModel, string cmdFile, string workingDirectory)
         {
             var proc = new Process
             {
                 StartInfo =
                 {
-                    FileName = $"{projektdaten.OrdnerStrukturDestination}/ProjektStarten.cmd",
-                    WorkingDirectory = $"{projektdaten.OrdnerStrukturDestination}"
+                    FileName = cmdFile,
+                    WorkingDirectory = workingDirectory
                 }
             };
             proc.Start();
 
             viewModel.ViAnzeige.StartButtonInhalt = "Projekt wurde gestartet";
         }
-        public static void DigitalTwinStartenBeckhoff(ViewModel.ViewModel viewModel, PlcProjektdaten projektdaten)
-        {
-            var proc = new Process
-            {
-                StartInfo =
-                {
-                    FileName = $"{projektdaten.OrdnerStrukturDestination}/DigitalTwinStartenBeckhoff.cmd",
-                    WorkingDirectory = $"{projektdaten.OrdnerStrukturDestination}"
-                }
-            };
-            proc.Start();
-
-            viewModel.ViAnzeige.StartButtonInhalt = "Projekt wurde gestartet";
-        }
-        public static void DigitalTwinStartenSiemens(ViewModel.ViewModel viewModel, PlcProjektdaten projektdaten)
-        {
-            var proc = new Process
-            {
-                StartInfo =
-                {
-                    FileName = $"{projektdaten.OrdnerStrukturDestination}/DigitalTwinStartenSiemens.cmd",
-                    WorkingDirectory = $"{projektdaten.OrdnerStrukturDestination}"
-                }
-            };
-            proc.Start();
-
-            viewModel.ViAnzeige.StartButtonInhalt = "Projekt wurde gestartet";
-        }
-        public static void FactoryIoStarten(ViewModel.ViewModel viewModel, PlcProjektdaten projektdaten)
-        {
-            var proc = new Process
-            {
-                StartInfo =
-                {
-                    FileName = $"{projektdaten.OrdnerStrukturDestination}/FactoryIO/FactoryIoStarten.cmd",
-                    WorkingDirectory = $"{projektdaten.OrdnerStrukturDestination}/FactoryIO"
-                }
-            };
-            proc.Start();
-
-            viewModel.ViAnzeige.StartButtonInhalt = "Projekt wurde gestartet";
-        }
-        #endregion
-
         private static void OrdnerErstellen(ViewModel.ViewModel viewModel, PlcProjektdaten projektdaten)
         {
-
             viewModel.ViAnzeige.StartButtonFarbe = Brushes.Yellow;
 
             try
@@ -230,8 +111,6 @@ namespace PlcStarter.Model
                 MessageBox.Show(exp.ToString());
             }
             viewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
-
-
         }
         internal static void Copy(string sourceDirectory, string targetDirectory)
         {
@@ -244,10 +123,8 @@ namespace PlcStarter.Model
         {
             Directory.CreateDirectory(target.FullName);
 
-            // Copy each file into the new directory.
             foreach (var fi in source.GetFiles()) fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
 
-            // Copy each subdirectory using recursion.
             foreach (var diSourceSubDir in source.GetDirectories())
             {
                 var nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);

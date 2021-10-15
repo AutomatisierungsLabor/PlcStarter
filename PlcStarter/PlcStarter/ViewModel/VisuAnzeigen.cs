@@ -11,10 +11,6 @@ namespace PlcStarter.ViewModel
             StartButtonInhalt = "Bitte ein Projekt auswählen";
         }
 
-
-
-
-
         private Brush _startButtonFarbe;
         public Brush StartButtonFarbe
         {
