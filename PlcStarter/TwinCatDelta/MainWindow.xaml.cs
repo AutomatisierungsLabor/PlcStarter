@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Linq;
 using System.Windows;
 using TwinCatDelta.Model;
 
@@ -16,7 +15,6 @@ namespace TwinCatDelta
 
             DataGrid.ItemsSource = _viewModel.ViAnzeige.OrdnerDateiInfoDataGrid;
         }
-
         internal void OrdnerVergleichen_Click(object sender, RoutedEventArgs e) => Dispatcher.Invoke(() =>
         {
             _viewModel.ViAnzeige.OrdnerDateiInfoDataGrid.Clear();
@@ -41,6 +39,5 @@ namespace TwinCatDelta
                 _viewModel.ViAnzeige.OrdnerDateiInfoDataGrid.Add(new OrdnerDateiInfo(dateiname, templateDateiVorhanden, templateDateiIdentisch, deltaDateiVorhanden, deltaDateiIdentisch));
             }
         });
-
     }
 }

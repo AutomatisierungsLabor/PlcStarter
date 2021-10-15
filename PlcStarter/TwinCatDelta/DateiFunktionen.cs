@@ -9,8 +9,6 @@ namespace TwinCatDelta
 {
     public partial class MainWindow
     {
-
-
         internal void OrdnerDeltaKopieren_Click(object sender, RoutedEventArgs e)
         {
             if (_viewModel.ViAnzeige.OrdnerDateiInfoDataGrid.Count == 0) return;
@@ -35,16 +33,17 @@ namespace TwinCatDelta
 
         private void SpezialKopieErstellen(OrdnerDateiInfo dateiInfo)
         {
-            var dateiname = @$"{_viewModel.ViAnzeige.OrdnerKomplettesProjekt}\{dateiInfo.DateiBezeichnung}";
-            var neuerDateiName = @$"{_viewModel.ViAnzeige.OrdnerDeltaProjekt}\{dateiInfo.DateiBezeichnung.Replace("DeleteMe.TcPOU", "DeleteMeNot.TcPOU")}";
+            var komplettDateiname = @$"{_viewModel.ViAnzeige.OrdnerKomplettesProjekt}\{dateiInfo.DateiBezeichnung}";
+            var deltaDateiName = @$"{_viewModel.ViAnzeige.OrdnerDeltaProjekt}\{dateiInfo.DateiBezeichnung}";
+            var neuerDateiName = deltaDateiName.Replace("DeleteMe.TcPOU", "DeleteMeNot.TcPOU");
 
-            if (File.Exists(neuerDateiName))
-                File.Delete(neuerDateiName);
+            if (File.Exists(deltaDateiName)) File.Delete(deltaDateiName);
+            if (File.Exists(neuerDateiName)) File.Delete(neuerDateiName);
 
             var aesKey = EncryptProvider.CreateAesKey();
             aesKey.Key = "7L2HzKXGJrJkdpy7xDjNB1jGTmU3hccZ";
             aesKey.IV = "s1gyBZNWEL3LYvkc";
-            var buffer = File.ReadAllBytes(dateiname);
+            var buffer = File.ReadAllBytes(komplettDateiname);
             var encrypted = EncryptProvider.AESEncrypt(buffer, aesKey.Key, aesKey.IV);
             File.WriteAllBytes(neuerDateiName, encrypted);
 
@@ -54,8 +53,6 @@ namespace TwinCatDelta
             */
 
         }
-
-
         public static bool AreFileContentsEqual(string path1, string path2) =>
             File.ReadAllBytes(path1).SequenceEqual(File.ReadAllBytes(path2));
     }
