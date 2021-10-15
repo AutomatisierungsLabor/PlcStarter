@@ -1,7 +1,9 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Windows;
+using NETCore.Encrypt;
 using TwinCatDelta.Model;
+using File = System.IO.File;
 
 namespace TwinCatDelta
 {
@@ -33,11 +35,24 @@ namespace TwinCatDelta
 
         private void SpezialKopieErstellen(OrdnerDateiInfo dateiInfo)
         {
-            var dateiname = $"{_viewModel.ViAnzeige.OrdnerKomplettesProjekt}\\{dateiInfo.DateiBezeichnung}";
-            var neuerDateiName = $"{_viewModel.ViAnzeige.OrdnerDeltaProjekt}\\{dateiInfo.DateiBezeichnung.Replace("DeleteMe.TcPOU", "DeleteMeNot.TcPOU")}";
+            var dateiname = @$"{_viewModel.ViAnzeige.OrdnerKomplettesProjekt}\{dateiInfo.DateiBezeichnung}";
+            var neuerDateiName = @$"{_viewModel.ViAnzeige.OrdnerDeltaProjekt}\{dateiInfo.DateiBezeichnung.Replace("DeleteMe.TcPOU", "DeleteMeNot.TcPOU")}";
 
-            if (File.Exists(neuerDateiName)) MessageBox.Show($"Datei vorhanden:{neuerDateiName}");
-            else File.Copy(dateiname, neuerDateiName);
+            if (File.Exists(neuerDateiName))
+                File.Delete(neuerDateiName);
+
+            var aesKey = EncryptProvider.CreateAesKey();
+            aesKey.Key = "7L2HzKXGJrJkdpy7xDjNB1jGTmU3hccZ";
+            aesKey.IV = "s1gyBZNWEL3LYvkc";
+            var buffer = File.ReadAllBytes(dateiname);
+            var encrypted = EncryptProvider.AESEncrypt(buffer, aesKey.Key, aesKey.IV);
+            File.WriteAllBytes(neuerDateiName, encrypted);
+
+            /*
+            var decrypted = EncryptProvider.AESDecrypt(encrypted, aesKey.Key, aesKey.IV);
+            File.WriteAllBytes(neuerDateiName + 1, decrypted);
+            */
+
         }
 
 
