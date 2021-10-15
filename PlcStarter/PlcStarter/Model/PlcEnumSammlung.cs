@@ -51,10 +51,11 @@
         ProjektKopieren = 2,
         CmdDateiProjektStarten = 3,
         DigitalTwinKopieren = 4,
-        CmdDateiDigitalTwinStarten = 5,
-        FactoryIoKopieren = 6,
-        FachtoryIoStarten = 7,
-        TemplateOrdnerKopieren = 8,
-        DiffOrdnerKopieren = 9
+        DigitalTwinStartenBeckhoff = 5,
+        DigitalTwinStartenSiemens = 6,
+        FactoryIoKopieren = 7,
+        FachtoryIoStarten = 8,
+        TemplateOrdnerKopieren = 9,
+        DiffOrdnerKopieren = 10
     }
 }
