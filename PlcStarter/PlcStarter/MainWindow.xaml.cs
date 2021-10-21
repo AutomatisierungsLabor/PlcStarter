@@ -1,5 +1,6 @@
 ﻿using PlcStarter.Model;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace PlcStarter
 {
@@ -17,7 +18,8 @@ namespace PlcStarter
 
             InitializeComponent();
             DataContext = ViewModel;
-
+                         
+            if (System.Security.Principal.WindowsIdentity.GetCurrent().Name.Contains("kurt.linder")) GridAlles.Background = new SolidColorBrush(Colors.Orange);
             AllePlc = new AllePlc();
             AllePlc.PlcInitialisieren(this);
 
@@ -30,6 +32,6 @@ namespace PlcStarter
             if (sender is not Button { Tag: PlcProjektdaten projektdaten }) return;
 
             foreach (var job in projektdaten.Jobs) AllePlcJobs.PlcJobAusfuehren(job, projektdaten, ViewModel);
-        }
+        }       
     }
 }

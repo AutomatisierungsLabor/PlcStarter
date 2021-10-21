@@ -15,8 +15,11 @@ namespace TwinCatDelta
 
             foreach (var dateiInfo in _viewModel.ViAnzeige.OrdnerDateiInfoDataGrid)
             {
-                if (dateiInfo.DateiBezeichnung.Contains("DeleteMe.TcPOU")) SpezialKopieErstellen(dateiInfo);
-
+                if (dateiInfo.DateiBezeichnung.Contains("DeleteMe.TcPOU"))
+                {
+                    SpezialKopieErstellen(dateiInfo);
+                    continue;
+                }
                 if (dateiInfo.TemplateDateiIdentisch) continue;
                 if (dateiInfo.DeltaDateiIdentisch) continue;
 

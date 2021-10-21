@@ -6,7 +6,7 @@
 		x:Class="PlcStarter.MainWindow"
         mc:Ignorable="d"
         Title="PLC Projekte starten" Height="1000" Width="1400">
-    <Grid>
+    <Grid x:Name="GridAlles">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="*"/>

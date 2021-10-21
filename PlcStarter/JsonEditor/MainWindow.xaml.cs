@@ -11,11 +11,11 @@ namespace JsonEditor
         public MainWindow()
         {
             InitializeComponent();
-
+            
             try
             {
                 StreamReader file = new StreamReader("PlcStarter.json");
-
+                
                 JsonViewer.Load(file.ReadToEnd());
                 TextBlock.Text = "Loading finished";
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NETCore.Encrypt;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
@@ -123,7 +124,22 @@ namespace PlcStarter.Model
         {
             Directory.CreateDirectory(target.FullName);
 
-            foreach (var fi in source.GetFiles()) fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+            foreach (var fi in source.GetFiles())
+            {
+                if (fi.ToString().Contains("DeleteMeNot"))
+                {
+                    if (!System.Security.Principal.WindowsIdentity.GetCurrent().Name.Contains("kurt.linder")) continue;
+
+                    var neuerDateiname = fi.FullName.Replace("DeleteMeNot", "DeleteMe");
+                    var aesKey = EncryptProvider.CreateAesKey();
+                    aesKey.Key = "7L2HzKXGJrJkdpy7xDjNB1jGTmU3hccZ";
+                    aesKey.IV = "s1gyBZNWEL3LYvkc";
+                    var buffer = File.ReadAllBytes(fi.FullName);
+                    var decrypted = EncryptProvider.AESDecrypt(buffer, aesKey.Key, aesKey.IV);
+                    File.WriteAllBytes(neuerDateiname, decrypted);
+                }
+                else fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+            }
 
             foreach (var diSourceSubDir in source.GetDirectories())
             {
