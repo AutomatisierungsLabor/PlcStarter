@@ -7,9 +7,9 @@ namespace PlcStarter.Model
         public OrdnerStrukturLesen OrdnerStrukturLesen { get; set; }
         public List<TabEigenschaften> AlleTabEigenschaften { get; set; }
 
-        public IPlc PlcLogo;
-        public IPlc PlcTiaPortal;
-        public IPlc PlcTwinCat;
+        public IPlc Logo { get; set; }
+        public IPlc TiaPortal { get; set; }
+        public IPlc TwinCat { get; set; }
 
         public AllePlc()
         {
@@ -21,14 +21,14 @@ namespace PlcStarter.Model
 
         public void PlcInitialisieren(MainWindow mw)
         {
-            PlcLogo = new PlcLogo(mw, OrdnerStrukturLesen.OrdnerStrukturen);
-            PlcLogo.TabEigenschaftenHinzufuegen();
+            Logo = new PlcLogo(mw, OrdnerStrukturLesen.OrdnerStrukturen);
+            Logo.TabEigenschaftenHinzufuegen();
 
-            PlcTiaPortal = new PlcTiaPortal(mw, OrdnerStrukturLesen.OrdnerStrukturen);
-            PlcTiaPortal.TabEigenschaftenHinzufuegen();
+            TiaPortal = new PlcTiaPortal(mw, OrdnerStrukturLesen.OrdnerStrukturen);
+            TiaPortal.TabEigenschaftenHinzufuegen();
 
-            PlcTwinCat = new PlcTwinCat(mw, OrdnerStrukturLesen.OrdnerStrukturen);
-            PlcTwinCat.TabEigenschaftenHinzufuegen();
+            TwinCat = new PlcTwinCat(mw, OrdnerStrukturLesen.OrdnerStrukturen);
+            TwinCat.TabEigenschaftenHinzufuegen();
         }
     }
 }

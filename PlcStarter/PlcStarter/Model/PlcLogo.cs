@@ -17,6 +17,8 @@ namespace PlcStarter.Model
             _ordnerStruktur = ordnerStrukturen;
 
             PlcProjekte = JsonConvert.DeserializeObject<PlcProjekt>(File.ReadAllText(ordnerStrukturen.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.Logo].Source + "\\LogoProjektliste.json"));
+            if (PlcProjekte == null) return;
+            PlcProjekte.AufFehlerTesten();
         }
 
         public void TabEigenschaftenHinzufuegen()

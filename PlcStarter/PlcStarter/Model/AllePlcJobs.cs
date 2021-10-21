@@ -19,23 +19,23 @@ namespace PlcStarter.Model
                     break;
                 case PlcJobs.ProjektKopieren:
                     ProjektOrdnerKopieren(viewModel,
-                        $"{projektdaten.OrdnerStrukturPlc}/{projektdaten.OrdnerPlc}", $"{projektdaten.OrdnerStrukturDestination}",
+                        @$"{projektdaten.OrdnerStrukturPlc}\{projektdaten.OrdnerPlc}", $"{projektdaten.OrdnerStrukturDestination}",
                         "Projektdateien werden kopiert", "Projekt wurde kopiert");
                     break;
                 case PlcJobs.CmdDateiProjektStarten:
-                    ProjektStarten(viewModel, $"{projektdaten.OrdnerStrukturDestination}/ProjektStarten.cmd", $"{projektdaten.OrdnerStrukturDestination}");
+                    ProjektStarten(viewModel, @$"{projektdaten.OrdnerStrukturDestination}\ProjektStarten.cmd", $"{projektdaten.OrdnerStrukturDestination}");
                     break;
 
                 case PlcJobs.DigitalTwinKopieren:
                     ProjektOrdnerKopieren(viewModel,
-                        $"{projektdaten.OrdnerStrukturDigitalTwin}/{projektdaten.OrdnerDigitalTwin}", $"{projektdaten.OrdnerStrukturDestination}",
+                        @$"{projektdaten.OrdnerStrukturDigitalTwin}\{projektdaten.OrdnerDigitalTwin}", $"{projektdaten.OrdnerStrukturDestination}",
                         "Digital Twin wird kopiert", "Digital Twin wurde kopiert");
                     break;
                 case PlcJobs.DigitalTwinStartenSiemens:
-                    ProjektStarten(viewModel, $"{projektdaten.OrdnerStrukturDestination}/DigitalTwinStartenSiemens.cmd", $"{projektdaten.OrdnerStrukturDestination}");
+                    ProjektStarten(viewModel, @$"{projektdaten.OrdnerStrukturDestination}\DigitalTwinStartenSiemens.cmd", $"{projektdaten.OrdnerStrukturDestination}");
                     break;
                 case PlcJobs.DigitalTwinStartenBeckhoff:
-                    ProjektStarten(viewModel, $"{projektdaten.OrdnerStrukturDestination}/DigitalTwinStartenBeckhoff.cmd", $"{projektdaten.OrdnerStrukturDestination}");
+                    ProjektStarten(viewModel, @$"{projektdaten.OrdnerStrukturDestination}\DigitalTwinStartenBeckhoff.cmd", $"{projektdaten.OrdnerStrukturDestination}");
                     break;
 
                 case PlcJobs.FactoryIoKopieren:
@@ -44,17 +44,17 @@ namespace PlcStarter.Model
                         "Factory I/O wird kopiert", "Factory I/O wurde kopiert");
                     break;
                 case PlcJobs.FactoryIoStarten:
-                    ProjektStarten(viewModel, $"{projektdaten.OrdnerStrukturDestination}/FactoryIO/FactoryIoStarten.cmd", $"{projektdaten.OrdnerStrukturDestination}/FactoryIO");
+                    ProjektStarten(viewModel, @$"{projektdaten.OrdnerStrukturDestination}\FactoryIO\FactoryIoStarten.cmd", $"{projektdaten.OrdnerStrukturDestination}/FactoryIO");
                     break;
 
                 case PlcJobs.TemplateOrdnerKopieren:
                     ProjektOrdnerKopieren(viewModel,
-                        $"{projektdaten.OrdnerStrukturPlc}/{projektdaten.OrdnerTemplate}", $"{projektdaten.OrdnerStrukturDestination}",
+                        @$"{projektdaten.OrdnerStrukturPlc}\{projektdaten.OrdnerTemplate}", $"{projektdaten.OrdnerStrukturDestination}",
                         "Projekt Template wird kopiert", "Projekt Template wurde kopiert");
                     break;
                 case PlcJobs.DiffOrdnerKopieren:
                     ProjektOrdnerKopieren(viewModel,
-                        $"{projektdaten.OrdnerStrukturPlc}/{projektdaten.OrdnerPlc}", $"{projektdaten.OrdnerStrukturDestination}",
+                        @$"{projektdaten.OrdnerStrukturPlc}\{projektdaten.OrdnerPlc}", $"{projektdaten.OrdnerStrukturDestination}",
                         "Projekt Delta wird kopiert", "Projekt Delta wurde kopiert");
                     break;
 
@@ -138,7 +138,10 @@ namespace PlcStarter.Model
                     var decrypted = EncryptProvider.AESDecrypt(buffer, aesKey.Key, aesKey.IV);
                     File.WriteAllBytes(neuerDateiname, decrypted);
                 }
-                else fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+                else
+                {
+                    fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+                }
             }
 
             foreach (var diSourceSubDir in source.GetDirectories())

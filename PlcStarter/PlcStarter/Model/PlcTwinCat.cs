@@ -18,6 +18,8 @@ namespace PlcStarter.Model
             _ordnerStruktur = ordnerStrukturen;
 
             PlcProjekte = JsonConvert.DeserializeObject<PlcProjekt>(File.ReadAllText(_ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TwinCat].Source + "\\TwinCatProjektliste.json"));
+            if (PlcProjekte == null) return;
+            PlcProjekte.AufFehlerTesten();
         }
 
         public void TabEigenschaftenHinzufuegen()

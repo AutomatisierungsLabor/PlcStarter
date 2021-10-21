@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace PlcStarter.Model
@@ -7,6 +9,57 @@ namespace PlcStarter.Model
     {
         public PlcProjekt(ObservableCollection<PlcProjektdaten> plcProjektliste) => PlcProjektliste = plcProjektliste;
         public ObservableCollection<PlcProjektdaten> PlcProjektliste { get; set; }
+
+        public void AufFehlerTesten()
+        {
+            foreach (var plcProjektdaten in PlcProjektliste)
+            {
+                if (plcProjektdaten.Jobs.Length == 0)
+                {
+                    MessageBox.Show("json Problem:" + "keine Jobs vorhanden!"
+                                                     + plcProjektdaten.Bezeichnung + plcProjektdaten.SoftwareVersion);
+                }
+
+                foreach (var plcJob in plcProjektdaten.Jobs)
+                {
+                    switch (plcJob)
+                    {
+                        case PlcJobs.None: break;
+                        case PlcJobs.SorceOrdnerErstellen:
+                            if (plcProjektdaten.OrdnerPlc is { Length: >= 2 }) continue;
+
+                            MessageBox.Show("json Problem (SorceOrdner):" + "OrdnerPlc fehlt/leer " +
+                                            "+ plcProjektdaten.Bezeichnung + plcProjektdaten.SoftwareVersion");
+                            break;
+                        case PlcJobs.ProjektKopieren: break;
+                        case PlcJobs.CmdDateiProjektStarten: break;
+                        case PlcJobs.DigitalTwinKopieren:
+                            if (plcProjektdaten.OrdnerDigitalTwin is { Length: >= 2 }) continue;
+
+                            MessageBox.Show("json Problem (Digital Twin):" + "OrdnerDigitalTwin fehlt/leer " +
+                                            "+ plcProjektdaten.Bezeichnung + plcProjektdaten.SoftwareVersion");
+                            break;
+                        case PlcJobs.DigitalTwinStartenBeckhoff: break;
+                        case PlcJobs.DigitalTwinStartenSiemens: break;
+                        case PlcJobs.FactoryIoKopieren:
+                            if (plcProjektdaten.OrdnerFactoryIo is { Length: >= 2 }) continue;
+
+                            MessageBox.Show("json Problem (Factory I/O):" + "OrdnerFactoryIo fehlt/leer " +
+                                                "+ plcProjektdaten.Bezeichnung + plcProjektdaten.SoftwareVersion");
+                            break;
+                        case PlcJobs.FactoryIoStarten: break;
+                        case PlcJobs.TemplateOrdnerKopieren:
+                            if (plcProjektdaten.OrdnerTemplate is { Length: >= 2 }) continue;
+
+                            MessageBox.Show("json Problem (Template):" + "OrdnerTemplate fehlt/leer " +
+                                            "+ plcProjektdaten.Bezeichnung + plcProjektdaten.SoftwareVersion");
+                            break;
+                        case PlcJobs.DiffOrdnerKopieren: break;
+                        default: throw new ArgumentOutOfRangeException(plcJob.ToString());
+                    }
+                }
+            }
+        }
     }
 
     public class PlcProjektdaten

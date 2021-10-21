@@ -22,9 +22,9 @@ namespace PlcStarter
 
                 switch (tabEigenschaften.Steuerungen)
                 {
-                    case Steuerungen.Logo: AllePlc.PlcLogo.AnzeigeUpdaten(tabEigenschaften); break;
-                    case Steuerungen.TiaPortal: AllePlc.PlcTiaPortal.AnzeigeUpdaten(tabEigenschaften); break;
-                    case Steuerungen.TwinCat: AllePlc.PlcTwinCat.AnzeigeUpdaten(tabEigenschaften); break;
+                    case Steuerungen.Logo: AllePlc.Logo.AnzeigeUpdaten(tabEigenschaften); break;
+                    case Steuerungen.TiaPortal: AllePlc.TiaPortal.AnzeigeUpdaten(tabEigenschaften); break;
+                    case Steuerungen.TwinCat: AllePlc.TwinCat.AnzeigeUpdaten(tabEigenschaften); break;
                     default: throw new ArgumentOutOfRangeException(tabEigenschaften.ToString());
                 }
             }
