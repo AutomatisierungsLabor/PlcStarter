@@ -10,7 +10,7 @@ namespace TwinCatDelta.ViewModel
         {
             EnableButton = false;
 
-            OrdnerKomplettesProjekt = @"s:\Linder Kurt\PlcTwinCAT_Komplett\TEST_ST_LAP_2010_1_Kompressoranlage";
+            OrdnerKomplettesProjekt = @"h:\TwinCat"; // @"s:\Linder Kurt\PlcTwinCAT_Komplett\TEST_ST_LAP_2010_1_Kompressoranlage";
             OrdnerTemplateProjekt = @"s:\Linder Kurt\PlcTwinCAT\DELTA_Template_Plc";
             OrdnerDeltaProjekt = @"s:\Linder Kurt\PlcTwinCAT\DELTA_TEST_ST_LAP_2010_1_Kompressoranlage";
         }

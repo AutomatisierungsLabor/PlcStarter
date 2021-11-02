@@ -24,6 +24,9 @@ namespace TwinCatDelta
 
             foreach (var file in filesKomplett)
             {
+                if (file.Contains("net5.0-windows")) continue;
+                if (file.Contains("DigitalTwinStarten")) continue;
+
                 var templateDateiIdentisch = false;
                 var deltaDateiIdentisch = false;
 

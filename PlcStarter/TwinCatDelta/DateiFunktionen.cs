@@ -43,6 +43,9 @@ namespace TwinCatDelta
             if (File.Exists(deltaDateiName)) File.Delete(deltaDateiName);
             if (File.Exists(neuerDateiName)) File.Delete(neuerDateiName);
 
+            var pfad = Path.GetDirectoryName(neuerDateiName);
+            if (!Directory.Exists(pfad)) Directory.CreateDirectory(pfad!);
+
             var aesKey = EncryptProvider.CreateAesKey();
             aesKey.Key = "7L2HzKXGJrJkdpy7xDjNB1jGTmU3hccZ";
             aesKey.IV = "s1gyBZNWEL3LYvkc";
