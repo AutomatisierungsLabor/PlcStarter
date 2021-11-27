@@ -39,8 +39,7 @@ namespace PlcStarter.Model
                             MessageBox.Show("json Problem (Digital Twin):" + "OrdnerDigitalTwin fehlt/leer " +
                                             "+ plcProjektdaten.Bezeichnung + plcProjektdaten.SoftwareVersion");
                             break;
-                        case PlcJobs.DigitalTwinStartenBeckhoff: break;
-                        case PlcJobs.DigitalTwinStartenSiemens: break;
+                        case PlcJobs.DigitalTwinStarten: break;
                         case PlcJobs.FactoryIoKopieren:
                             if (plcProjektdaten.OrdnerFactoryIo is { Length: >= 2 }) continue;
 

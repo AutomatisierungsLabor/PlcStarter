@@ -23,7 +23,10 @@ namespace PlcStarter.Model
                         "Projektdateien werden kopiert", "Projekt wurde kopiert");
                     break;
                 case PlcJobs.CmdDateiProjektStarten:
-                    ProjektStarten(viewModel, @$"{projektdaten.OrdnerStrukturDestination}\ProjektStarten.cmd", $"{projektdaten.OrdnerStrukturDestination}");
+                    var NameBatchDatei = "ProjektStarten.cmd";
+                    if (projektdaten.SoftwareVersion == PlcSoftwareVersion.TiaPortalV17SP1) NameBatchDatei = "ProjektStartenV17.cmd";
+
+                    ProjektStarten(viewModel, @$"{projektdaten.OrdnerStrukturDestination}\{NameBatchDatei}", $"{projektdaten.OrdnerStrukturDestination}");
                     break;
 
                 case PlcJobs.DigitalTwinKopieren:
@@ -31,11 +34,8 @@ namespace PlcStarter.Model
                         @$"{projektdaten.OrdnerStrukturDigitalTwin}\{projektdaten.OrdnerDigitalTwin}", $"{projektdaten.OrdnerStrukturDestination}",
                         "Digital Twin wird kopiert", "Digital Twin wurde kopiert");
                     break;
-                case PlcJobs.DigitalTwinStartenSiemens:
-                    ProjektStarten(viewModel, @$"{projektdaten.OrdnerStrukturDestination}\DigitalTwinStartenSiemens.cmd", $"{projektdaten.OrdnerStrukturDestination}");
-                    break;
-                case PlcJobs.DigitalTwinStartenBeckhoff:
-                    ProjektStarten(viewModel, @$"{projektdaten.OrdnerStrukturDestination}\DigitalTwinStartenBeckhoff.cmd", $"{projektdaten.OrdnerStrukturDestination}");
+                case PlcJobs.DigitalTwinStarten:
+                    ProjektStarten(viewModel, @$"{projektdaten.OrdnerStrukturDestination}\DigitalTwinStarten.cmd", $"{projektdaten.OrdnerStrukturDestination}");
                     break;
 
                 case PlcJobs.FactoryIoKopieren:
@@ -123,20 +123,20 @@ namespace PlcStarter.Model
         internal static void CopyAll(DirectoryInfo source, DirectoryInfo target)
         {
             Directory.CreateDirectory(target.FullName);
-
+            string DateiNameDeleteMe = "-";
             foreach (var fi in source.GetFiles())
             {
                 if (fi.ToString().Contains("DeleteMeNot"))
                 {
                     if (!System.Security.Principal.WindowsIdentity.GetCurrent().Name.Contains("kurt.linder")) continue;
 
-                    var neuerDateiname = fi.FullName.Replace("DeleteMeNot", "DeleteMe");
+                    DateiNameDeleteMe = fi.FullName.Replace("DeleteMeNot", "DeleteMe");
                     var aesKey = EncryptProvider.CreateAesKey();
                     aesKey.Key = "7L2HzKXGJrJkdpy7xDjNB1jGTmU3hccZ";
                     aesKey.IV = "s1gyBZNWEL3LYvkc";
                     var buffer = File.ReadAllBytes(fi.FullName);
                     var decrypted = EncryptProvider.AESDecrypt(buffer, aesKey.Key, aesKey.IV);
-                    File.WriteAllBytes(neuerDateiname, decrypted);
+                    File.WriteAllBytes(DateiNameDeleteMe, decrypted);
                 }
                 else
                 {
@@ -149,6 +149,8 @@ namespace PlcStarter.Model
                 var nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
                 CopyAll(diSourceSubDir, nextTargetSubDir);
             }
+
+            if (DateiNameDeleteMe != "-") File.Delete(DateiNameDeleteMe);
         }
     }
 }
