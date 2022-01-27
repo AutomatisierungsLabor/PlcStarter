@@ -1,6 +1,5 @@
-﻿namespace PlcStarter
+﻿namespace PlcStarter;
+
+public partial class App
 {
-    public partial class App
-    {
-    }
 }

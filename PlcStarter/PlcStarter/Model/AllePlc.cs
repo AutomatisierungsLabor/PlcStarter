@@ -1,34 +1,33 @@
 ﻿using System.Collections.Generic;
 
-namespace PlcStarter.Model
+namespace PlcStarter.Model;
+
+public class AllePlc
 {
-    public class AllePlc
+    public OrdnerStrukturLesen OrdnerStrukturLesen { get; set; }
+    public List<TabEigenschaften> AlleTabEigenschaften { get; set; }
+
+    public IPlc Logo { get; set; }
+    public IPlc TiaPortal { get; set; }
+    public IPlc TwinCat { get; set; }
+
+    public AllePlc()
     {
-        public OrdnerStrukturLesen OrdnerStrukturLesen { get; set; }
-        public List<TabEigenschaften> AlleTabEigenschaften { get; set; }
+        AlleTabEigenschaften = new List<TabEigenschaften>();
 
-        public IPlc Logo { get; set; }
-        public IPlc TiaPortal { get; set; }
-        public IPlc TwinCat { get; set; }
+        OrdnerStrukturLesen = new OrdnerStrukturLesen();
+        OrdnerStrukturLesen.GetOrdnerConfig("Einstellungen/Ordner.json");
+    }
 
-        public AllePlc()
-        {
-            AlleTabEigenschaften = new List<TabEigenschaften>();
+    public void PlcInitialisieren(MainWindow mw)
+    {
+        Logo = new PlcLogo(mw, OrdnerStrukturLesen.OrdnerStrukturen);
+        Logo.TabEigenschaftenHinzufuegen();
 
-            OrdnerStrukturLesen = new OrdnerStrukturLesen();
-            OrdnerStrukturLesen.GetOrdnerConfig("Einstellungen/Ordner.json");
-        }
+        TiaPortal = new PlcTiaPortal(mw, OrdnerStrukturLesen.OrdnerStrukturen);
+        TiaPortal.TabEigenschaftenHinzufuegen();
 
-        public void PlcInitialisieren(MainWindow mw)
-        {
-            Logo = new PlcLogo(mw, OrdnerStrukturLesen.OrdnerStrukturen);
-            Logo.TabEigenschaftenHinzufuegen();
-
-            TiaPortal = new PlcTiaPortal(mw, OrdnerStrukturLesen.OrdnerStrukturen);
-            TiaPortal.TabEigenschaftenHinzufuegen();
-
-            TwinCat = new PlcTwinCat(mw, OrdnerStrukturLesen.OrdnerStrukturen);
-            TwinCat.TabEigenschaftenHinzufuegen();
-        }
+        TwinCat = new PlcTwinCat(mw, OrdnerStrukturLesen.OrdnerStrukturen);
+        TwinCat.TabEigenschaftenHinzufuegen();
     }
 }

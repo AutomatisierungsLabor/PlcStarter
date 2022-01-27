@@ -1,8 +1,7 @@
-﻿namespace PlcStarter.Model
+﻿namespace PlcStarter.Model;
+
+public interface IPlc
 {
-    public interface IPlc
-    {
-        public void TabEigenschaftenHinzufuegen();
-        public void AnzeigeUpdaten(TabEigenschaften tabEigenschaften);
-    }
+    public void TabEigenschaftenHinzufuegen();
+    public void AnzeigeUpdaten(TabEigenschaften tabEigenschaften);
 }

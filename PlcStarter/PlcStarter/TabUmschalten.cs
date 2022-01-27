@@ -3,31 +3,30 @@ using System;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace PlcStarter
+namespace PlcStarter;
+
+public partial class MainWindow
 {
-    public partial class MainWindow
+    private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        if (sender is not TabControl { SelectedValue: TabItem item }) return;
+
+        ViewModel.ViAnzeige.StartButtonInhalt = "Bitte ein Projekt auswählen";
+        ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
+
+        HtmlFensterLoeschen();
+
+        AktuelleSteuerung = item.Header.ToString() switch
         {
-            if (sender is not TabControl tabControl || tabControl.SelectedValue is not TabItem item) return;
-
-            ViewModel.ViAnzeige.StartButtonInhalt = "Bitte ein Projekt auswählen";
-            ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
-
-            HtmlFensterLoeschen();
-
-            AktuelleSteuerung = item.Header.ToString() switch
-            {
-                "Logo8" => Steuerungen.Logo,
-                "TiaPortal" => Steuerungen.TiaPortal,
-                "TwinCAT" => Steuerungen.TwinCat,
-                _ => AktuelleSteuerung
-            };
-            AnzeigeUpdaten(AktuelleSteuerung);
-        }
-        private void HtmlFensterLoeschen()
-        {
-            foreach (var tabEigenschaften in AllePlc.AlleTabEigenschaften) tabEigenschaften.BrowserBezeichnung.Navigate((Uri)null);
-        }
+            "Logo8" => Steuerungen.Logo,
+            "TiaPortal" => Steuerungen.TiaPortal,
+            "TwinCAT" => Steuerungen.TwinCat,
+            _ => AktuelleSteuerung
+        };
+        AnzeigeUpdaten(AktuelleSteuerung);
+    }
+    private void HtmlFensterLoeschen()
+    {
+        foreach (var tabEigenschaften in AllePlc.AlleTabEigenschaften) tabEigenschaften.BrowserBezeichnung.Navigate((Uri)null);
     }
 }

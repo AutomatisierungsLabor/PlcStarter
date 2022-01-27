@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:TwinCatDelta.ViewModel"
+        d:DataContext="{d:DesignInstance Type=viewModel:ViewModel}"
         mc:Ignorable="d"
         Title="TwinCAT DeltaProjekt"  Height="850" Width="1200">
     <Grid>

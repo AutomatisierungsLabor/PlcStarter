@@ -3,27 +3,27 @@
     {
       "Steuerung": "DigitalTwin",
       "Source": "k:\\git\\PlcDigitalTwin",
-      "Destination": "_DigitalTwin"
+      "Destination": "h:\\PlcDigitalTwin"
     },
     {
       "Steuerung": "FactoryIO",
       "Source": "k:\\git\\PlcFactoryIO",
-      "Destination": "_FactoryIO"
+      "Destination": "h:\\PlcFactoryIO"
     },
     {
       "Steuerung": "Logo",
       "Source": "k:\\git\\PlcLogo",
-      "Destination": "h:\\Logo8"
+      "Destination": "h:\\PlcLogo"
     },
     {
       "Steuerung": "TiaPortal",
       "Source": "k:\\git\\PlcTiaPortal",
-      "Destination": "h:\\TiaPortal14"
+      "Destination": "h:\\PlcTiaPortal"
     },
     {
       "Steuerung": "TwinCAT",
       "Source": "k:\\git\\PlcTwinCat",
-      "Destination": "h:\\TwinCat3"
+      "Destination": "h:\\PlcTwinCat"
     }
   ]
 }

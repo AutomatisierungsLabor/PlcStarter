@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		x:Class="PlcStarter.MainWindow"
+        xmlns:viewModel="clr-namespace:PlcStarter.ViewModel"
+        x:Class="PlcStarter.MainWindow"
+        d:DataContext="{d:DesignInstance Type=viewModel:ViewModel}"
         mc:Ignorable="d"
         Title="PLC Projekte starten" Height="1000" Width="1400">
     <Grid x:Name="GridAlles">
