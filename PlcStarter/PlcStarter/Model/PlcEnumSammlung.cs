@@ -59,5 +59,5 @@ public enum PlcJobs
     FactoryIoKopieren = 6,
     FactoryIoStarten = 7,
     TemplateOrdnerKopieren = 8,
-    DiffOrdnerKopieren = 9
+    DeltaOrdnerKopieren = 9
 }

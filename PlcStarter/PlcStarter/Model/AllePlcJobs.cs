@@ -29,7 +29,8 @@ public static class AllePlcJobs
 
             case PlcJobs.DigitalTwinKopieren:
                 OrdnerErstellen(viewModel, projektdaten, job);
-                ProjektOrdnerKopieren(viewModel, @$"{projektdaten.OrdnerstrukturSourceDigitalTwin}\{projektdaten.OrdnerDigitalTwin}", $"{projektdaten.OrdnerstrukturDestinationDigitalTwin}", "Digital Twin wird kopiert", "Digital Twin wurde kopiert");
+                ProjektOrdnerKopieren(viewModel, @$"{projektdaten.OrdnerstrukturSourceDigitalTwin}\{projektdaten.OrdnerTemplateDigitalTwin}", $"{projektdaten.OrdnerstrukturDestinationDigitalTwin}", "Digital Twin wird kopiert (Template)", "Digital Twin wurde kopiert (Template)");
+                ProjektOrdnerKopieren(viewModel, @$"{projektdaten.OrdnerstrukturSourceDigitalTwin}\{projektdaten.OrdnerDeltaDigitalTwin}", $"{projektdaten.OrdnerstrukturDestinationDigitalTwin}", "Digital Twin wird kopiert (Delta)", "Digital Twin wurde kopiert (Delta)");
                 break;
             case PlcJobs.DigitalTwinStarten:
                 ProjektStarten(viewModel, @$"{projektdaten.OrdnerstrukturDestinationDigitalTwin}\DigitalTwinStarten.cmd", $"{projektdaten.OrdnerstrukturDestinationDigitalTwin}");
@@ -45,9 +46,9 @@ public static class AllePlcJobs
 
             case PlcJobs.TemplateOrdnerKopieren:
                 OrdnerErstellen(viewModel, projektdaten, job);
-                ProjektOrdnerKopieren(viewModel, @$"{projektdaten.OrdnerstrukturSourceProjekt}\{projektdaten.OrdnerTemplate}", $"{projektdaten.OrdnerstrukturDestinationProjekt}", "Projekt Template wird kopiert", "Projekt Template wurde kopiert");
+                ProjektOrdnerKopieren(viewModel, @$"{projektdaten.OrdnerstrukturSourceProjekt}\{projektdaten.OrdnerTwinCatTemplate}", $"{projektdaten.OrdnerstrukturDestinationProjekt}", "Projekt Template wird kopiert", "Projekt Template wurde kopiert");
                 break;
-            case PlcJobs.DiffOrdnerKopieren:
+            case PlcJobs.DeltaOrdnerKopieren:
                 ProjektOrdnerKopieren(viewModel, @$"{projektdaten.OrdnerstrukturSourceProjekt}\{projektdaten.OrdnerPlc}", $"{projektdaten.OrdnerstrukturDestinationProjekt}", "Projekt Delta wird kopiert", "Projekt Delta wurde kopiert");
                 break;
 
@@ -102,7 +103,7 @@ public static class AllePlcJobs
             case PlcJobs.FactoryIoKopieren: 
             case PlcJobs.FactoryIoStarten: ordner = projektdaten.OrdnerstrukturDestinationFactoryIo; break;
             case PlcJobs.TemplateOrdnerKopieren: break;
-            case PlcJobs.DiffOrdnerKopieren: break;
+            case PlcJobs.DeltaOrdnerKopieren: break;
 
             default: throw new ArgumentOutOfRangeException(nameof(plcJobs), plcJobs, null);
         }

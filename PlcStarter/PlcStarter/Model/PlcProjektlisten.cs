@@ -31,7 +31,8 @@ public class PlcProjekt
                         break;
                     case PlcJobs.ProjektStarten: break;
                     case PlcJobs.DigitalTwinKopieren:
-                        if (plcProjektdaten.OrdnerDigitalTwin is { Length: >= 2 }) continue;
+                        if (plcProjektdaten.OrdnerTemplateDigitalTwin is { Length: >= 2 }) continue;
+                        if (plcProjektdaten.OrdnerDeltaDigitalTwin is { Length: >= 2 }) continue;
                         MessageBox.Show("json Problem (Digital Twin):" + "OrdnerDigitalTwin fehlt/leer " + "+ plcProjektdaten.Bezeichnung + plcProjektdaten.SoftwareVersion");
                         break;
                     case PlcJobs.DigitalTwinStarten: break;
@@ -41,10 +42,10 @@ public class PlcProjekt
                         break;
                     case PlcJobs.FactoryIoStarten: break;
                     case PlcJobs.TemplateOrdnerKopieren:
-                        if (plcProjektdaten.OrdnerTemplate is { Length: >= 2 }) continue;
+                        if (plcProjektdaten.OrdnerTwinCatTemplate is { Length: >= 2 }) continue;
                         MessageBox.Show("json Problem (Template):" + "OrdnerTemplate fehlt/leer " + "+ plcProjektdaten.Bezeichnung + plcProjektdaten.SoftwareVersion");
                         break;
-                    case PlcJobs.DiffOrdnerKopieren: break;
+                    case PlcJobs.DeltaOrdnerKopieren: break;
                     default: throw new ArgumentOutOfRangeException(plcJob.ToString());
                 }
             }
@@ -68,9 +69,10 @@ public class PlcProjektdaten
     public string OrdnerstrukturDestinationDigitalTwin { get; set; }
     public string OrdnerstrukturDestinationFactoryIo { get; set; }
 
-    public string OrdnerTemplate { get; set; }
+    public string OrdnerTwinCatTemplate { get; set; }
     public string OrdnerPlc { get; set; }
-    public string OrdnerDigitalTwin { get; set; }
+    public string OrdnerTemplateDigitalTwin { get; set; }
+    public string OrdnerDeltaDigitalTwin { get; set; }
     public string OrdnerFactoryIo { get; set; }
     public PlcSprachen Sprache { get; set; }
     public PlcKategorie Kategorie { get; set; }
