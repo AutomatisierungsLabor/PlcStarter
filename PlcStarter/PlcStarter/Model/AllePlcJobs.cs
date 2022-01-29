@@ -17,39 +17,39 @@ public static class AllePlcJobs
 
             case PlcJobs.ProjektKopieren:
                 OrdnerErstellen(viewModel, projektdaten, job);
-                ProjektOrdnerKopieren(viewModel, @$"{projektdaten.OrdnerstrukturSourceProjekt}\{projektdaten.OrdnerPlc}", $"{projektdaten.OrdnerstrukturDestinationProjekt}", "Projektdateien werden kopiert", "Projekt wurde kopiert");
+                ProjektOrdnerKopieren(viewModel, Path.Combine(projektdaten.OrdnerstrukturSourceProjekt, projektdaten.OrdnerPlc), Path.Combine(projektdaten.OrdnerstrukturDestinationProjekt), "Projektdateien werden kopiert", "Projekt wurde kopiert");
                 break;
 
             case PlcJobs.ProjektStarten:
                 var nameBatchDatei = "ProjektStarten.cmd";
                 if (projektdaten.SoftwareVersion == PlcSoftwareVersion.TiaPortalV17Sp1) nameBatchDatei = "ProjektStartenV17.cmd";
 
-                ProjektStarten(viewModel, @$"{projektdaten.OrdnerstrukturDestinationProjekt}\{nameBatchDatei}", $"{projektdaten.OrdnerstrukturDestinationProjekt}");
+                ProjektStarten(viewModel, Path.Combine(projektdaten.OrdnerstrukturDestinationProjekt, nameBatchDatei), Path.Combine(projektdaten.OrdnerstrukturDestinationProjekt));
                 break;
 
             case PlcJobs.DigitalTwinKopieren:
                 OrdnerErstellen(viewModel, projektdaten, job);
-                ProjektOrdnerKopieren(viewModel, @$"{projektdaten.OrdnerstrukturSourceDigitalTwin}\{projektdaten.OrdnerTemplateDigitalTwin}", $"{projektdaten.OrdnerstrukturDestinationDigitalTwin}", "Digital Twin wird kopiert (Template)", "Digital Twin wurde kopiert (Template)");
-                ProjektOrdnerKopieren(viewModel, @$"{projektdaten.OrdnerstrukturSourceDigitalTwin}\{projektdaten.OrdnerDeltaDigitalTwin}", $"{projektdaten.OrdnerstrukturDestinationDigitalTwin}", "Digital Twin wird kopiert (Delta)", "Digital Twin wurde kopiert (Delta)");
+                ProjektOrdnerKopieren(viewModel, Path.Combine(projektdaten.OrdnerstrukturSourceDigitalTwin, projektdaten.OrdnerTemplateDigitalTwin), Path.Combine(projektdaten.OrdnerstrukturDestinationDigitalTwin), "Digital Twin wird kopiert (Template)", "Digital Twin wurde kopiert (Template)");
+                ProjektOrdnerKopieren(viewModel, Path.Combine(projektdaten.OrdnerstrukturSourceDigitalTwin, projektdaten.OrdnerDeltaDigitalTwin), Path.Combine(projektdaten.OrdnerstrukturDestinationDigitalTwin), "Digital Twin wird kopiert (Delta)", "Digital Twin wurde kopiert (Delta)");
                 break;
             case PlcJobs.DigitalTwinStarten:
-                ProjektStarten(viewModel, @$"{projektdaten.OrdnerstrukturDestinationDigitalTwin}\DigitalTwinStarten.cmd", $"{projektdaten.OrdnerstrukturDestinationDigitalTwin}");
+                ProjektStarten(viewModel, Path.Combine(projektdaten.OrdnerstrukturDestinationDigitalTwin, "DigitalTwinStarten.cmd"), Path.Combine(projektdaten.OrdnerstrukturDestinationDigitalTwin));
                 break;
 
             case PlcJobs.FactoryIoKopieren:
                 OrdnerErstellen(viewModel, projektdaten, job);
-                ProjektOrdnerKopieren(viewModel, $"{projektdaten.OrdnerstrukturSourceFactoryIo}/{projektdaten.OrdnerFactoryIo}", $"{projektdaten.OrdnerstrukturDestinationFactoryIo}", "Factory I/O wird kopiert", "Factory I/O wurde kopiert");
+                ProjektOrdnerKopieren(viewModel, Path.Combine(projektdaten.OrdnerstrukturSourceFactoryIo, projektdaten.OrdnerFactoryIo), Path.Combine(projektdaten.OrdnerstrukturDestinationFactoryIo), "Factory I/O wird kopiert", "Factory I/O wurde kopiert");
                 break;
             case PlcJobs.FactoryIoStarten:
-                ProjektStarten(viewModel, @$"{projektdaten.OrdnerstrukturDestinationFactoryIo}\FactoryIoStarten.cmd", $"{projektdaten.OrdnerstrukturDestinationFactoryIo}");
+                ProjektStarten(viewModel, Path.Combine(projektdaten.OrdnerstrukturDestinationFactoryIo, "FactoryIoStarten.cmd"), Path.Combine(projektdaten.OrdnerstrukturDestinationFactoryIo));
                 break;
 
             case PlcJobs.TemplateOrdnerKopieren:
                 OrdnerErstellen(viewModel, projektdaten, job);
-                ProjektOrdnerKopieren(viewModel, @$"{projektdaten.OrdnerstrukturSourceProjekt}\{projektdaten.OrdnerTwinCatTemplate}", $"{projektdaten.OrdnerstrukturDestinationProjekt}", "Projekt Template wird kopiert", "Projekt Template wurde kopiert");
+                ProjektOrdnerKopieren(viewModel, Path.Combine(projektdaten.OrdnerstrukturSourceProjekt, projektdaten.OrdnerTwinCatTemplate), Path.Combine(projektdaten.OrdnerstrukturDestinationProjekt), "Projekt Template wird kopiert", "Projekt Template wurde kopiert");
                 break;
             case PlcJobs.DeltaOrdnerKopieren:
-                ProjektOrdnerKopieren(viewModel, @$"{projektdaten.OrdnerstrukturSourceProjekt}\{projektdaten.OrdnerPlc}", $"{projektdaten.OrdnerstrukturDestinationProjekt}", "Projekt Delta wird kopiert", "Projekt Delta wurde kopiert");
+                ProjektOrdnerKopieren(viewModel, Path.Combine(projektdaten.OrdnerstrukturSourceProjekt, projektdaten.OrdnerPlc), Path.Combine(projektdaten.OrdnerstrukturDestinationProjekt), "Projekt Delta wird kopiert", "Projekt Delta wurde kopiert");
                 break;
 
             default: throw new ArgumentOutOfRangeException(nameof(job), job, null);
@@ -98,9 +98,9 @@ public static class AllePlcJobs
             case PlcJobs.None: break;
             case PlcJobs.ProjektKopieren: break;
             case PlcJobs.ProjektStarten: break;
-            case PlcJobs.DigitalTwinKopieren: 
+            case PlcJobs.DigitalTwinKopieren:
             case PlcJobs.DigitalTwinStarten: ordner = projektdaten.OrdnerstrukturDestinationDigitalTwin; break;
-            case PlcJobs.FactoryIoKopieren: 
+            case PlcJobs.FactoryIoKopieren:
             case PlcJobs.FactoryIoStarten: ordner = projektdaten.OrdnerstrukturDestinationFactoryIo; break;
             case PlcJobs.TemplateOrdnerKopieren: break;
             case PlcJobs.DeltaOrdnerKopieren: break;

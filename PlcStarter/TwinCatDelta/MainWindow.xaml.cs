@@ -32,8 +32,8 @@ public partial class MainWindow
             var deltaDateiIdentisch = false;
 
             var dateiname = file[laengeOrdnerKomplett..];
-            var dateinameTemplate = $"{_viewModel.ViAnzeige.OrdnerTemplateProjekt}/{dateiname}";
-            var dateinameDelta = $"{_viewModel.ViAnzeige.OrdnerDeltaProjekt}/{dateiname}";
+            var dateinameTemplate = Path.Combine(_viewModel.ViAnzeige.OrdnerTemplateProjekt,dateiname);
+            var dateinameDelta = Path.Combine(_viewModel.ViAnzeige.OrdnerDeltaProjekt,dateiname);
             var templateDateiVorhanden = File.Exists(dateinameTemplate);
             var deltaDateiVorhanden = File.Exists(dateinameDelta);
 
