@@ -1,25 +1,43 @@
-name: PlcStarter
+name: PlcStarter Tool
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
+    branches: [ master ]
+env:
+      PROJECT_PATH: PlcStarter/PlcStarter/PlcStarter.csproj
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: windows-latest 
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.x
+
+      - run: dotnet publish ${{ env.PROJECT_PATH }} -c Release -o PublishMin
+
+      - uses: TheDoctor0/zip-release@0.6.1
+        with:
+          type: 'zip'
+          path: PublishMin
+          filename: 'PlcStarterMin.zip'
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: PlcStarter Min
+          path: PlcStarterMin.zip
+
+      - run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r win-x64 -o PublishComplete
+
+      - uses: TheDoctor0/zip-release@0.6.1
+        with:
+          type: 'zip'
+          path: PublishComplete
+          filename: 'PlcStarterComplete.zip'
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: PlcStarter Complete
+          path: PlcStarterComplete.zip
