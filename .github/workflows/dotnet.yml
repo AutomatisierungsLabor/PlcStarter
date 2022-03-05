@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
 env:
-      PROJECT_PATH: PlcStarter/PlcStarter.csproj
+      PROJECT_PATH: PlcStarter/PlcStarter/PlcStarter.csproj
 jobs:
   deploy:
     runs-on: windows-latest 
