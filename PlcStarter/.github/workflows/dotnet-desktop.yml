@@ -1,4 +1,4 @@
-name: KNX Tool
+name: Plc Starter
 
 on:
   push:
