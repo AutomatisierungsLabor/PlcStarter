@@ -2,7 +2,7 @@ name: PlcStarter Tool
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 env:
       PROJECT_PATH: PlcStarter/PlcStarter.csproj
 jobs:
