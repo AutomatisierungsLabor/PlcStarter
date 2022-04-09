@@ -11,8 +11,8 @@ public partial class MainWindow
     {
         if (sender is not TabControl { SelectedValue: TabItem item }) return;
 
-        ViewModel.ViAnzeige.StartButtonInhalt = "Bitte ein Projekt auswählen";
-        ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
+        VmPlcStarter.StringStartButton = "Bitte ein Projekt auswählen";
+        VmPlcStarter.BrushStartButton = Brushes.LightGray;
 
         HtmlFensterLoeschen();
 

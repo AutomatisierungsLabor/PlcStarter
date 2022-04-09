@@ -9,7 +9,7 @@ namespace PlcStarter.Model;
 
 public static class AllePlcJobs
 {
-    public static void PlcJobAusfuehren(PlcJobs job, PlcProjektdaten projektdaten, ViewModel.ViewModel viewModel)
+    public static void PlcJobAusfuehren(PlcJobs job, PlcProjektdaten projektdaten, ViewModel.VmPlcStarter viewModel)
     {
         switch (job)
         {
@@ -56,25 +56,25 @@ public static class AllePlcJobs
         }
     }
 
-    public static void ProjektOrdnerKopieren(ViewModel.ViewModel viewModel, string quelle, string ziel, string kommentarAnfang, string kommentarEnde)
+    public static void ProjektOrdnerKopieren(ViewModel.VmPlcStarter viewModel, string quelle, string ziel, string kommentarAnfang, string kommentarEnde)
     {
-        viewModel.ViAnzeige.StartButtonFarbe = Brushes.Yellow;
+        viewModel.BrushStartButton = Brushes.Yellow;
 
         try
         {
-            viewModel.ViAnzeige.StartButtonInhalt = kommentarAnfang;
+            viewModel.StringStartButton = kommentarAnfang;
             Copy(quelle, ziel);
-            viewModel.ViAnzeige.StartButtonInhalt = kommentarEnde;
+            viewModel.StringStartButton = kommentarEnde;
         }
         catch (Exception exp)
         {
             MessageBox.Show(exp.ToString());
         }
 
-        viewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
+        viewModel.BrushStartButton = Brushes.LightGray;
     }
 
-    public static void ProjektStarten(ViewModel.ViewModel viewModel, string cmdFile, string workingDirectory)
+    public static void ProjektStarten(ViewModel.VmPlcStarter viewModel, string cmdFile, string workingDirectory)
     {
         var proc = new Process
         {
@@ -86,11 +86,11 @@ public static class AllePlcJobs
         };
         proc.Start();
 
-        viewModel.ViAnzeige.StartButtonInhalt = "Projekt wurde gestartet";
+        viewModel.StringStartButton = "Projekt wurde gestartet";
     }
-    private static void OrdnerErstellen(ViewModel.ViewModel viewModel, PlcProjektdaten projektdaten, PlcJobs plcJobs)
+    private static void OrdnerErstellen(ViewModel.VmPlcStarter viewModel, PlcProjektdaten projektdaten, PlcJobs plcJobs)
     {
-        viewModel.ViAnzeige.StartButtonFarbe = Brushes.Yellow;
+        viewModel.BrushStartButton = Brushes.Yellow;
         var ordner = projektdaten.OrdnerstrukturDestinationProjekt;
 
         switch (plcJobs)
@@ -111,19 +111,19 @@ public static class AllePlcJobs
 
         try
         {
-            viewModel.ViAnzeige.StartButtonInhalt = "Zielordner wird gelöscht";
+            viewModel.StringStartButton = "Zielordner wird gelöscht";
 
             if (Directory.Exists(ordner)) Directory.Delete(ordner, true);
             if (ordner != null) Directory.CreateDirectory(ordner);
 
-            viewModel.ViAnzeige.StartButtonInhalt = "Zielordner wurde erstellt";
+            viewModel.StringStartButton = "Zielordner wurde erstellt";
         }
         catch (Exception exp)
         {
             MessageBox.Show(exp.ToString());
         }
 
-        viewModel.ViAnzeige.StartButtonFarbe = Brushes.LightGray;
+        viewModel.BrushStartButton = Brushes.LightGray;
     }
     internal static void Copy(string sourceDirectory, string targetDirectory)
     {

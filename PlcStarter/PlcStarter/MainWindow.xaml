@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:PlcStarter.ViewModel"
         x:Class="PlcStarter.MainWindow"
-        d:DataContext="{d:DesignInstance Type=viewModel:ViewModel}"
+        d:DataContext="{d:DesignInstance Type=viewModel:VmPlcStarter}"
         mc:Ignorable="d"
         Title="PLC Projekte starten" Height="1000" Width="1400">
     <Grid x:Name="GridAlles">
@@ -39,8 +39,8 @@
                         <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
 
-                    <CheckBox x:Name="CheckboxLogoFup" Content="FUP" Grid.Column="1" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
-                    <CheckBox x:Name="CheckboxLogoKop" Content="KOP" Grid.Column="2" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
+                    <CheckBox x:Name="CheckboxLogoFup" Content="FUP" Grid.Column="1" Grid.Row="1" IsChecked="True" Command="{Binding CheckBoxHakenCommand}" CommandParameter="Steuerung.Logo"/>
+                    <CheckBox x:Name="CheckboxLogoKop" Content="KOP" Grid.Column="2" Grid.Row="1" IsChecked="True" Command="{Binding CheckBoxHakenCommand}" CommandParameter="Steuerung.Logo"/>
 
                     <TabControl x:Name="TabLogo" Grid.Column="1" Grid.ColumnSpan="2"  Grid.Row="2">
                         <TabItem Header="PLC" FontSize="14" ToolTip="Einfache Projekte">
@@ -61,7 +61,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelLogoPlc" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenLogoPlc" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
+                                <Button x:Name="ButtonStartenLogoPlc" Content="{Binding StringStartButton}" Grid.Column="3" Grid.Row="1" Background="{Binding BrushStartButton}" Command="{Binding ButtonStartenCommand}"/>
                                 <WebBrowser x:Name="WebLogoPlc" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -84,7 +84,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelLogoPlcBugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenLogoPlcBugs" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
+                                <Button x:Name="ButtonStartenLogoPlcBugs" Content="{Binding StringStartButton}" Grid.Column="3" Grid.Row="1" Background="{Binding BrushStartButton}" Command="{Binding ButtonStartenCommand}"/>
                                 <WebBrowser x:Name="WebLogoPlcBugs" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -110,9 +110,9 @@
                         <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
 
-                    <CheckBox x:Name="CheckboxTiaPortalFup" Content="FUP" Grid.Column="2" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
-                    <CheckBox x:Name="CheckboxTiaPortalKop" Content="KOP" Grid.Column="3" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
-                    <CheckBox x:Name="CheckboxTiaPortalScl" Content="SCL" Grid.Column="4" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
+                    <CheckBox x:Name="CheckboxTiaPortalFup" Content="FUP" Grid.Column="2" Grid.Row="1" IsChecked="True" Command="{Binding CheckBoxHakenCommand}" CommandParameter="Steuerung.TiaPortal"/>
+                    <CheckBox x:Name="CheckboxTiaPortalKop" Content="KOP" Grid.Column="3" Grid.Row="1" IsChecked="True" Command="{Binding CheckBoxHakenCommand}" CommandParameter="Steuerung.TiaPortal"/>
+                    <CheckBox x:Name="CheckboxTiaPortalScl" Content="SCL" Grid.Column="4" Grid.Row="1" IsChecked="True" Command="{Binding CheckBoxHakenCommand}" CommandParameter="Steuerung.TiaPortal"/>
 
                     <TabControl x:Name="TabTiaPortal" Grid.Column="1" Grid.ColumnSpan="5"  Grid.Row="2">
                         <TabItem Header="PLC" FontSize="14" ToolTip="Einfache Projekte für die S7-1214 DC/DC/DC">
@@ -132,7 +132,7 @@
                                     <RowDefinition Height="10"/>
                                 </Grid.RowDefinitions>
                                 <StackPanel x:Name="StackPanelTiaPortalPlc" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTiaPortalPlc" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
+                                <Button x:Name="ButtonStartenTiaPortalPlc" Content="{Binding StringStartButton}" Grid.Column="3" Grid.Row="1" Background="{Binding BrushStartButton}" Command="{Binding ButtonStartenCommand}"/>
                                 <WebBrowser x:Name="WebTiaPortalPlc" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -155,7 +155,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTiaPortalPlcHmi" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTiaPortalPlcHmi" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1"  Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
+                                <Button x:Name="ButtonStartenTiaPortalPlcHmi" Content="{Binding StringStartButton}" Grid.Column="3" Grid.Row="1" Background="{Binding BrushStartButton}" Command="{Binding ButtonStartenCommand}"/>
                                 <WebBrowser x:Name="WebTiaPortalPlcHmi" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -179,7 +179,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTiaPortalPlcFio" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"  />
-                                <Button x:Name="ButtonStartenTiaPortalPlcFio" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="4" Grid.Row="1"  Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
+                                <Button x:Name="ButtonStartenTiaPortalPlcFio" Content="{Binding StringStartButton}" Grid.Column="3" Grid.Row="1" Background="{Binding BrushStartButton}" Command="{Binding ButtonStartenCommand}"/>
                                 <WebBrowser x:Name="WebTiaPortalPlcFio" Grid.Column="4" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -202,7 +202,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTiaPortalPlcTests" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTiaPortalPlcTests" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1"  Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
+                                <Button x:Name="ButtonStartenTiaPortalPlcTests" Content="{Binding StringStartButton}" Grid.Column="3" Grid.Row="1" Background="{Binding BrushStartButton}" Command="{Binding ButtonStartenCommand}"/>
                                 <WebBrowser x:Name="WebTiaPortalPlcTests" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -225,7 +225,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTiaPortalPlcBugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTiaPortalPlcBugs" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}"  Click="ButtonStartenPlc_Click" />
+                                <Button x:Name="ButtonStartenTiaPortalPlcBugs" Content="{Binding StringStartButton}" Grid.Column="3" Grid.Row="1" Background="{Binding BrushStartButton}" Command="{Binding ButtonStartenCommand}"/>
                                 <WebBrowser x:Name="WebTiaPortalPlcBugs" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -253,13 +253,13 @@
                         <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
 
-                    <CheckBox x:Name="CheckboxTwinCatAs" Content="AS" Grid.Column="1" Grid.Row="1" IsChecked="True"  Command="{Binding BtnHaken}" />
-                    <CheckBox x:Name="CheckboxTwinCatAwl" Content="AWL" Grid.Column="2" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
-                    <CheckBox x:Name="CheckboxTwinCatCfc" Content="CFC" Grid.Column="3" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
-                    <CheckBox x:Name="CheckboxTwinCatCpp" Content="C++" Grid.Column="4" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
-                    <CheckBox x:Name="CheckboxTwinCatFup" Content="FUP" Grid.Column="5" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
-                    <CheckBox x:Name="CheckboxTwinCatKop" Content="KOP" Grid.Column="6" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
-                    <CheckBox x:Name="CheckboxTwinCatSt" Content="ST" Grid.Column="7" Grid.Row="1" IsChecked="True" Command="{Binding BtnHaken}" />
+                    <CheckBox x:Name="CheckboxTwinCatAs" Content="AS" Grid.Column="1" Grid.Row="1" IsChecked="True"  Command="{Binding CheckBoxHakenCommand}" CommandParameter="Steuerung.TwinCat"/>
+                    <CheckBox x:Name="CheckboxTwinCatAwl" Content="AWL" Grid.Column="2" Grid.Row="1" IsChecked="True" Command="{Binding CheckBoxHakenCommand}" CommandParameter="Steuerung.TwinCat"/>
+                    <CheckBox x:Name="CheckboxTwinCatCfc" Content="CFC" Grid.Column="3" Grid.Row="1" IsChecked="True" Command="{Binding CheckBoxHakenCommand}" CommandParameter="Steuerung.TwinCat"/>
+                    <CheckBox x:Name="CheckboxTwinCatCpp" Content="C++" Grid.Column="4" Grid.Row="1" IsChecked="True" Command="{Binding CheckBoxHakenCommand}" CommandParameter="Steuerung.TwinCat"/>
+                    <CheckBox x:Name="CheckboxTwinCatFup" Content="FUP" Grid.Column="5" Grid.Row="1" IsChecked="True" Command="{Binding CheckBoxHakenCommand}" CommandParameter="Steuerung.TwinCat"/>
+                    <CheckBox x:Name="CheckboxTwinCatKop" Content="KOP" Grid.Column="6" Grid.Row="1" IsChecked="True" Command="{Binding CheckBoxHakenCommand}" CommandParameter="Steuerung.TwinCat"/>
+                    <CheckBox x:Name="CheckboxTwinCatSt" Content="ST" Grid.Column="7" Grid.Row="1" IsChecked="True" Command="{Binding CheckBoxHakenCommand}" CommandParameter="Steuerung.TwinCat"/>
 
                     <TabControl x:Name="TabWinCat" Grid.Column="1" Grid.ColumnSpan="7"  Grid.Row="2">
                         <TabItem Header="PLC" FontSize="14" ToolTip="Einfache Projekte für die CPU CX9020">
@@ -280,7 +280,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlc" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTwinCatPlc" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
+                                <Button x:Name="ButtonStartenTwinCatPlc" Content="{Binding StringStartButton}" Grid.Column="3" Grid.Row="1" Background="{Binding BrushStartButton}" Command="{Binding ButtonStartenCommand}"/>
                                 <WebBrowser x:Name="WebTwinCatPlc" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -303,7 +303,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlcVisu" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTwinCatPlcVisu" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1"  Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
+                                <Button x:Name="ButtonStartenTwinCatPlcVisu" Content="{Binding StringStartButton}" Grid.Column="3" Grid.Row="1" Background="{Binding BrushStartButton}" Command="{Binding ButtonStartenCommand}"/>
                                 <WebBrowser x:Name="WebTwinCatPlcVisu" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -326,7 +326,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlcNc" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTwinCatPlcNc" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}"  Click="ButtonStartenPlc_Click" />
+                                <Button x:Name="ButtonStartenTwinCatPlcNc" Content="{Binding StringStartButton}" Grid.Column="3" Grid.Row="1" Background="{Binding BrushStartButton}" Command="{Binding ButtonStartenCommand}"/>
                                 <WebBrowser x:Name="WebTwinCatPlcNc" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -349,7 +349,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlcTests" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTwinCatPlcTests" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}"  Click="ButtonStartenPlc_Click" />
+                                <Button x:Name="ButtonStartenTwinCatPlcTests" Content="{Binding StringStartButton}" Grid.Column="3" Grid.Row="1" Background="{Binding BrushStartButton}" Command="{Binding ButtonStartenCommand}"/>
                                 <WebBrowser x:Name="WebTwinCatPlcTests" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
@@ -372,7 +372,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel x:Name="StackPanelTwinCatPlcBugs" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"  />
-                                <Button x:Name="ButtonStartenTwinCatPlcBugs" Content="{Binding ViAnzeige.StartButtonInhalt}" Grid.Column="3" Grid.Row="1" Background="{Binding ViAnzeige.StartButtonFarbe}" Click="ButtonStartenPlc_Click" />
+                                <Button x:Name="ButtonStartenTwinCatPlcBugs" Content="{Binding StringStartButton}" Grid.Column="3" Grid.Row="1" Background="{Binding BrushStartButton}" Command="{Binding ButtonStartenCommand}"/>
                                 <WebBrowser x:Name="WebTwinCatPlcBugs" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>

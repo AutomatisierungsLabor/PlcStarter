@@ -12,7 +12,7 @@ namespace PlcStarter;
 public partial class MainWindow
 {
     public void ButtonGeaendert(object _) => AnzeigeUpdaten(AktuelleSteuerung);
-    private void AnzeigeUpdaten(Steuerungen aktuelleSteuerung)
+    public void AnzeigeUpdaten(Steuerungen aktuelleSteuerung)
     {
         if (AllePlc.AlleTabEigenschaften == null) return;
 
@@ -33,8 +33,8 @@ public partial class MainWindow
     {
         if (sender is not RadioButton { Tag: PlcProjektdaten projektdaten }) return;
 
-        ViewModel.ViAnzeige.StartButtonInhalt = "Projekt starten";
-        ViewModel.ViAnzeige.StartButtonFarbe = Brushes.LawnGreen;
+        VmPlcStarter.StringStartButton = "Projekt starten";
+        VmPlcStarter.BrushStartButton = Brushes.LawnGreen;
 
         var dateiName = $@"{projektdaten.OrdnerstrukturSourceProjekt}\{projektdaten.OrdnerPlc}\index.html";
 
@@ -45,5 +45,6 @@ public partial class MainWindow
         projektdaten.BrowserBezeichnung.NavigateToStream(stmHtmlSeite);
 
         projektdaten.ButtonBezeichnung.Tag = projektdaten;
+        PlcProjektdaten = projektdaten;
     }
 }
