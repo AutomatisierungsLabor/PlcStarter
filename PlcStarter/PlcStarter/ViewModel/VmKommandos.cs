@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Toolkit.Mvvm.Input;
+﻿using Microsoft.Toolkit.Mvvm.Input;
 using PlcStarter.Model;
 
 namespace PlcStarter.ViewModel;

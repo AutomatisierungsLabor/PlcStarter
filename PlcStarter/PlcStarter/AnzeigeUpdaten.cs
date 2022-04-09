@@ -11,7 +11,6 @@ namespace PlcStarter;
 
 public partial class MainWindow
 {
-    public void ButtonGeaendert(object _) => AnzeigeUpdaten(AktuelleSteuerung);
     public void AnzeigeUpdaten(Steuerungen aktuelleSteuerung)
     {
         if (AllePlc.AlleTabEigenschaften == null) return;
