@@ -164,8 +164,7 @@
                             <Grid x:Name="TabTiaPortalPlcFio" Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"/>
-                                    <ColumnDefinition Width="69"/>
-                                    <ColumnDefinition Width="331"/>
+                                    <ColumnDefinition Width="450"/>
                                     <ColumnDefinition Width="10"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="10"/>
@@ -180,7 +179,7 @@
 
                                 <StackPanel x:Name="StackPanelTiaPortalPlcFio" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"  />
                                 <Button x:Name="ButtonStartenTiaPortalPlcFio" Content="{Binding StringStartButton}" Grid.Column="3" Grid.Row="1" Background="{Binding BrushStartButton}" Command="{Binding ButtonStartenCommand}"/>
-                                <WebBrowser x:Name="WebTiaPortalPlcFio" Grid.Column="4" Grid.Row="3" />
+                                <WebBrowser x:Name="WebTiaPortalPlcFio" Grid.Column="3" Grid.Row="3" />
                             </Grid>
                         </TabItem>
 

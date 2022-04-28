@@ -33,7 +33,7 @@ public static class AllePlcJobs
                 ProjektOrdnerKopieren(viewModel, Path.Combine(projektdaten.OrdnerstrukturSourceDigitalTwin, projektdaten.OrdnerDeltaDigitalTwin), Path.Combine(projektdaten.OrdnerstrukturDestinationDigitalTwin), "Digital Twin wird kopiert (Delta)", "Digital Twin wurde kopiert (Delta)");
                 break;
             case PlcJobs.DigitalTwinStarten:
-                ProjektStarten(viewModel, Path.Combine(projektdaten.OrdnerstrukturDestinationDigitalTwin, "DigitalTwinStarten.cmd"), Path.Combine(projektdaten.OrdnerstrukturDestinationDigitalTwin));
+                ProjektStarten(viewModel, Path.Combine(projektdaten.OrdnerstrukturDestinationDigitalTwin, projektdaten.ProgrammDigitalTwin), Path.Combine(projektdaten.OrdnerstrukturDestinationDigitalTwin));
                 break;
 
             case PlcJobs.FactoryIoKopieren:
@@ -129,6 +129,12 @@ public static class AllePlcJobs
     {
         var diSource = new DirectoryInfo(sourceDirectory);
         var diTarget = new DirectoryInfo(targetDirectory);
+
+        if (!Directory.Exists(sourceDirectory))
+        {
+            throw new Exception("Der Quellordner ist nicht vorhanden: " + sourceDirectory);
+        }
+
 
         CopyAll(diSource, diTarget);
     }

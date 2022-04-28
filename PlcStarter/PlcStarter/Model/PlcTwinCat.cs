@@ -20,7 +20,6 @@ public class PlcTwinCat : IPlc
         PlcProjekte = JsonConvert.DeserializeObject<PlcProjekt>(File.ReadAllText(_ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TwinCat].Source + "\\TwinCatProjektliste.json"));
         PlcProjekte?.AufFehlerTesten();
     }
-
     public void TabEigenschaftenHinzufuegen()
     {
         _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Plc, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlc, _mainWindow.StackPanelTwinCatPlc, _mainWindow.ButtonStartenTwinCatPlc));
@@ -29,7 +28,6 @@ public class PlcTwinCat : IPlc
         _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.AutoTests, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcTests, _mainWindow.StackPanelTwinCatPlcTests, _mainWindow.ButtonStartenTwinCatPlcTests));
         _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Bug, Steuerungen.TwinCat, _mainWindow.WebTwinCatPlcBugs, _mainWindow.StackPanelTwinCatPlcBugs, _mainWindow.ButtonStartenTwinCatPlcBugs));
     }
-
     public void AnzeigeUpdaten(TabEigenschaften tabEigenschaften)
     {
         var als = _mainWindow.CheckboxTwinCatAs?.IsChecked != null && (bool)_mainWindow.CheckboxTwinCatAs.IsChecked;
@@ -74,4 +72,27 @@ public class PlcTwinCat : IPlc
             _ = tabEigenschaften.StackPanelBezeichnung.Children.Add(rdo);
         }
     }
+    public void StrukturTesten()
+    {
+        foreach (var projekte in PlcProjekte.PlcProjektliste)
+        {
+            if (string.IsNullOrEmpty(projekte.Bezeichnung)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Bezeichnung fehlt!");
+            if (string.IsNullOrEmpty(projekte.Kommentar)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Kommentar fehlt!");
+            if (projekte.SoftwareVersion == 0) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "SoftwareVersion fehlt!");
+
+            if (string.IsNullOrEmpty(projekte.OrdnerTwinCatTemplate)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Ordner TwinCatTemplate fehlt!");
+            if (string.IsNullOrEmpty(projekte.OrdnerPlc)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Ordner Plc fehlt!");
+            if (string.IsNullOrEmpty(projekte.OrdnerTemplateDigitalTwin)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Ordner TemplateDigitalTwin fehlt!");
+            if (string.IsNullOrEmpty(projekte.OrdnerDeltaDigitalTwin)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Ordner DeltaDigitalTwin fehlt!");
+            if (string.IsNullOrEmpty(projekte.OrdnerFactoryIo)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Ordner FactoryIo fehlt!");
+
+            if (string.IsNullOrEmpty(projekte.ProgrammDigitalTwin)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "ProgrammDigitalTwinfehlt!");
+            if(projekte.OrdnerDeltaDigitalTwin=="-" && projekte.ProgrammDigitalTwin!= "-") FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "DigitalTwin: Ordner und exe stimmen nicht überein!");
+
+            if (projekte.Sprache == 0) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Sprache fehlt!");
+            if (projekte.Kategorie == 0) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Kategorie fehlt!");
+            if (projekte.Jobs.Length < 2) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Jobs fehlen!");
+        }
+    }
+    private static void FehlerAnzeigen(string bezeichnung, string kommentar, string fehlermeldung) => MessageBox.Show($"TwinCAT: {bezeichnung} - {kommentar} -->  {fehlermeldung}");
 }

@@ -7,6 +7,7 @@ namespace PlcStarter.Model;
 
 public class PlcProjekt
 {
+
     public PlcProjekt(ObservableCollection<PlcProjektdaten> plcProjektliste) => PlcProjektliste = plcProjektliste;
     public ObservableCollection<PlcProjektdaten> PlcProjektliste { get; set; }
 
@@ -74,6 +75,9 @@ public class PlcProjektdaten
     public string OrdnerTemplateDigitalTwin { get; set; }
     public string OrdnerDeltaDigitalTwin { get; set; }
     public string OrdnerFactoryIo { get; set; }
+
+    public string ProgrammDigitalTwin { get; set; }
+    
     public PlcSprachen Sprache { get; set; }
     public PlcKategorie Kategorie { get; set; }
     public PlcJobs[] Jobs { get; set; }

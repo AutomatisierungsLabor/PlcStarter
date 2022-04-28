@@ -20,7 +20,6 @@ public class PlcTiaPortal : IPlc
         PlcProjekte = JsonConvert.DeserializeObject<PlcProjekt>(File.ReadAllText(_ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TiaPortal].Source + "\\TiaPortalProjektliste.json"));
         PlcProjekte?.AufFehlerTesten();
     }
-
     public void TabEigenschaftenHinzufuegen()
     {
         _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Plc, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlc, _mainWindow.StackPanelTiaPortalPlc, _mainWindow.ButtonStartenTiaPortalPlc));
@@ -29,7 +28,6 @@ public class PlcTiaPortal : IPlc
         _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.AutoTests, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcTests, _mainWindow.StackPanelTiaPortalPlcTests, _mainWindow.ButtonStartenTiaPortalPlcTests));
         _mainWindow.AllePlc.AlleTabEigenschaften.Add(new TabEigenschaften(PlcKategorie.Bug, Steuerungen.TiaPortal, _mainWindow.WebTiaPortalPlcBugs, _mainWindow.StackPanelTiaPortalPlcBugs, _mainWindow.ButtonStartenTiaPortalPlcBugs));
     }
-
     public void AnzeigeUpdaten(TabEigenschaften tabEigenschaften)
     {
         var fup = _mainWindow.CheckboxTiaPortalFup?.IsChecked != null && (bool)_mainWindow.CheckboxTiaPortalFup.IsChecked;
@@ -46,11 +44,11 @@ public class PlcTiaPortal : IPlc
 
             plcProjekt.BrowserBezeichnung = tabEigenschaften.BrowserBezeichnung;
             plcProjekt.ButtonBezeichnung = tabEigenschaften.ButtonBezeichnung;
-            
+
             plcProjekt.OrdnerstrukturSourceProjekt = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TiaPortal].Source;
-            plcProjekt.OrdnerstrukturSourceDigitalTwin= _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.DigitalTwin].Source;
+            plcProjekt.OrdnerstrukturSourceDigitalTwin = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.DigitalTwin].Source;
             plcProjekt.OrdnerstrukturSourceFactoryIo = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.FactoryIo].Source;
-            
+
             plcProjekt.OrdnerstrukturDestinationProjekt = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TiaPortal].Destination;
             plcProjekt.OrdnerstrukturDestinationDigitalTwin = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.DigitalTwin].Destination;
             plcProjekt.OrdnerstrukturDestinationFactoryIo = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.FactoryIo].Destination;
@@ -70,4 +68,27 @@ public class PlcTiaPortal : IPlc
             _ = tabEigenschaften.StackPanelBezeichnung.Children.Add(rdo);
         }
     }
+    public void StrukturTesten()
+    {
+        foreach (var projekte in PlcProjekte.PlcProjektliste)
+        {
+            if (string.IsNullOrEmpty(projekte.Bezeichnung)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Bezeichnung fehlt!");
+            if (string.IsNullOrEmpty(projekte.Kommentar)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Kommentar fehlt!");
+            if (projekte.SoftwareVersion == 0) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "SoftwareVersion fehlt!");
+
+            if (string.IsNullOrEmpty(projekte.OrdnerTwinCatTemplate)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Ordner TwinCatTemplate fehlt!");
+            if (string.IsNullOrEmpty(projekte.OrdnerPlc)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Ordner Plc fehlt!");
+            if (string.IsNullOrEmpty(projekte.OrdnerTemplateDigitalTwin)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Ordner TemplateDigitalTwin fehlt!");
+            if (string.IsNullOrEmpty(projekte.OrdnerDeltaDigitalTwin)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Ordner DeltaDigitalTwin fehlt!");
+            if (string.IsNullOrEmpty(projekte.OrdnerFactoryIo)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Ordner FactoryIo fehlt!");
+
+            if (string.IsNullOrEmpty(projekte.ProgrammDigitalTwin)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "ProgrammDigitalTwinfehlt!");
+            if (projekte.OrdnerDeltaDigitalTwin == "-" && projekte.ProgrammDigitalTwin != "-") FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "DigitalTwin: Ordner und exe stimmen nicht überein!");
+
+            if (projekte.Sprache == 0) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Sprache fehlt!");
+            if (projekte.Kategorie == 0) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Kategorie fehlt!");
+            if (projekte.Jobs.Length < 2) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Jobs fehlen!");
+        }
+    }
+    private static void FehlerAnzeigen(string bezeichnung, string kommentar, string fehlermeldung) => MessageBox.Show($"TiaPortal: {bezeichnung} - {kommentar} -->  {fehlermeldung}");
 }
