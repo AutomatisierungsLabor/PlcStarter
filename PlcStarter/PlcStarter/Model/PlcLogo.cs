@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,7 +17,16 @@ public class PlcLogo : IPlc
         _mainWindow = mainWindow;
         _ordnerStruktur = ordnerStrukturen;
 
-        PlcProjekte = JsonConvert.DeserializeObject<PlcProjekt>(File.ReadAllText(ordnerStrukturen.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.Logo].Source + "\\LogoProjektliste.json"));
+        try
+        {
+            PlcProjekte = JsonConvert.DeserializeObject<PlcProjekt>(File.ReadAllText(ordnerStrukturen.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.Logo].Source + "\\LogoProjektliste.json"));
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.ToString());
+            throw;
+        }
+
         PlcProjekte?.AufFehlerTesten();
     }
     public void TabEigenschaftenHinzufuegen()

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,7 +18,16 @@ public class PlcTwinCat : IPlc
         _mainWindow = mainWindow;
         _ordnerStruktur = ordnerStrukturen;
 
-        PlcProjekte = JsonConvert.DeserializeObject<PlcProjekt>(File.ReadAllText(_ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TwinCat].Source + "\\TwinCatProjektliste.json"));
+        try
+        {
+            PlcProjekte = JsonConvert.DeserializeObject<PlcProjekt>(File.ReadAllText(_ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TwinCat].Source + "\\TwinCatProjektliste.json"));
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.ToString());
+            throw;
+        }
+
         PlcProjekte?.AufFehlerTesten();
     }
     public void TabEigenschaftenHinzufuegen()
@@ -87,7 +97,7 @@ public class PlcTwinCat : IPlc
             if (string.IsNullOrEmpty(projekte.OrdnerFactoryIo)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Ordner FactoryIo fehlt!");
 
             if (string.IsNullOrEmpty(projekte.ProgrammDigitalTwin)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "ProgrammDigitalTwinfehlt!");
-            if(projekte.OrdnerDeltaDigitalTwin=="-" && projekte.ProgrammDigitalTwin!= "-") FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "DigitalTwin: Ordner und exe stimmen nicht überein!");
+            if (projekte.OrdnerDeltaDigitalTwin == "-" && projekte.ProgrammDigitalTwin != "-") FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "DigitalTwin: Ordner und exe stimmen nicht überein!");
 
             if (projekte.Sprache == 0) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Sprache fehlt!");
             if (projekte.Kategorie == 0) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Kategorie fehlt!");
