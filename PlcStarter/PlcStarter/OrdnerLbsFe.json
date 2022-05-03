@@ -1,0 +1,29 @@
+﻿{
+  "OrdnerBezeichnungen": [
+    {
+      "Steuerung": "DigitalTwin",
+      "Source": "s:\\Linder Kurt\\PlcDigitalTwin",
+      "Destination": "h:\\PlcDigitalTwin"
+    },
+    {
+      "Steuerung": "FactoryIO",
+      "Source": "s:\\Linder Kurt\\PlcFactoryIO",
+      "Destination": "h:\\PlcFactoryIO"
+    },
+    {
+      "Steuerung": "Logo",
+      "Source": "s:\\Linder Kurt\\PlcLogo",
+      "Destination": "h:\\PlcLogo"
+    },
+    {
+      "Steuerung": "TiaPortal",
+      "Source": "s:\\Linder Kurt\\PlcTiaPortal",
+      "Destination": "h:\\PlcTiaPortal"
+    },
+    {
+      "Steuerung": "TwinCAT",
+      "Source": "s:\\Linder Kurt\\PlcTwinCAT",
+      "Destination": "h:\\PlcTwinCat"
+    }
+  ]
+}
