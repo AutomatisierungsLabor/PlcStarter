@@ -1,6 +1,6 @@
 ﻿using PlcStarter.Model;
-using System.Windows.Media;
 using PlcStarter.ViewModel;
+using System.Windows.Media;
 
 namespace PlcStarter;
 
@@ -10,11 +10,15 @@ public partial class MainWindow
     public Steuerungen AktuelleSteuerung { get; set; }
     public VmPlcStarter VmPlcStarter { get; set; }
     public PlcProjektdaten PlcProjektdaten { get; set; }
+    public LibTextbausteine.GetTextbausteine GetTextbausteine { get; set; }
+
 
     public MainWindow()
     {
         AktuelleSteuerung = Steuerungen.Logo;
         PlcProjektdaten = new PlcProjektdaten();
+        GetTextbausteine = new LibTextbausteine.GetTextbausteine();
+        GetTextbausteine.SetServerUrl("https://linderonline.at/fk/GetLehrstoffTextbausteine.php");
 
         VmPlcStarter = new VmPlcStarter(this);
 

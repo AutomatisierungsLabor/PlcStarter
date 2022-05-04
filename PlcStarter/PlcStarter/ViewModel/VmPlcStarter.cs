@@ -1,5 +1,5 @@
-﻿using System.Windows.Media;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using System.Windows.Media;
 
 namespace PlcStarter.ViewModel;
 

@@ -7,7 +7,6 @@ namespace PlcStarter.Model;
 
 public class PlcProjekt
 {
-
     public PlcProjekt(ObservableCollection<PlcProjektdaten> plcProjektliste) => PlcProjektliste = plcProjektliste;
     public ObservableCollection<PlcProjektdaten> PlcProjektliste { get; set; }
 
@@ -54,6 +53,23 @@ public class PlcProjekt
     }
 }
 
+public enum TextbausteineAnzeigen
+{
+    NurInhalt = 0,
+    H1H2Inhalt = 1,
+    H1H2TestInhalt = 2
+}
+public class Textbausteine
+{
+    public int BausteinId { get; set; }
+    // ReSharper disable once UnusedMember.Global
+    public int VorbereitungId { get; set; }
+    public string Test { get; set; }
+    // ReSharper disable once UnusedMember.Global
+    public string Kommentar { get; set; }
+    public TextbausteineAnzeigen WasAnzeigen { get; set; }
+
+}
 public class PlcProjektdaten
 {
     public string Bezeichnung { get; set; }
@@ -77,8 +93,9 @@ public class PlcProjektdaten
     public string OrdnerFactoryIo { get; set; }
 
     public string ProgrammDigitalTwin { get; set; }
-    
+
     public PlcSprachen Sprache { get; set; }
     public PlcKategorie Kategorie { get; set; }
     public PlcJobs[] Jobs { get; set; }
+    public Textbausteine[] Textbausteine { get; set; }
 }
