@@ -9,6 +9,8 @@ namespace PlcStarter.Model;
 
 public static class AllePlcJobs
 {
+    private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+
     public static void PlcJobAusfuehren(PlcJobs job, PlcProjektdaten projektdaten, ViewModel.VmPlcStarter viewModel)
     {
         switch (job)
@@ -68,6 +70,7 @@ public static class AllePlcJobs
         }
         catch (Exception exp)
         {
+            Log.Error(exp.ToString());
             MessageBox.Show(exp.ToString());
         }
 
@@ -120,6 +123,7 @@ public static class AllePlcJobs
         }
         catch (Exception exp)
         {
+            Log.Error(exp.ToString());
             MessageBox.Show(exp.ToString());
         }
 

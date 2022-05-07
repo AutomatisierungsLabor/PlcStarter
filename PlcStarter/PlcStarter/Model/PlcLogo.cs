@@ -8,6 +8,8 @@ namespace PlcStarter.Model;
 
 public class PlcLogo : IPlc
 {
+    private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+
     public PlcProjekt PlcProjekte { get; set; }
     private readonly Ordner _ordnerStruktur;
     private readonly MainWindow _mainWindow;
@@ -17,12 +19,16 @@ public class PlcLogo : IPlc
         _mainWindow = mainWindow;
         _ordnerStruktur = ordnerStrukturen;
 
+        var pfad = Path.Combine(ordnerStrukturen.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.Logo].Source, "LogoProjektliste.json");
+        Log.Debug(pfad);
+
         try
         {
-            PlcProjekte = JsonConvert.DeserializeObject<PlcProjekt>(File.ReadAllText(ordnerStrukturen.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.Logo].Source + "\\LogoProjektliste.json"));
+            PlcProjekte = JsonConvert.DeserializeObject<PlcProjekt>(File.ReadAllText(pfad));
         }
         catch (Exception e)
         {
+            Log.Debug(e.ToString());
             MessageBox.Show(e.ToString());
             throw;
         }

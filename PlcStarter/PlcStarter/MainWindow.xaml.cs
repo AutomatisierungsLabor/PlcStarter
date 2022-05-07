@@ -6,6 +6,8 @@ namespace PlcStarter;
 
 public partial class MainWindow
 {
+    private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+
     public AllePlc AllePlc { get; set; }
     public Steuerungen AktuelleSteuerung { get; set; }
     public VmPlcStarter VmPlcStarter { get; set; }
@@ -15,6 +17,8 @@ public partial class MainWindow
 
     public MainWindow()
     {
+        Log.Debug("Konstruktor - startet");
+
         AktuelleSteuerung = Steuerungen.Logo;
         PlcProjektdaten = new PlcProjektdaten();
         GetTextbausteine = new LibTextbausteine.GetTextbausteine();

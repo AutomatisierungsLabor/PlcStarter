@@ -8,6 +8,8 @@ namespace PlcStarter.Model;
 
 public class PlcTwinCat : IPlc
 {
+    private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+
     public PlcProjekt PlcProjekte { get; set; }
 
     private readonly MainWindow _mainWindow;
@@ -17,13 +19,16 @@ public class PlcTwinCat : IPlc
     {
         _mainWindow = mainWindow;
         _ordnerStruktur = ordnerStrukturen;
+        var pfad = Path.Combine(_ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TwinCat].Source, "TwinCatProjektliste.json");
 
         try
         {
-            PlcProjekte = JsonConvert.DeserializeObject<PlcProjekt>(File.ReadAllText(_ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TwinCat].Source + "\\TwinCatProjektliste.json"));
+            Log.Debug(pfad);
+            PlcProjekte = JsonConvert.DeserializeObject<PlcProjekt>(File.ReadAllText(pfad));
         }
         catch (Exception e)
         {
+            Log.Debug(e.ToString());
             MessageBox.Show(e.ToString());
             throw;
         }

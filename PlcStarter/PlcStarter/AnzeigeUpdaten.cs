@@ -14,7 +14,9 @@ public partial class MainWindow
 {
     private class LehrstoffTextbaustein
     {
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         public int Id { get; set; }
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         public string Bezeichnung { get; set; }
         public string UeberschriftH1 { get; set; }
         public string UnterUeberschriftH2 { get; set; }

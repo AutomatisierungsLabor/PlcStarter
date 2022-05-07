@@ -7,15 +7,20 @@ namespace PlcStarter.Model;
 
 public class OrdnerStrukturLesen
 {
+    private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+
     public Ordner OrdnerStrukturen { get; set; }
     internal void GetOrdnerConfig(string pfad)
     {
+        Log.Debug(pfad);
+
         try
         {
             OrdnerStrukturen = JsonConvert.DeserializeObject<Ordner>(File.ReadAllText(pfad));
         }
         catch (Exception e)
         {
+            Log.Debug(e.ToString());
             MessageBox.Show(e.ToString());
             throw;
         }
