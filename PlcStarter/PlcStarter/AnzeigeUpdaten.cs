@@ -65,15 +65,26 @@ public partial class MainWindow
                 case TextbausteineAnzeigen.NurInhalt:
                     html.Append(b.Inhalt);
                     break;
+
+                case TextbausteineAnzeigen.H1Inhalt:
+                    html.Append("<H1>" + textbausteine.PrefixH1 + b.UeberschriftH1 + "</H1>");
+                    html.Append(b.Inhalt);
+                    break;
+
                 case TextbausteineAnzeigen.H1H2Inhalt:
-                    html.Append("<H1>" + b.UeberschriftH1 + "</H1>");
-                    html.Append("<H2>" + b.UnterUeberschriftH2 + "</H2>");
+                    html.Append("<H1>" + textbausteine.PrefixH1 + b.UeberschriftH1 + "</H1>");
+                    html.Append("<H2>" + textbausteine.PrefixH2 + b.UnterUeberschriftH2 + "</H2>");
+                    html.Append(b.Inhalt);
+                    break;
+
+                case TextbausteineAnzeigen.H2Inhalt:
+                    html.Append("<H2>" + textbausteine.PrefixH2 + b.UnterUeberschriftH2 + "</H2>");
                     html.Append(b.Inhalt);
                     break;
 
                 case TextbausteineAnzeigen.H1H2TestInhalt:
-                    html.Append("<H1>" + b.UeberschriftH1 + "</H1>");
-                    html.Append("<H2>" + b.UnterUeberschriftH2 + "</H2>");
+                    html.Append("<H1>" + textbausteine.PrefixH1 + b.UeberschriftH1 + "</H1>");
+                    html.Append("<H2>" + textbausteine.PrefixH2 + b.UnterUeberschriftH2 + "</H2>");
                     html.Append("<H2> #" + textbausteine.Test + "</H2>");
                     html.Append(b.Inhalt);
                     break;
