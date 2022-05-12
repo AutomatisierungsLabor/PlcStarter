@@ -1,9 +1,7 @@
 ﻿using PlcStarter.Model;
 using System;
-using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -12,17 +10,6 @@ namespace PlcStarter;
 
 public partial class MainWindow
 {
-    private class LehrstoffTextbaustein
-    {
-        // ReSharper disable once UnusedAutoPropertyAccessor.Local
-        public int Id { get; set; }
-        // ReSharper disable once UnusedAutoPropertyAccessor.Local
-        public string Bezeichnung { get; set; }
-        public string UeberschriftH1 { get; set; }
-        public string UnterUeberschriftH2 { get; set; }
-        public string Inhalt { get; set; }
-    }
-
     public void AnzeigeUpdaten(Steuerungen aktuelleSteuerung)
     {
         if (AllePlc.AlleTabEigenschaften == null) return;
@@ -47,46 +34,46 @@ public partial class MainWindow
         VmPlcStarter.StringStartButton = "Projekt starten";
         VmPlcStarter.BrushStartButton = Brushes.LawnGreen;
 
-        LadeAlleTextbausteine(projektdaten).GetAwaiter();
+        LadeAlleTextbausteine(projektdaten);
 
         projektdaten.ButtonBezeichnung.Tag = projektdaten;
         PlcProjektdaten = projektdaten;
     }
-
-    private async Task LadeAlleTextbausteine(PlcProjektdaten plcProjektdaten)
+    private void LadeAlleTextbausteine(PlcProjektdaten plcProjektdaten)
     {
         var html = new StringBuilder();
         foreach (var textbausteine in plcProjektdaten.Textbausteine)
         {
-            var b = await TextbasteineLaden(textbausteine.BausteinId);
+            var einLehrstoffTextbaustein = LehrstoffTextbausteine.GetTextbaustein(textbausteine.BausteinId);
+            var inhalt = Encoding.UTF8.GetString(Convert.FromBase64String(einLehrstoffTextbaustein.Inhalt));
 
             switch (textbausteine.WasAnzeigen)
             {
                 case TextbausteineAnzeigen.NurInhalt:
-                    html.Append(b.Inhalt);
+                    html.Append(inhalt);
                     break;
 
                 case TextbausteineAnzeigen.H1Inhalt:
-                    html.Append("<H1>" + textbausteine.PrefixH1 + b.UeberschriftH1 + "</H1>");
-                    html.Append(b.Inhalt);
+                    html.Append("<H1>" + textbausteine.PrefixH1 + einLehrstoffTextbaustein.UeberschriftH1 + "</H1>");
+                    html.Append(inhalt);
                     break;
 
                 case TextbausteineAnzeigen.H1H2Inhalt:
-                    html.Append("<H1>" + textbausteine.PrefixH1 + b.UeberschriftH1 + "</H1>");
-                    html.Append("<H2>" + textbausteine.PrefixH2 + b.UnterUeberschriftH2 + "</H2>");
-                    html.Append(b.Inhalt);
+                    html.Append("<H1>" + textbausteine.PrefixH1 + einLehrstoffTextbaustein.UeberschriftH1 + "</H1>");
+                    html.Append("<H2>" + textbausteine.PrefixH2 + einLehrstoffTextbaustein.UnterUeberschriftH2 + "</H2>");
+                    html.Append(inhalt);
                     break;
 
                 case TextbausteineAnzeigen.H2Inhalt:
-                    html.Append("<H2>" + textbausteine.PrefixH2 + b.UnterUeberschriftH2 + "</H2>");
-                    html.Append(b.Inhalt);
+                    html.Append("<H2>" + textbausteine.PrefixH2 + einLehrstoffTextbaustein.UnterUeberschriftH2 + "</H2>");
+                    html.Append(inhalt);
                     break;
 
                 case TextbausteineAnzeigen.H1H2TestInhalt:
-                    html.Append("<H1>" + textbausteine.PrefixH1 + b.UeberschriftH1 + "</H1>");
-                    html.Append("<H2>" + textbausteine.PrefixH2 + b.UnterUeberschriftH2 + "</H2>");
+                    html.Append("<H1>" + textbausteine.PrefixH1 + einLehrstoffTextbaustein.UeberschriftH1 + "</H1>");
+                    html.Append("<H2>" + textbausteine.PrefixH2 + einLehrstoffTextbaustein.UnterUeberschriftH2 + "</H2>");
                     html.Append("<H2> #" + textbausteine.Test + "</H2>");
-                    html.Append(b.Inhalt);
+                    html.Append(inhalt);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(textbausteine.WasAnzeigen));
@@ -94,20 +81,5 @@ public partial class MainWindow
         }
 
         plcProjektdaten.BrowserBezeichnung.NavigateToString(html.ToString());
-
-        await File.WriteAllTextAsync("browser.html", html.ToString());
-
-    }
-    private async Task<LehrstoffTextbaustein> TextbasteineLaden(int id)
-    {
-        var baustein = new LehrstoffTextbaustein();
-        await GetTextbausteine.ReadTextbaustein(id.ToString());
-        baustein.Id = id;
-        baustein.Bezeichnung = GetTextbausteine.GetBezeichnung();
-        baustein.UeberschriftH1 = GetTextbausteine.GetUeberschriftH1();
-        baustein.UnterUeberschriftH2 = GetTextbausteine.GetUnterUeberschriftH2();
-        baustein.Inhalt = GetTextbausteine.GetInhalt();
-
-        return baustein;
     }
 }

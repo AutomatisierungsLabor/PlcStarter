@@ -20,7 +20,7 @@ public class PlcTiaPortal : IPlc
         _mainWindow = mainWindow;
         _ordnerStruktur = ordnerStrukturen;
 
-        var pfad = Path.Combine(_ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TiaPortal].Source ,"TiaPortalProjektliste.json");
+        var pfad = Path.Combine(_ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TiaPortal].Source, "TiaPortalProjektliste.json");
         Log.Debug(pfad);
 
         try
@@ -105,6 +105,12 @@ public class PlcTiaPortal : IPlc
             if (projekte.Kategorie == 0) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Kategorie fehlt!");
             if (projekte.Jobs.Length < 2) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Jobs fehlen!");
             if (projekte.Textbausteine.Length == 0) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Textbausteine fehlen!");
+
+            foreach (var textbaustein in projekte.Textbausteine)
+            {
+                if (textbaustein.PrefixH1 == null) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Prefix H1 fehlt!");
+                if (textbaustein.PrefixH2 == null) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Prefix H2 fehlt!");
+            }
         }
     }
     private static void FehlerAnzeigen(string bezeichnung, string kommentar, string fehlermeldung) => MessageBox.Show($"TiaPortal: {bezeichnung} - {kommentar} -->  {fehlermeldung}");

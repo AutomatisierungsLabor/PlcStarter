@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LibTextbausteine" Version="1.0.0" />
     <PackageReference Include="log4net" Version="2.0.14" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
     <PackageReference Include="NETCore.Encrypt" Version="2.0.9.1" />
@@ -24,6 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="json.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Ordner.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

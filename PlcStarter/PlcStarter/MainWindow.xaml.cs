@@ -12,7 +12,7 @@ public partial class MainWindow
     public Steuerungen AktuelleSteuerung { get; set; }
     public VmPlcStarter VmPlcStarter { get; set; }
     public PlcProjektdaten PlcProjektdaten { get; set; }
-    public LibTextbausteine.GetTextbausteine GetTextbausteine { get; set; }
+    public LehrstoffTextbausteine LehrstoffTextbausteine { get; set; }
 
 
     public MainWindow()
@@ -21,8 +21,7 @@ public partial class MainWindow
 
         AktuelleSteuerung = Steuerungen.Logo;
         PlcProjektdaten = new PlcProjektdaten();
-        GetTextbausteine = new LibTextbausteine.GetTextbausteine();
-        GetTextbausteine.SetServerUrl("https://linderonline.at/fk/GetLehrstoffTextbausteine.php");
+        LehrstoffTextbausteine = new LehrstoffTextbausteine("json.zip");
 
         VmPlcStarter = new VmPlcStarter(this);
 
