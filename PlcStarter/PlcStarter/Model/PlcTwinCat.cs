@@ -13,13 +13,14 @@ public class PlcTwinCat : IPlc
     public PlcProjekt PlcProjekte { get; set; }
 
     private readonly MainWindow _mainWindow;
-    private readonly Ordner _ordnerStruktur;
+    private readonly OrdnerDaten[] _ordnerDaten;
 
-    public PlcTwinCat(MainWindow mainWindow, Ordner ordnerStrukturen)
+    public PlcTwinCat(MainWindow mainWindow, OrdnerDaten[] ordnerDaten)
     {
         _mainWindow = mainWindow;
-        _ordnerStruktur = ordnerStrukturen;
-        var pfad = Path.Combine(_ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TwinCat].Source, "TwinCatProjektliste.json");
+        _ordnerDaten = ordnerDaten;
+
+        var pfad = Path.Combine(_ordnerDaten[(int)OrdnerBezeichnungen.TwinCat].Source, "TwinCatProjektliste.json");
 
         try
         {
@@ -67,10 +68,10 @@ public class PlcTwinCat : IPlc
 
             plcProjekt.BrowserBezeichnung = tabEigenschaften.BrowserBezeichnung;
             plcProjekt.ButtonBezeichnung = tabEigenschaften.ButtonBezeichnung;
-            plcProjekt.OrdnerstrukturDestinationProjekt = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TwinCat].Destination;
-            plcProjekt.OrdnerstrukturSourceProjekt = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TwinCat].Source;
-            plcProjekt.OrdnerstrukturDestinationDigitalTwin = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.DigitalTwin].Source;
-            plcProjekt.OrdnerstrukturDestinationFactoryIo = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.FactoryIo].Source;
+            plcProjekt.OrdnerstrukturDestinationProjekt = _ordnerDaten[(int)OrdnerBezeichnungen.TwinCat].Destination;
+            plcProjekt.OrdnerstrukturSourceProjekt = _ordnerDaten[(int)OrdnerBezeichnungen.TwinCat].Source;
+            plcProjekt.OrdnerstrukturDestinationDigitalTwin = _ordnerDaten[(int)OrdnerBezeichnungen.DigitalTwin].Source;
+            plcProjekt.OrdnerstrukturDestinationFactoryIo = _ordnerDaten[(int)OrdnerBezeichnungen.FactoryIo].Source;
 
             var rdo = new RadioButton
             {
@@ -93,6 +94,7 @@ public class PlcTwinCat : IPlc
         {
             if (string.IsNullOrEmpty(projekte.Bezeichnung)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Bezeichnung fehlt!");
             if (string.IsNullOrEmpty(projekte.Kommentar)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Kommentar fehlt!");
+            if (string.IsNullOrEmpty(projekte.ProjektDatei)) FehlerAnzeigen(projekte.Bezeichnung, projekte.ProjektDatei, "ProjektDatei fehlt!");
             if (projekte.SoftwareVersion == 0) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "SoftwareVersion fehlt!");
 
             if (string.IsNullOrEmpty(projekte.OrdnerTwinCatTemplate)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Ordner TwinCatTemplate fehlt!");

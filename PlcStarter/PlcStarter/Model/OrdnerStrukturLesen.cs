@@ -8,15 +8,15 @@ namespace PlcStarter.Model;
 public class OrdnerStrukturLesen
 {
     private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
+    private OrdnerDaten[] _ordnerDaten;
 
-    public Ordner OrdnerStrukturen { get; set; }
     internal void GetOrdnerConfig(string pfad)
     {
         Log.Debug(pfad);
-
         try
         {
-            OrdnerStrukturen = JsonConvert.DeserializeObject<Ordner>(File.ReadAllText(pfad));
+            var ordnerStruktur = JsonConvert.DeserializeObject<Ordner>(File.ReadAllText(pfad));
+            _ordnerDaten = ordnerStruktur!.OrdnerBezeichnungen;
         }
         catch (Exception e)
         {
@@ -25,10 +25,14 @@ public class OrdnerStrukturLesen
             throw;
         }
 
-        if (OrdnerStrukturen != null && OrdnerStrukturen.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.DigitalTwin].Steuerung != "DigitalTwin") throw new Exception("Ordner in der falschen Reihenfolge !");
-        if (OrdnerStrukturen != null && OrdnerStrukturen.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.FactoryIo].Steuerung != "FactoryIO") throw new Exception("Ordner in der falschen Reihenfolge !");
-        if (OrdnerStrukturen != null && OrdnerStrukturen.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.Logo].Steuerung != "Logo") throw new Exception("Ordner in der falschen Reihenfolge !");
-        if (OrdnerStrukturen != null && OrdnerStrukturen.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TiaPortal].Steuerung != "TiaPortal") throw new Exception("Ordner in der falschen Reihenfolge !");
-        if (OrdnerStrukturen != null && OrdnerStrukturen.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TwinCat].Steuerung != "TwinCAT") throw new Exception("Ordner in der falschen Reihenfolge !");
+        if (_ordnerDaten != null && _ordnerDaten[(int)OrdnerBezeichnungen.DigitalTwin].Steuerung != "DigitalTwin") throw new Exception("Ordner in der falschen Reihenfolge !");
+        if (_ordnerDaten != null && _ordnerDaten[(int)OrdnerBezeichnungen.FactoryIo].Steuerung != "FactoryIO") throw new Exception("Ordner in der falschen Reihenfolge !");
+        if (_ordnerDaten != null && _ordnerDaten[(int)OrdnerBezeichnungen.Logo].Steuerung != "Logo") throw new Exception("Ordner in der falschen Reihenfolge !");
+        if (_ordnerDaten != null && _ordnerDaten[(int)OrdnerBezeichnungen.TiaPortal].Steuerung != "TiaPortal") throw new Exception("Ordner in der falschen Reihenfolge !");
+        if (_ordnerDaten != null && _ordnerDaten[(int)OrdnerBezeichnungen.TwinCat].Steuerung != "TwinCAT") throw new Exception("Ordner in der falschen Reihenfolge !");
     }
+
+    public OrdnerDaten[] GetLogoOrdner() => _ordnerDaten;
+    public OrdnerDaten[] GetTiaPortalOrdner() => _ordnerDaten;
+    public OrdnerDaten[] GetTwinCatOrdner() => _ordnerDaten;
 }

@@ -11,15 +11,15 @@ public class PlcLogo : IPlc
     private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
 
     public PlcProjekt PlcProjekte { get; set; }
-    private readonly Ordner _ordnerStruktur;
+    private readonly OrdnerDaten[] _ordnerDaten;
     private readonly MainWindow _mainWindow;
 
-    public PlcLogo(MainWindow mainWindow, Ordner ordnerStrukturen)
+    public PlcLogo(MainWindow mainWindow, OrdnerDaten[] ordnerDaten)
     {
         _mainWindow = mainWindow;
-        _ordnerStruktur = ordnerStrukturen;
+        _ordnerDaten = ordnerDaten;
 
-        var pfad = Path.Combine(ordnerStrukturen.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.Logo].Source, "LogoProjektliste.json");
+        var pfad = Path.Combine(_ordnerDaten[(int)OrdnerBezeichnungen.Logo].Source, "LogoProjektliste.json");
         Log.Debug(pfad);
 
         try
@@ -54,8 +54,8 @@ public class PlcLogo : IPlc
 
             plcProjekt.BrowserBezeichnung = tabEigenschaften.BrowserBezeichnung;
             plcProjekt.ButtonBezeichnung = tabEigenschaften.ButtonBezeichnung;
-            plcProjekt.OrdnerstrukturDestinationProjekt = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.Logo].Destination;
-            plcProjekt.OrdnerstrukturSourceProjekt = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.Logo].Source;
+            plcProjekt.OrdnerstrukturDestinationProjekt = _ordnerDaten[(int)OrdnerBezeichnungen.Logo].Destination;
+            plcProjekt.OrdnerstrukturSourceProjekt = _ordnerDaten[(int)OrdnerBezeichnungen.Logo].Source;
 
             var rdo = new RadioButton
             {
@@ -78,6 +78,7 @@ public class PlcLogo : IPlc
         {
             if (string.IsNullOrEmpty(projekte.Bezeichnung)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Bezeichnung fehlt!");
             if (string.IsNullOrEmpty(projekte.Kommentar)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Kommentar fehlt!");
+            if (string.IsNullOrEmpty(projekte.ProjektDatei)) FehlerAnzeigen(projekte.Bezeichnung, projekte.ProjektDatei, "ProjektDatei fehlt!");
             if (projekte.SoftwareVersion == 0) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "SoftwareVersion fehlt!");
             if (string.IsNullOrEmpty(projekte.OrdnerPlc)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Ordner Plc fehlt!");
             if (projekte.Sprache == 0) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Sprache fehlt!");

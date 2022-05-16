@@ -19,7 +19,6 @@ public class EinLehrstoffTextbaustein
     public string UnterUeberschriftH2 { get; set; }
     public string Inhalt { get; set; }
 }
-
 public class LehrstoffTextbausteine
 {
     private const string TempJsonFile = "TempTextbausteine.json";

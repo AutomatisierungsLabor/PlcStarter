@@ -8,7 +8,7 @@ public partial class VmPlcStarter
     [ICommand]
     private void ButtonStarten()
     {
-        foreach (var job in _mainWindow.PlcProjektdaten.Jobs) AllePlcJobs.PlcJobAusfuehren(job, _mainWindow.PlcProjektdaten, this);
+        foreach (var job in _mainWindow.PlcProjektdaten.Jobs) AlleJobs.PlcJobAusfuehren(job, _mainWindow.PlcProjektdaten, this);
     }
 
     [ICommand]

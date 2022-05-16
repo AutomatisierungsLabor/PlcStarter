@@ -13,14 +13,14 @@ public class PlcTiaPortal : IPlc
     public PlcProjekt PlcProjekte { get; set; }
 
     private readonly MainWindow _mainWindow;
-    private readonly Ordner _ordnerStruktur;
+    private readonly OrdnerDaten[] _ordnerDaten;
 
-    public PlcTiaPortal(MainWindow mainWindow, Ordner ordnerStrukturen)
+    public PlcTiaPortal(MainWindow mainWindow, OrdnerDaten[] ordnerDaten)
     {
         _mainWindow = mainWindow;
-        _ordnerStruktur = ordnerStrukturen;
+        _ordnerDaten=ordnerDaten;
 
-        var pfad = Path.Combine(_ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TiaPortal].Source, "TiaPortalProjektliste.json");
+        var pfad = Path.Combine(_ordnerDaten[(int)OrdnerBezeichnungen.TiaPortal].Source, "TiaPortalProjektliste.json");
         Log.Debug(pfad);
 
         try
@@ -61,13 +61,13 @@ public class PlcTiaPortal : IPlc
             plcProjekt.BrowserBezeichnung = tabEigenschaften.BrowserBezeichnung;
             plcProjekt.ButtonBezeichnung = tabEigenschaften.ButtonBezeichnung;
 
-            plcProjekt.OrdnerstrukturSourceProjekt = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TiaPortal].Source;
-            plcProjekt.OrdnerstrukturSourceDigitalTwin = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.DigitalTwin].Source;
-            plcProjekt.OrdnerstrukturSourceFactoryIo = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.FactoryIo].Source;
+            plcProjekt.OrdnerstrukturSourceProjekt = _ordnerDaten[(int)OrdnerBezeichnungen.TiaPortal].Source;
+            plcProjekt.OrdnerstrukturSourceDigitalTwin = _ordnerDaten[(int)OrdnerBezeichnungen.DigitalTwin].Source;
+            plcProjekt.OrdnerstrukturSourceFactoryIo = _ordnerDaten[(int)OrdnerBezeichnungen.FactoryIo].Source;
 
-            plcProjekt.OrdnerstrukturDestinationProjekt = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.TiaPortal].Destination;
-            plcProjekt.OrdnerstrukturDestinationDigitalTwin = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.DigitalTwin].Destination;
-            plcProjekt.OrdnerstrukturDestinationFactoryIo = _ordnerStruktur.OrdnerBezeichnungen[(int)OrdnerBezeichnungen.FactoryIo].Destination;
+            plcProjekt.OrdnerstrukturDestinationProjekt = _ordnerDaten[(int)OrdnerBezeichnungen.TiaPortal].Destination;
+            plcProjekt.OrdnerstrukturDestinationDigitalTwin = _ordnerDaten[(int)OrdnerBezeichnungen.DigitalTwin].Destination;
+            plcProjekt.OrdnerstrukturDestinationFactoryIo = _ordnerDaten[(int)OrdnerBezeichnungen.FactoryIo].Destination;
 
             var rdo = new RadioButton
             {
@@ -90,6 +90,7 @@ public class PlcTiaPortal : IPlc
         {
             if (string.IsNullOrEmpty(projekte.Bezeichnung)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Bezeichnung fehlt!");
             if (string.IsNullOrEmpty(projekte.Kommentar)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Kommentar fehlt!");
+            if (string.IsNullOrEmpty(projekte.ProjektDatei)) FehlerAnzeigen(projekte.Bezeichnung, projekte.ProjektDatei, "ProjektDatei fehlt!");
             if (projekte.SoftwareVersion == 0) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "SoftwareVersion fehlt!");
 
             if (string.IsNullOrEmpty(projekte.OrdnerTwinCatTemplate)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Ordner TwinCatTemplate fehlt!");

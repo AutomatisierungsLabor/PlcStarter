@@ -21,15 +21,15 @@ public class AllePlc
 
     public void PlcInitialisieren(MainWindow mw)
     {
-        Logo = new PlcLogo(mw, OrdnerStrukturLesen.OrdnerStrukturen);
+        Logo = new PlcLogo(mw, OrdnerStrukturLesen.GetLogoOrdner());
         Logo.StrukturTesten();
         Logo.TabEigenschaftenHinzufuegen();
 
-        TiaPortal = new PlcTiaPortal(mw, OrdnerStrukturLesen.OrdnerStrukturen);
+        TiaPortal = new PlcTiaPortal(mw, OrdnerStrukturLesen.GetTiaPortalOrdner());
         TiaPortal.StrukturTesten();
         TiaPortal.TabEigenschaftenHinzufuegen();
 
-        TwinCat = new PlcTwinCat(mw, OrdnerStrukturLesen.OrdnerStrukturen);
+        TwinCat = new PlcTwinCat(mw, OrdnerStrukturLesen.GetTwinCatOrdner());
         TwinCat.StrukturTesten();
         TwinCat.TabEigenschaftenHinzufuegen();
     }
