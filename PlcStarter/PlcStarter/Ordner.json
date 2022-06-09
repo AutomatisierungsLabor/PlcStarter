@@ -3,27 +3,32 @@
     {
       "Steuerung": "DigitalTwin",
       "Source": "k:\\git\\PlcDigitalTwin",
-      "Destination": "h:\\PlcDigitalTwin"
+      "Destination": "h:\\PlcDigitalTwin",
+      "Startprogramm": "" 
     },
     {
       "Steuerung": "FactoryIO",
       "Source": "k:\\git\\PlcFactoryIO",
-      "Destination": "h:\\PlcFactoryIO"
+      "Destination": "h:\\PlcFactoryIO",
+      "Startprogramm": ""
     },
     {
       "Steuerung": "Logo",
       "Source": "k:\\git\\PlcLogo",
-      "Destination": "h:\\PlcLogo"
+      "Destination": "h:\\PlcLogo",
+      "Startprogramm": "C:\\Program Files\\Siemens\\LOGOComfort_V8.3\\LOGOComfort.exe"
     },
     {
       "Steuerung": "TiaPortal",
       "Source": "k:\\git\\PlcTiaPortal",
-      "Destination": "h:\\PlcTiaPortal"
+      "Destination": "h:\\PlcTiaPortal",
+      "Startprogramm": "C:\\Program Files\\Siemens\\Automation\\Portal V17\\Bin\\Siemens.Automation.Portal.exe"
     },
     {
       "Steuerung": "TwinCAT",
       "Source": "k:\\git\\PlcTwinCat",
-      "Destination": "h:\\PlcTwinCat"
+      "Destination": "h:\\PlcTwinCat",
+      "Startprogramm": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\MSEnv\\VSLauncher.exe"
     }
   ]
 }

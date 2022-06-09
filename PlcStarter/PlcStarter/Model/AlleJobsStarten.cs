@@ -17,7 +17,7 @@ public static partial class AlleJobs
             case PlcJobs.None: break;
             case PlcJobs.ProjektKopieren: break;
             case PlcJobs.ProjektStarten:
-                fileName = Path.Combine(projektdaten.OrdnerstrukturDestinationProjekt, projektdaten.ProjektDatei);
+                fileName = $"{projektdaten.Startprogramm} {projektdaten.ProjektDatei}";
                 workingDirectory = projektdaten.OrdnerstrukturDestinationProjekt;
                 break;
             case PlcJobs.DigitalTwinKopieren: break;

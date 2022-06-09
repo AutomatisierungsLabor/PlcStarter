@@ -34,6 +34,11 @@ public class PlcTiaPortal : IPlc
             throw;
         }
 
+        foreach (var plcProjekt in PlcProjekte!.PlcProjektliste)
+        {
+            plcProjekt.Startprogramm = _ordnerDaten[(int)OrdnerBezeichnungen.TiaPortal].Startprogramm;
+        }
+
         PlcProjekte?.AufFehlerTesten();
     }
     public void TabEigenschaftenHinzufuegen()
