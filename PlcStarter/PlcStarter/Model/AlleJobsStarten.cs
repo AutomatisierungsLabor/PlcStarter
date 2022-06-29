@@ -17,8 +17,8 @@ public static partial class AlleJobs
             case PlcJobs.None: break;
             case PlcJobs.ProjektKopieren: break;
             case PlcJobs.ProjektStarten:
-                fileName = $"{projektdaten.Startprogramm} {projektdaten.ProjektDatei}";
-                workingDirectory = projektdaten.OrdnerstrukturDestinationProjekt;
+                fileName = "start.cmd"; //$"{projektdaten.Startprogramm} {projektdaten.ProjektDatei}";
+                workingDirectory = projektdaten.OrdnerstrukturDestinationProjekt;              
                 break;
             case PlcJobs.DigitalTwinKopieren: break;
             case PlcJobs.DigitalTwinStarten:
@@ -35,27 +35,30 @@ public static partial class AlleJobs
             default: throw new ArgumentOutOfRangeException(nameof(job), job, null);
         }
 
-
-
         Log.Debug($"Projekt starten: WorkingDirectory:{workingDirectory}; FileName:{fileName}");
 
         try
         {
-            var proc = new Process
-            {
-                StartInfo =
-                {
-                    FileName = fileName,
-                    WorkingDirectory = workingDirectory
-                }
-            };
-            proc.Start();
+
+            // System.Diagnostics.Process.Start(aufruf);
+
+
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            startInfo.FileName = Path.Combine(workingDirectory, fileName);
+            startInfo.WorkingDirectory = workingDirectory;
+            process.StartInfo = startInfo;
+            process.Start();
+
         }
         catch (Exception exp)
         {
             Log.Error(exp.ToString());
             MessageBox.Show(exp.ToString());
         }
+
+    
 
         viewModel.StringStartButton = "Projekt wurde gestartet";
     }

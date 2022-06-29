@@ -1,34 +1,29 @@
 ﻿{
   "OrdnerBezeichnungen": [
     {
-      "Steuerung": "DigitalTwin",
-      "Source": "k:\\git\\PlcDigitalTwin",
       "Destination": "h:\\PlcDigitalTwin",
-      "Startprogramm": "" 
+      "Source": "s:\\Linder Kurt\\PlcDigitalTwin",
+      "Steuerung": "DigitalTwin"
     },
     {
-      "Steuerung": "FactoryIO",
-      "Source": "k:\\git\\PlcFactoryIO",
       "Destination": "h:\\PlcFactoryIO",
-      "Startprogramm": ""
+      "Source": "s:\\Linder Kurt\\PlcFactoryIO",
+      "Steuerung": "FactoryIO"
     },
     {
-      "Steuerung": "Logo",
-      "Source": "k:\\git\\PlcLogo",
       "Destination": "h:\\PlcLogo",
-      "Startprogramm": "C:\\Program Files\\Siemens\\LOGOComfort_V8.3\\LOGOComfort.exe"
+      "Source": "s:\\Linder Kurt\\PlcLogo",
+      "Steuerung": "Logo"
     },
     {
-      "Steuerung": "TiaPortal",
-      "Source": "k:\\git\\PlcTiaPortal",
       "Destination": "h:\\PlcTiaPortal",
-      "Startprogramm": "C:\\Program Files\\Siemens\\Automation\\Portal V17\\Bin\\Siemens.Automation.Portal.exe"
+      "Source": "s:\\Linder Kurt\\PlcTiaPortal",
+      "Steuerung": "TiaPortal"
     },
     {
-      "Steuerung": "TwinCAT",
-      "Source": "k:\\git\\PlcTwinCat",
       "Destination": "h:\\PlcTwinCat",
-      "Startprogramm": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\MSEnv\\VSLauncher.exe"
+      "Source": "s:\\Linder Kurt\\PlcTwinCAT",
+      "Steuerung": "TwinCAT"
     }
   ]
 }
