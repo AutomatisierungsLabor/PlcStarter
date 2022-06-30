@@ -114,6 +114,8 @@
                     <CheckBox x:Name="CheckboxTiaPortalKop" Content="KOP" Grid.Column="3" Grid.Row="1" IsChecked="True" Command="{Binding CheckBoxHakenCommand}" CommandParameter="Steuerung.TiaPortal"/>
                     <CheckBox x:Name="CheckboxTiaPortalScl" Content="SCL" Grid.Column="4" Grid.Row="1" IsChecked="True" Command="{Binding CheckBoxHakenCommand}" CommandParameter="Steuerung.TiaPortal"/>
 
+                    <Button x:Name="ButtonTiaPortalLoesungAnzeigen" Content="{Binding StringButtonLoesungen}" Grid.Column="5"  Grid.Row="0" Grid.RowSpan="2" Background="Orange" Command="{Binding ButtonLoesungAnzeigenCommand}" Visibility="{Binding VisibilityLoesungAnzeigen }" Margin="295,0,500,0" />
+
                     <TabControl x:Name="TabTiaPortal" Grid.Column="1" Grid.ColumnSpan="5"  Grid.Row="2">
                         <TabItem Header="PLC" FontSize="14" ToolTip="Einfache Projekte für die S7-1214 DC/DC/DC">
                             <Grid x:Name="TabTiaPortalPlc" Background="#FFE5E5E5">
@@ -259,6 +261,8 @@
                     <CheckBox x:Name="CheckboxTwinCatFup" Content="FUP" Grid.Column="5" Grid.Row="1" IsChecked="True" Command="{Binding CheckBoxHakenCommand}" CommandParameter="Steuerung.TwinCat"/>
                     <CheckBox x:Name="CheckboxTwinCatKop" Content="KOP" Grid.Column="6" Grid.Row="1" IsChecked="True" Command="{Binding CheckBoxHakenCommand}" CommandParameter="Steuerung.TwinCat"/>
                     <CheckBox x:Name="CheckboxTwinCatSt" Content="ST" Grid.Column="7" Grid.Row="1" IsChecked="True" Command="{Binding CheckBoxHakenCommand}" CommandParameter="Steuerung.TwinCat"/>
+
+                    <Button x:Name="ButtonTwinCatLoesungAnzeigen" Content="Binding StringButtonLoesungen}" Grid.Column="7"  Grid.Row="0" Grid.RowSpan="2" Background="Orange" Command="{Binding ButtonLoesungAnzeigenCommand}" Visibility="{Binding VisibilityLoesungAnzeigen }" Margin="112,0,500,0" />
 
                     <TabControl x:Name="TabWinCat" Grid.Column="1" Grid.ColumnSpan="7"  Grid.Row="2">
                         <TabItem Header="PLC" FontSize="14" ToolTip="Einfache Projekte für die CPU CX9020">

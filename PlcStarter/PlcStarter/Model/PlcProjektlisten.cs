@@ -79,7 +79,6 @@ public class PlcProjektdaten
     public string Bezeichnung { get; set; }
     public string Kommentar { get; set; }
     public string ProjektDatei { get; set; }
-    public string Startprogramm { get; set; }
     public PlcSoftwareVersion SoftwareVersion { get; set; }
     public Button ButtonBezeichnung { get; set; }
     public WebBrowser BrowserBezeichnung { get; set; }

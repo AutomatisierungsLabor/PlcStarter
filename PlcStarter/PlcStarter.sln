@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31410.357
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlcStarter", "PlcStarter\PlcStarter.csproj", "{06D4D612-1EF9-4F7B-A021-0DC1127D7C85}"
 EndProject
@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonEditor", "JsonEditor\Js
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Openness", "Openness\Openness.csproj", "{C694028F-BCD3-4CA2-A8C7-A29640FF9511}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwinCatDelta", "TwinCatDelta\TwinCatDelta.csproj", "{EF7C86D1-8AE4-4163-950B-E36BA84EAAB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwinCatDelta", "TwinCatDelta\TwinCatDelta.csproj", "{EF7C86D1-8AE4-4163-950B-E36BA84EAAB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibLoesungen", "LibLoesungen\LibLoesungen.csproj", "{F4617F72-9395-4872-8EE6-CCBD7C22D0C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,14 @@ Global
 		{EF7C86D1-8AE4-4163-950B-E36BA84EAAB3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EF7C86D1-8AE4-4163-950B-E36BA84EAAB3}.Release|x86.ActiveCfg = Release|Any CPU
 		{EF7C86D1-8AE4-4163-950B-E36BA84EAAB3}.Release|x86.Build.0 = Release|Any CPU
+		{F4617F72-9395-4872-8EE6-CCBD7C22D0C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4617F72-9395-4872-8EE6-CCBD7C22D0C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4617F72-9395-4872-8EE6-CCBD7C22D0C6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F4617F72-9395-4872-8EE6-CCBD7C22D0C6}.Debug|x86.Build.0 = Debug|Any CPU
+		{F4617F72-9395-4872-8EE6-CCBD7C22D0C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4617F72-9395-4872-8EE6-CCBD7C22D0C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4617F72-9395-4872-8EE6-CCBD7C22D0C6}.Release|x86.ActiveCfg = Release|Any CPU
+		{F4617F72-9395-4872-8EE6-CCBD7C22D0C6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

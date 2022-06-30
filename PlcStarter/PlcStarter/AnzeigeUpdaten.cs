@@ -38,6 +38,8 @@ public partial class MainWindow
 
         projektdaten.ButtonBezeichnung.Tag = projektdaten;
         PlcProjektdaten = projektdaten;
+
+        VmPlcStarter.NeueLoesungAnzeigen(projektdaten);
     }
     private void LadeAlleTextbausteine(PlcProjektdaten plcProjektdaten)
     {

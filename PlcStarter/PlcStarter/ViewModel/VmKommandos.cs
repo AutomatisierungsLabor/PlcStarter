@@ -12,6 +12,21 @@ public partial class VmPlcStarter
     }
 
     [ICommand]
+    private void ButtonLoesungAnzeigen()
+    {
+        if (_mainWindow.Loesungen.FensterAktiv)
+        {
+            StringButtonLoesungen = "Lösungen anzeigen";
+            _mainWindow.Loesungen.FensterAusblenden();
+        }
+        else
+        {
+            StringButtonLoesungen = "Lösungen ausblenden";
+            _mainWindow.Loesungen.FensterAnzeigen();
+        }
+    }
+
+    [ICommand]
     private void CheckBoxHaken(string plc)
     {
         var steuerung = plc switch

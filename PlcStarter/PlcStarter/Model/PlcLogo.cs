@@ -33,11 +33,6 @@ public class PlcLogo : IPlc
             throw;
         }
 
-        foreach (var plcProjekt in PlcProjekte!.PlcProjektliste)
-        {
-            plcProjekt.Startprogramm = _ordnerDaten[(int)OrdnerBezeichnungen.Logo].Startprogramm;
-        }
-
         PlcProjekte!.AufFehlerTesten();
     }
     public void TabEigenschaftenHinzufuegen()
@@ -84,7 +79,6 @@ public class PlcLogo : IPlc
             if (string.IsNullOrEmpty(projekte.Bezeichnung)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Bezeichnung fehlt!");
             if (string.IsNullOrEmpty(projekte.Kommentar)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Kommentar fehlt!");
             if (string.IsNullOrEmpty(projekte.ProjektDatei)) FehlerAnzeigen(projekte.Bezeichnung, projekte.ProjektDatei, "ProjektDatei fehlt!");
-            //if (string.IsNullOrEmpty(projekte.Startprogramm)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Startprogramm, "Startprogramm fehlt!");
             if (projekte.SoftwareVersion == 0) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "SoftwareVersion fehlt!");
             if (string.IsNullOrEmpty(projekte.OrdnerPlc)) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Ordner Plc fehlt!");
             if (projekte.Sprache == 0) FehlerAnzeigen(projekte.Bezeichnung, projekte.Kommentar, "Sprache fehlt!");

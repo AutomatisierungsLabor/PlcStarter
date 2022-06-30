@@ -17,8 +17,8 @@ public static partial class AlleJobs
             case PlcJobs.None: break;
             case PlcJobs.ProjektKopieren: break;
             case PlcJobs.ProjektStarten:
-                fileName = "start.cmd"; //$"{projektdaten.Startprogramm} {projektdaten.ProjektDatei}";
-                workingDirectory = projektdaten.OrdnerstrukturDestinationProjekt;              
+                fileName = "start.cmd";
+                workingDirectory = projektdaten.OrdnerstrukturDestinationProjekt;
                 break;
             case PlcJobs.DigitalTwinKopieren: break;
             case PlcJobs.DigitalTwinStarten:
@@ -39,15 +39,13 @@ public static partial class AlleJobs
 
         try
         {
-
-            // System.Diagnostics.Process.Start(aufruf);
-
-
-            System.Diagnostics.Process process = new System.Diagnostics.Process();
-            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-            startInfo.FileName = Path.Combine(workingDirectory, fileName);
-            startInfo.WorkingDirectory = workingDirectory;
+            var process = new Process();
+            var startInfo = new ProcessStartInfo
+            {
+                WindowStyle = ProcessWindowStyle.Hidden,
+                FileName = Path.Combine(workingDirectory, fileName),
+                WorkingDirectory = workingDirectory
+            };
             process.StartInfo = startInfo;
             process.Start();
 
@@ -57,8 +55,6 @@ public static partial class AlleJobs
             Log.Error(exp.ToString());
             MessageBox.Show(exp.ToString());
         }
-
-    
 
         viewModel.StringStartButton = "Projekt wurde gestartet";
     }
