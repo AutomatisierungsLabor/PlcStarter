@@ -12,12 +12,10 @@ public partial class Loesungen
     public Loesungen()
     {
         ModelLoesungen = new ModelLoesungen();
-        VmLoesungen = new VmLoesungen(ModelLoesungen, this);
+        VmLoesungen = new VmLoesungen(this);
 
-      
-        
-        DataContext = VmLoesungen; 
-        
+        DataContext = VmLoesungen;
+
         InitializeComponent();
     }
     public void FensterAusblenden()
@@ -30,9 +28,6 @@ public partial class Loesungen
         FensterAktiv = true;
         Show();
     }
-    public void NeueLoesungLaden(string projektPfad)
-    {
-        ModelLoesungen.NeueLoesungLaden(projektPfad);
-        VmLoesungen.SetLoesungText(ModelLoesungen.GetLoesungText());
-    }
+    public void LoesungLaden(string projektPfad) => SourceCodeEditor.Document.Text = ModelLoesungen.LoesungLesen(projektPfad);
+    public void LoesungSpeichern() => ModelLoesungen.LoesungSpeichern(SourceCodeEditor);
 }

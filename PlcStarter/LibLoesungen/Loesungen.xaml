@@ -10,25 +10,26 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
 
-        <Button Grid.Column="4" Grid.Row="1" Content="Speichern"  Command="{Binding ButtonSpeichernCommand}"/>
+        <Button Grid.Column="1" Grid.Row="1" Content="Speichern"  Command="{Binding ButtonSpeichernCommand}"/>
 
-        <Label Content="{Binding StringText }" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" />
-
+        <avalonEdit:TextEditor Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+                               xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                               Name="SourceCodeEditor"
+                               FontFamily="Courier New"
+                               SyntaxHighlighting="C#"
+                               Background="LightCyan"
+                               BorderBrush="Black" BorderThickness="2"/>
     </Grid>
-
 </Window>

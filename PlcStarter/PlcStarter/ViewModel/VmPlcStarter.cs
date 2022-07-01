@@ -33,5 +33,5 @@ public partial class VmPlcStarter : ObservableObject
         }
         // ReSharper disable once FunctionNeverReturns
     }
-    public void NeueLoesungAnzeigen(PlcProjektdaten plcProjektdaten) => _mainWindow.Loesungen.NeueLoesungLaden(Path.Combine(plcProjektdaten.OrdnerstrukturSourceProjekt, plcProjektdaten.OrdnerPlc));
+    public void NeueLoesungAnzeigen(PlcProjektdaten plcProjektdaten) => _mainWindow.Loesungen.LoesungLaden(Path.Combine(plcProjektdaten.OrdnerstrukturSourceProjekt, plcProjektdaten.OrdnerPlc));
 }

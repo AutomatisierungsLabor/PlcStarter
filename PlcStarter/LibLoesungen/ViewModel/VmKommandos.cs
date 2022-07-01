@@ -5,8 +5,5 @@ namespace LibLoesungen.ViewModel;
 public partial class VmLoesungen
 {
     [ICommand]
-    private void ButtonSpeichern()
-    {
-    }
-
+    private void ButtonSpeichern() => _loesungen.LoesungSpeichern();
 }
